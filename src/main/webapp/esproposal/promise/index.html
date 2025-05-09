@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Promise</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="promise.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Promise</h1>
+      <p>
+        Promise関連の新しい仕様を調査します。
+      </p>
+    </header>
+    <main>
+      <section class="finally-of-promise">
+        <h2>Promise finally</h2>
+        <p>
+          Promiseが成功した時でも失敗した時でも実行したい処理を指定します。
+        </p>
+        <div class="output"></div>
+        <div>
+          <div>
+            <label><input class="keyword" type="radio" name="keyword" value="OK" checked="checked" />OK</label>
+            <label><input class="keyword" type="radio" name="keyword" value="NG" />NG</label>
+            <label><input class="keyword" type="radio" name="keyword" value="UNKNOWN" />UNKNOWN</label>
+          </div>
+          <button class="run">run</button>
+          <button class="clear">clear</button>
+        </div>
+      </section>
+      <section class="async-function-with-promise">
+        <h2>PromiseによるAsyncFunction化</h2>
+        <p>
+          XMLHttpRequestを使ったコードのような非同期処理をPromiseでラップすることで<br />
+          async functionにすることができます。　
+        </p>
+        <div class="output"></div>
+        <div>
+          <label>file name:<input class="target-file-name" type="text" value="sample.json" /></label>
+        </div>
+        <button class="run">load</button>
+        <button class="clear">clear</button>
+      </section>
+      <section class="promise-event-example">
+        <h2>onrejectionhandled, onunhandledrejection</h2>
+        <div class="output"></div>
+        <div>
+          <button class="runner">run</button>
+        </div>
+      </section>
+      <section class="extension allsettled">
+        <h2>Promise.allSetteled</h2>
+        <button data-event-target="loadImage" class="loader">load image</button>
+        <div class="canvascontainer">
+          <canvas class="outputimage" width="500" height="500"></canvas>
+        </div>
+      </section>
+    </main>
+    <aside>
+      <p>参考サイト</p>
+      <ul>
+        <li><a href="http://2ality.com/2017/07/promise-prototype-finally.html">ES proposal: Promise.prototype.finally()</a></li>
+        <li><a href="https://github.com/tc39/proposal-promise-allSettled">tc39/proposal-promise-allSettled</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas">Offscreen​Canvas(MDN)</a></li>
+      </ul>
+    </aside>
+    <script src="promise.js"></script>
+    <script src="handle.js" type="module"></script>
+    <script src="extension.js" type="module"></script>
+  </body>
+</html>

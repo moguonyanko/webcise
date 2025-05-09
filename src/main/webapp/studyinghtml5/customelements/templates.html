@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>Templates</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <header>
+      <h1>Templates</h1>
+      <p>提供するcustom elementのtemplate一覧です。</p>
+    </header>
+    <main>
+      <template class="my-userdata">
+        <link rel="stylesheet" href="template.css" />
+        <div class="base">
+          <p>User Data</p>
+          <!--
+          このslotの入れ方ではユーザーがinputをslotに挿入した場合にlabelとinputが分離してしまう。 
+          slotに挿入されたDOMは常にLightDOMに配置される。分離されてはいけない2つの要素の間に
+          slotを入れてはいけない。
+          -->
+          <label><slot name="user-name">name:<input type="text" value="no name" /></slot></label>
+          <label><slot name="user-age">age:<input type="number" value="" min="0" max="130" /></slot></label>
+          <p class="description"></p>
+        </div>
+      </template>
+      <template class="my-menulist">
+        <link rel="stylesheet" href="template.css" />
+        <div class="base">
+          <p class="shopname"></p>
+          <ol class="menulist">
+            <!-- 
+            slotにする範囲はなるべく小さくしないとtemplateのCSSを適用しにくくなる。 
+            ユーザーがどんなDOMをslotに挿し込んでくるかは分からないためである。
+            -->
+            <li>Smile</li>
+            <li><slot name="my-menu-item-1"></slot></li>
+            <li><slot name="my-menu-item-2"></slot></li>
+            <li><slot name="my-menu-item-3"></slot></li>
+          </ol>
+        </div>
+      </template>
+    </main>
+  </body>
+</html>

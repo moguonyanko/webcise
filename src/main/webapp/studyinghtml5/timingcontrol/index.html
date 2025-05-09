@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Timing control for script-based animations</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<style>
+			#AnimationContainer {
+				position: relative;
+				width: 500px;
+				height: 500px;
+				border: 1px solid skyblue;
+				background-color: azure;
+				border-radius: 5px;
+			}
+
+			#AnimationElement {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 30px;
+				height: 30px;
+				background-color: red;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<header role="banner">
+			<h1>Timing control for script-based animations</h1>
+			<p>Timing control for script-based animationsの練習サイトです。</p>
+		</header>
+
+		<main>
+			<section>
+				<h2>要素をアニメーションさせます。</h2>
+				<div id="AnimationContainer">
+					<div id="AnimationElement"></div>
+				</div>
+				<button id="AnimationStarter">アニメーション開始</button>
+			</section>
+		</main>
+
+		<script>
+			(function (win, doc) {
+				var container = doc.getElementById("AnimationContainer"),
+					limX = 0,
+					limY = 0,
+					target = doc.getElementById("AnimationElement"),
+					startTime = 0,
+					moveUnit = 100,
+					unit = "px";
+
+				function getTargetPosition() {
+					var targetStyle = getComputedStyle(target);
+
+					return {
+						x: parseInt(targetStyle.getPropertyValue("left")),
+						y: parseInt(targetStyle.getPropertyValue("top"))
+					};
+				}
+				
+				function getTargetSize(){
+					var targetStyle = getComputedStyle(target);
+					
+					return {
+						width: parseInt(targetStyle.getPropertyValue("width")),
+						height: parseInt(targetStyle.getPropertyValue("height"))
+					};
+				}
+
+				function isMovable() {
+					var nowPos = getTargetPosition(),
+						size = getTargetSize();
+
+					return nowPos.x + size.width < limX && 
+						nowPos.y + size.height < limY;
+				}
+
+				function setTargetPosition(pos) {
+					target.style.setProperty("left", pos.x + unit);
+					target.style.setProperty("top", pos.y + unit);
+				}
+
+				function animation(nowTime) {
+					if (!isMovable()) {
+						return;
+					}
+
+					/* 1秒間にmoveUnitずつ進む。 */
+					var positionValue = moveUnit * (nowTime - startTime) / 1000;
+
+					setTargetPosition({
+						x: positionValue,
+						y: positionValue
+					});
+
+					win.requestAnimationFrame(animation);
+				}
+
+				function addEventListener() {
+					var starter = doc.getElementById("AnimationStarter");
+					starter.addEventListener("click", function () {
+						/* getComputedStyleを介さないとwidth, heightは空文字。 */
+						var containerStyle = getComputedStyle(container);
+						limX = parseInt(containerStyle.getPropertyValue("width"));
+						limY = parseInt(containerStyle.getPropertyValue("height"));
+						startTime = win.performance.now();
+						setTargetPosition({
+							x: 0,
+							y: 0
+						});
+						win.requestAnimationFrame(animation);
+					}, false);
+				}
+
+				function init() {
+					addEventListener();
+				}
+
+				init();
+
+			}(window, document));
+		</script>
+	</body>
+</html>

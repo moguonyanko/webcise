@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Persmissions API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Persmissions API</h1>
+      <a href="../">home</a>
+    </header>
+    <main>
+      <section class="permissions-geolocation-example">
+        <h2>位置取得</h2>
+        <div>
+          <textarea class="result" readonly></textarea>
+        </div>
+        <button class="positiongetter">get position</button>
+        <p><label>タイムアウト:<input class="timeout" type="number" value="30000" />ms</label></p>
+      </section>
+    </main>
+    <aside>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API">Permissions_API(MDN)</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API/Using_the_Permissions_API">Using the Permissions API(MDN)</a></li>
+      </ul>
+    </aside>
+    <script src="dom.js" type="module"></script>
+  </body>
+</html>

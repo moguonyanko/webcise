@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+:host {
+    display: block;
+    contain: content;
+}

@@ -1,0 +1,25 @@
+{
+    "short_name": "ManifestSample",
+    "name": "App for Test of Web App Manifest",
+    "icons": [
+        {
+            "src": "../../images/launcher1.png",
+            "type": "image/png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "../../images/launcher2.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "../../images/launcher3.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        }
+    ],
+    "start_url": "index.html?startpage",
+    "background_color": "#ccff99",
+    "display": "standalone",
+    "theme_color": "#ccffcc"
+}

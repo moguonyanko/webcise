@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+main {
+    width: 100%;
+}
+
+pubkey-creator {
+    margin: 0.5em;
+}
+
+aside {
+    padding: 1em;
+    background-color: beige;
+}
+
+.register.example {
+    max-width: 500px;
+    background-color: linen;
+}

@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+section {
+    background-color: whitesmoke;
+    margin-bottom: 0.5em;
+    width: 100%;
+}
+
+.example {
+    background-color: beige;
+    overflow-x: scroll;
+}
+
+#external-host-script {
+    background-color: lawngreen;
+}
+
+#loading-result-area {
+    background-color: violet;
+    text-align: center;
+}

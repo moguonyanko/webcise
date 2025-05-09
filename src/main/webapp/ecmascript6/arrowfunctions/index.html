@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Arrow Functions</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            :root {
+                --common-bg-color: rgba(102, 102, 153, 0.2);
+                --common-result-color: rgba(204, 204, 204, 0.2);
+            }
+
+            main {
+                width: 80%;
+            }
+
+            .resultarea {
+                height: 10rem;
+                margin: 5px;
+                border: 1px var(--common-result-color) solid;
+                border-radius: 5px;
+                background-color: var(--common-result-color);
+                overflow-y: scroll;
+            }
+
+            .code-sample {
+                background-color: beige;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <header role="banner">
+            <h1>Arrow Functions</h1>
+            <p>
+                ECMAScript6で導入されるアロー関数について調べます。<br />
+            </p>
+        </header>
+
+        <main>
+            <section class="arguments-object-in-arrow-functions">
+                <h2>Argumentsオブジェクトの扱い</h2>
+                <p>アロー関数内ではArgumentsオブジェクトが存在しない。</p>
+                <div class="resultarea"></div>
+                <div>
+                    <pre class="code-sample"><code>
+            const getArgumentsLength = () => {
+                /**
+                 * アロー関数内でもArgumentsオブジェクト自体はECMAScript5までと
+                 * 同じように存在している。しかし参照するとエラーになってしまう。
+                 * この振る舞いはstrictモードでなくても変わらない。
+                 */
+                if(arguments){
+                    return arguments.length;
+                } else {
+                    g.log(arguments);
+                    throw new Error("Arguments is nothing!");
+                }
+            };                         
+                    </code></pre>
+                </div>
+                <div>
+                    <button class="check-arguments-object">結果表示</button>
+                    <button class="clear-result">クリア</button>
+                </div>
+            </section>
+            <section class="feature-arrow-functions">
+                <h2>アロー関数の特徴</h2>
+                <div class="resultarea"></div>
+                <div>
+                    <div class="check-target-features">
+                        <p><label><input type="radio" name="feature-name" value="new" checked="checked" />new演算子</label></p>
+                        <p><label><input type="radio" name="feature-name" value="prototype" />prototypeプロパティ</label></p>
+                        <p><label><input type="radio" name="feature-name" value="duplicateargs" />引数名重複</label></p>
+                    </div>
+                    <button class="display-result">結果表示</button>
+                    <button class="clear-result">クリア</button>
+                </div>
+            </section>
+            <section class="tail-call-optimization">
+                <h2>末尾呼び出し最適化</h2>
+                <p>
+                    アロー関数は末尾呼び出し最適化されるらしいが再帰回数が多いとエラーになる。<br />
+                    どの程度の回数でエラーになるかはブラウザによって異なる。
+                </p>
+                <div class="resultarea"></div>
+                <div>
+                    <label>階乗のn=<input class="input-factorial-number" type="number" value="170" /></label>
+                    <div>
+                        <label><input class="enable-tail-call-optimization" type="checkbox" checked="checked" />末尾呼び出し最適化有効</label>
+                        <button class="display-result">結果表示</button>
+                        <button class="clear-result">クリア</button>
+                    </div>
+                </div>
+            </section>
+            <section class="lexically-this">
+                <h2>アロー関数のthis</h2>
+                <p>
+                    アロー関数内のthisはレキシカルなのでアロー関数を呼び出したコンテキストが<br />
+                    変化しても関数の結果は変わらない。
+                </p>
+                <div>
+                    <pre class="code-sample"><code>
+            const sample = {
+                value: "Hello ",
+                greet (name) {
+                    return this.value + name;
+                },
+                greetCall(name, arrow) {
+                    let f;
+                    const context = {
+                        value: "こんにちは "
+                    };
+                    
+                    if (arrow) {
+                        f = n => this.value + n;
+                    } else{
+                        f = function(n){
+                            return this.value + n;
+                        };
+                    }
+                    
+                    return f.call(context, name);
+                }
+            };
+                    </code></pre>
+                    <label><input name="func-type" type="radio" checked="checked" value="arrow"/>アロー関数</label>
+                    <label><input name="func-type" type="radio" value="formula" />function式</label>
+                    <div>
+                        <button class="display-result">結果表示</button>
+                        <button class="clear-result">クリア</button>
+                    </div>
+                </div>
+                <div class="resultarea"></div>
+            </section>
+        </main>
+
+        <aside role="complementary">
+            <h3>参考</h3>
+            <ul>
+                <li><a href="http://es6-features.org/">ECMAScript 6 — New Features: Overview & Comparison</a></li>
+                <li><a href="https://leanpub.com/understandinges6/read/">Understanding ECMAScript 6</a></li>
+                <li><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions">MDN Arrow functions</a></li>
+                <li><a href="http://www.2ality.com/2015/06/tail-call-optimization.html">Tail call optimization in ECMAScript 6</a></li>
+            </ul>
+        </aside>
+
+        <footer role="contentinfo">
+            <small>Copyright &copy; 2016 moguonyanko All rights reserved.</small>
+        </footer>
+
+        <script src="../../gomakit.js"></script>
+        <script src="arrowfunctions.js"></script>
+    </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Content Security Policy(CSP)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+          font-size: 100%;
+      }
+    </style>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Content Security Policy(CSP)</h1>
+      <a href="../">home</a>
+    </header>
+    <main>
+      <section class="default-src-example">
+        <h2>default-src、script-src、style-src</h2>
+        <p>HTTPレスポンスヘッダでの指定例は以下の通り。</p>
+        <p class="example">
+          Content-Security-Policy "default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'"
+        </p>
+        <p class='description'>
+          default-src 'self'により自身のドメイン以外からコンテンツを読み込まないようにする。(サブドメインは可)
+          このページを読み込んだドメインがmyhostではない場合以下のボタンを押すとエラーになる。
+          エラーをtry-catchで捕捉することはできない。
+        </p>
+        <button class="runner">myhostからスクリプト読み込み</button>
+        <div id="external-host-script"></div>
+        <p class="description">
+          Content Security Policyヘッダがdefault-src 'self'のみだった場合、インラインのCSSもエラーになる。
+          script-src 'unsafe-inline'やstyle-src 'unsafe-inline'とするとインラインスクリプトやスタイルは読み込めるが、今度は自身のドメインから読み込めなくなる。
+        </p>
+      </section>
+      <section>
+        <h2>Content-Security-Policy-Report-Only</h2>
+        <p>
+          Content-Security-Policy-Report-Onlyとすれば違反報告だけを行わせることができる。
+        </p>
+        <p class="example">
+          Content-Security-Policy-Report-Only "default-src 'self'; report-uri https://localhost/webcise/CspReport"
+        </p>
+        <p>
+          この場合report-uriに報告だけ行われて読み込み拒否されるはずのインラインスクリプトやインラインスタイルは正常に処理される。<br />
+          報告で送信されるJSONは以下のようなフォーマットになっている。
+        </p>
+        <div id="loading-result-area"></div>
+        <p>報告されるJSONは以下の通り。Firefox60で確認した。</p>
+        <div class="example">
+          {"csp-report":{"blocked-uri":"self","document-uri":"https://localhost/webcise/security/csp/","line-number":7,"original-policy":"default-src https://localhost; report-uri https://localhost/webcise/CspReport","referrer":"https://localhost/webcise/security/","script-sample":"\n      :root {\n          font-size: 100%...","source-file":"https://localhost/webcise/security/csp/","violated-directive":"default-src"}}
+        </div>
+        <p>SafariTPでは以下のようになった。フォーマットにもJSONに含まれる情報の内容にもブラウザ互換性が無いようである。</p>
+        <div class="example">
+          {"csp-report":{"document-uri":"https://localhost/webcise/security/csp/","referrer":"","violated-directive":"default-src 'self'","effective-directive":"style-src","original-policy":"default-src 'self'; report-uri https://localhost/webcise/CspReport","blocked-uri":"","status-code":0}}
+        </div>
+        <p>クロスオリジンに絡む違反も報告される。</p>
+        <div class="example">
+          {"csp-report":{"document-uri":"https://localhost/webcise/security/csp/","referrer":"https://localhost/webcise/security/","violated-directive":"default-src 'self'","effective-directive":"script-src","original-policy":"default-src 'self'; report-uri https://localhost/webcise/CspReport","blocked-uri":"https://myhost","status-code":0}}
+        </div>
+      </section>
+    </main>
+    <aside>
+      <h3>参考</h3>
+      <p>MDN</p>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Content Security Policy (CSP)</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src">CSP: script-src</a></li>
+        <li><a href='https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src'>CSP: style-src</a></li>
+      </ul>
+    </aside>
+    <script src="main.js" type="module"></script>
+    <script>
+      document.getElementById("loading-result-area").innerHTML += "inner script!!!";
+    </script>
+  </body>
+</html>

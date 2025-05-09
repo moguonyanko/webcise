@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>String</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../gomakit.css" />
+    <link rel="stylesheet" href="string.css">
+    <link rel="stylesheet" href="matchall.css" />
+  </head>
+  <body>
+    <header>
+      <h1>String</h1>
+      <p>String関係で提案されている機能を調査します。</p>
+    </header>
+    <main>
+      <section class="padding-string-sample">
+        <h2>Padding</h2>
+        <div class="output"></div>
+        <div>
+          <div>
+            <label>sample:<input class="sample-input" type="text" value="test" /></label>
+            <label>padding text<input class="sample-padding-text" type="text" value="@" /></label>
+            <label>target length:<input class="sample-length" type="number" value="10" min="0" /></label>
+          </div>
+          <div>
+            <div>
+              <label><input type="radio" name="padding-side" value="start" checked="checked" />start</label>
+              <label><input type="radio" name="padding-side" value="end" />end</label>
+            </div>
+            <div>
+              <button class="runner">run</button>
+              <button class="clearer">clear</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="trim-example">
+        <h2>Trimming</h2>
+        <textarea class="result">   H e l l o   </textarea>
+        <p>Trimming後の文字数=<span class="text-length">?</span>文字</p>
+        <div class="trim-container">
+          <button class="trim trim-start">trimStart</button>
+          <button class="trim trim-end">trimEnd</button>
+        </div>
+      </section>
+      <section class="matcher example">
+        <h2>String.matchAll</h2>
+        <label>Input<input class="eventtarget" type="text" is="matcher-input"
+                           data-pattern="[(\w)(\W)]+(?=\:)" data-ignorecase /></label>
+        <label>Matched<input class="matched" type="text" readonly /></label>
+      </section>
+    </main>
+    <aside>
+      <h3>参考サイト</h3>
+      <li><a href="http://kangax.github.io/compat-table/esnext/">ECMAScript Next compatibility table</a></li>
+    </aside>
+    <script src="../../gomakit.js"></script>
+    <script src="main.js"></script>
+    <script src="trimuser.js" type="module"></script>
+    <script src="matchall.js" type="module"></script>
+  </body>
+</html>

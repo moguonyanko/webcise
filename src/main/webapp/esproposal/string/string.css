@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+.result {
+    width: 100%;
+    max-width: 400px;
+    height: 80vh;
+    max-height: 150px;
+}

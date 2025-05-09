@@ -1,0 +1,10 @@
+Hello, world!
+abcde
+This is sample text file.
+sample sample sample
+WebSocket and Generator test
+test1
+test2
+test3
+test4
+test5

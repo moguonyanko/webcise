@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Security Model</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Security Model</h1>
+      <p>
+        クロスオリジンにおけるアクセス制御について調べます。
+      </p>
+      <ul>
+        <li><a href="#access-control-allow-origin-sample">Access-Control-Allow-Origin</a></li>
+        <li><a href="#preflight-request-sample">Preflight Request</a></li>
+        <li><a href="#mixed-passive-content-sample">Mixed Passive Content</a></li>
+        <li><a href="#mixed-active-content-sample">Mixed Active Content</a></li>
+        <li><a href="#secure-contexts-sample">Secure Contexts</a></li>
+      </ul>
+    </header>
+    <main>
+      <section id="access-control-allow-origin-sample">
+        <h2>Access-Control-Allow-Origin</h2>
+        <p>異なるオリジンとの通信を制限します。</p>
+        <div class="result"></div>
+        <div>
+          <div>
+            <p>adding values range</p>
+            <div class="adding-values">
+              <label>size<input class="adding-values-size" type="number" value="5" /></label>
+              <label>min<input class="adding-values-min" type="number" value="1" /></label>
+              <label>max<input class="adding-values-max" type="number" value="10" /></label>
+            </div>
+            <p>host name</p>
+            <div>
+              <label><input type="radio" name="select-host" value="localhost" checked="checked" />localhost</label>
+              <label><input type="radio" name="select-host" value="myhost" />myhost</label>
+            </div>
+          </div>
+          <button class="run">run</button>
+          <button class="clear">clear</button>
+        </div>
+      </section>
+      <section id="preflight-request-sample">
+        <h2>Preflight Request</h2>
+        <p>特定の状況においてブラウザは安全な通信が行えるかどうかをOPTIONSメソッドを使い確認します。</p>
+        <div class="result"></div>
+        <div>
+          <div>
+            <p>Http Request Header</p>
+            <label><input class="use-custom-header" type="checkbox" checked="checked" />custom</label>
+          </div>
+          <div>
+            <p>Resource</p>
+            <label><input class="content-type" type="radio" name="content-type" value="" checked="checked" />Calculator</label>
+            <label><input class="content-type" type="radio" name="content-type" value="application/xml" />SaveXML</label>
+          </div>
+          <section>
+            <h3>Select If Only Calculator</h3>
+            <div>
+              <p>Request Method</p>
+              <label><input class="method" name="method" type="radio" checked="checked" value="POST" />POST</label>
+              <label><input class="method" name="method" type="radio" value="DELETE" />DELETE</label>
+            </div>
+          </section>
+          <button class="run">run</button>
+          <button class="clear">clear</button>
+        </div>
+      </section>
+      <section id="mixed-passive-content-sample">
+        <h2>Mixed Content</h2>
+        <section>
+          <h2>Passive/Display Content</h2>
+          <p class="outline">
+            imgやaudio，video及びobjectなどが該当する。
+            例えばHTTPSで表示されたページにおいてHTTPを使いimg要素を読み込むと
+            そのコンテンツはMixed passive contentとなる。
+            Mixed passive contentはブラウザによってブロックされる。
+          </p>
+          <section>
+            <!-- output要素はインライン要素なのでdisplay: blockを指定しないとheightが反映されない。 -->
+            <!--<output></output>-->
+            <div>
+              <img src="../../images/star.png" alt="sample star image" />
+            </div>
+            <div class="result"></div>
+            <h3>Image to Uint8</h3>
+            <div>
+              <p></p>
+              <label>Uint8 size<input class="image-size" type="number" value="10" min="1" /></label>
+            </div>
+            <div>
+              <p>Protocol</p>
+              <label><input class="protocol" type="radio" name="positive-protocol" value="https" checked="checked" />HTTPS(default)</label>
+              <label><input class="protocol" type="radio" name="positive-protocol" value="http" />HTTP</label>
+            </div>
+            <div>
+              <button class="generate">generate</button>
+              <button class="run">run</button>
+              <button class="clear">clear</button>
+            </div>
+          </section>
+        </section>
+      </section>
+      <section id="mixed-active-content-sample">
+        <h3>Mixed active content</h3>
+        <p class="outline">
+          scriptやiframe，linkなどページ内のDOMにアクセスできる要素が対象となる。というか
+          Passive content以外でURLを介してコンテンツを取得するものは大体Active contentである。
+          XMLHttpRequestやCSSのbackground-imageプロパティなども該当する。
+          aやformは違う様子。コンテンツを取得はしないからか。
+          これらの要素を使いHTTPSで表示されたページにおいてHTTPでコンテンツ取得を試みると
+          ブラウザによりブロックされる。linkは読み込む対象がCSSであってもブロックの対象となる。
+          しかしブロックされてもエラーにはならないこともある。
+        </p>
+        <div class="result"></div>
+        <div>
+          <p>Protocol</p>
+          <label><input class="protocol" type="radio" name="active-protocol" value="https" checked="checked" />HTTPS(default)</label>
+          <label><input class="protocol" type="radio" name="active-protocol" value="http" />HTTP</label>
+        </div>
+        <div>
+          <button class="run">run</button>
+          <button class="clear">clear</button>
+        </div>
+      </section>
+      <section id="secure-contexts-sample">
+        <h2>Secure Contexts</h2>
+        <p class="outline">
+          基本的にトップレベルのウインドウがHTTPSなどセキュアなプロトコルでなければ
+          Secure Contextではないとみなされる。
+          localhostはHTTPSでなくてもSecure Contextと見なされる。
+        </p>
+        <section>
+          <h3>HTTPSからのHTTPはnon-secure</h3>
+          <p class="outline">
+            ただしlocalhostはsecure。
+            今のところlocalhost以外でHTTPSでない場合常にnon-secureになっている。
+          </p>
+          <a href="http://localhost/webcise/studyinghtml5/securitymodel/securitychecking.html">localhost</a>
+          <a href="http://myhost/webcise/studyinghtml5/securitymodel/securitychecking.html">myhost</a>
+        </section>
+        <section>
+          <h3>別ウインドウをスクリプトで開く</h3>
+          <p class="outline">
+            トップレベルのウインドウがHTTPであってもnoopenerが指定されたaやwindow.openで
+            生成されたウインドウはSecure Contextと見なされる・・・はずだが，現時点では
+            noopenerを指定していなくても参照されたURLがHTTPSであればSecure Contextになってしまう。
+          </p>
+          <div>
+            <div>
+              <label><input class="use-secure-protocol" type="checkbox" checked="checked" />secure</label>
+              <select class="select-host">
+                <option value="localhost">localhost</option>
+                <option value="myhost">myhost</option>
+                <option value="selfhost">selfhost</option>
+              </select>
+              <label><input class="use-noopener" type="checkbox" />noopener</label>
+            </div>
+            <button class="open-window">open</button>
+          </div>
+        </section>
+        <section>
+          <h3>noopener(version a element)</h3>
+          <a href="https://selfhost/webcise/studyinghtml5/securitymodel/securitychecking.html" target="_blank">selfhost</a>
+          <a href="https://selfhost/webcise/studyinghtml5/securitymodel/securitychecking.html" target="_blank" rel="noopener">selfhost(noopener)</a>
+        </section>
+        <section>
+          <h3>Framed Document</h2>
+            <p>HTTPのURLを参照するiframeはブロックされ何も表示できない。</p>
+            <div class="iframe-container">
+              <div class="iframe-content">
+                <p>HTTP</p>
+                <iframe src="http://localhost/webcise/studyinghtml5/securitymodel/securitychecking.html">
+                </iframe>
+              </div>
+              <div class="iframe-content">
+                <p>HTTPS</p>
+                <iframe src="https://localhost/webcise/studyinghtml5/securitymodel/securitychecking.html">
+                </iframe>
+              </div>
+            </div>
+        </section>
+        <section class="restricted-api-sample">
+          <h3>制限を受けるAPI</h3>
+          <p>一部のAPIはSecure Contextでなければ使用できない。</p>
+          <div class="result"></div>
+          <div>
+            <button class="geolocation">Geolocation</button>
+          </div>
+          <div>
+            <button class="clear">clear</button>
+          </div>
+        </section>
+      </section>
+    </main>
+    <aside role="complementary">
+      <h2>参考サイト</h2>
+      <h3>MDN</h3>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">HTTP access control (CORS)</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content">Mixed ontent</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">Secure Contexts</a></li>
+      </ul>
+      <h3>Microsoft</h3>
+      <ul>
+        <li><a href="https://msdn.microsoft.com/ja-jp/library/dn641188(v=vs.94).aspx">Uint8ClampedArray</a></li>
+      </ul>
+      <h3>W3C</h3>
+      <ul>
+        <li><a href="https://w3c.github.io/webappsec-secure-contexts/">Secure Contexts</a></li>
+      </ul>
+    </aside>
+    <footer>
+      <div>
+        <a href="../../">home</a>
+      </div>
+      <small>Copyright &copy; 2017 moguonyanko All rights reserved.</small>      
+    </footer>
+    <script src="securitymodel.js"></script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>XMLHttpRequest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <header>
+      <h1>XMLHttpRequest</h1>
+      <a href="../">home</a>
+    </header>
+    <main>
+      <section>
+        <h2>File Upload</h2>
+        <div>
+          <input id="UploadTargetFile" type="file" name="samplefile" />
+          <button id="UploadRunner">アップロード</button>
+        </div>
+        <div>
+          <p>進捗</p>
+          <progress id="UploadProgress" value="0" max="100"></progress>
+          <div id="UploadResultArea"></div>
+          <button id="ClearProgress">クリア</button>
+        </div>
+      </section>
+    </main>
+    <script src="../../gomakit.js"></script>
+    <script src="upload.js"></script>
+  </body>
+</html>

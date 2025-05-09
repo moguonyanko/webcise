@@ -1,0 +1,14 @@
+{
+    "foo": {
+        "fullname" : "foo-bar-baz",
+        "favorites" : [
+            "apple", "orange", "banana"
+        ]
+    },
+    "hoge": {
+        "fullname" : "hoge-hoge-hoge",
+        "favorites" : [
+            "milk", "rice", "sushi"
+        ]
+    }
+}

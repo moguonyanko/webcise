@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CSS Typed Object Model</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>CSS Typed Object Model</h1>
+      <a href="../../">home</a>
+    </header>
+    <main>
+      <section class="example section-1">
+        <h1>サンプル:透過度の設定</h1>
+        <div class="samplecontent">
+          <span class="samplecontenttext">sample content</span>
+        </div>
+        <div class="control">
+          <label>透過度<input class="eventtarget opacity" type="range" 
+                           step="0.01" min="0" max="1" value="1" /></label>
+          <span class="stylevalue">1.0</span>
+        </div>
+      </section>
+    </main>
+    <aside>
+      <h3>参考</h3>
+      <ul>
+        <li><a href="https://blog.chromium.org/2018/03/chrome-66-beta-css-typed-object-model.html">Chrome 66 Beta: CSS Typed Object Model, Async Clipboard API, AudioWorklet</a></li>
+        <li><a href="https://drafts.css-houdini.org/css-typed-om/">CSS Typed OM Level 1</a></li>
+      </ul>
+    </aside>
+    <script src="main.js" type="module"></script>
+  </body>
+</html>

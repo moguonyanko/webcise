@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.HistoryTest0 {
+    background-color: greenyellow;
+    font-size: 150%;
+}
+
+.HistoryTest1 {
+    background-color: gold;
+    font-style: italic;
+    border-radius: 5px;
+}
+
+#HistorySampleElement {
+    width: 25%;
+    text-align: center;
+}

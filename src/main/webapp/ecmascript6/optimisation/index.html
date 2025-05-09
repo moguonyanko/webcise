@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Optimisation</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../../gomakit.css" />
+		<style>
+			.recursive-size {
+				width: 15em;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Optimisation</h1>
+			<p>末尾再帰最適化など最適化に関する機能を調べます。</p>
+			<a href="../">back</a>
+		</header>
+		
+		<main>
+			<section class="direct-recursion-sample">
+				<h2>Direct Recursion</h2>
+				<p>
+					末尾再帰最適化されるブラウザであれば多くの回数再帰してもスタックオーバーフローにならない。
+				</p>
+				<div class="output"></div>
+				<div>
+					<!--
+					input要素のvalueに1e6と指定した場合Firefoxでは1000000と変換する。
+					しかしFirefoxもChromeもparseIntの引数に1e10を渡すと1になってしまう。
+					-->
+					<label>再帰回数=<input class="recursive-size" 
+									   type="number" min="1" max="100000000" 
+									   value="1000000" /></label>
+					<button class="runner">run</button>
+					<button class="clearer">clear</button>
+				</div>
+			</section>
+			<section class="mutual-recursion-sample">
+				<h2>Mutual Recursion</h2>
+				<p>
+					末尾再帰最適化されるブラウザであれば
+					相互に作用する関数群を再帰しながら呼び出してもスタックオーバーフローにならない。
+				</p>
+				<div class="output"></div>
+				<div>
+					<label>再帰回数=<input class="recursive-size" 
+									   type="number" min="1" max="100000000" 
+									   value="1000000" /></label>
+					<button class="runner">run</button>
+					<button class="clearer">clear</button>
+				</div>
+			</section>
+		</main>
+		
+		<aside>
+			<h2>参考</h2>
+			<ul>
+				<li><a href="http://kangax.github.io/compat-table/es6/">ECMAScript 6 compatibility table</a></li>
+			</ul>
+		</aside>
+		
+		<footer>
+			<small>Copyright &copy; 2016 moguonyanko All rights reserved.</small>
+		</footer>
+		
+		<script src="../../gomakit.js"></script>
+		<script src="main.js"></script>
+	</body>
+</html>

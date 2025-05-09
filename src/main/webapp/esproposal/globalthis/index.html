@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>globalThis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>globalThis</h1>
+    </header>
+    <main>
+      <section>
+        <h2>globalThisとthis</h2>
+        <textarea class="resultarea" readonly></textarea>
+      </section>
+      <section class="worker example">
+        <h2>WorkerとglobalThis</h2>
+        <button class="target" value="runWorker">run</button>
+        <textarea class="resultarea" readonly></textarea>
+      </section>
+      <section class="worker example">
+        <h2>SharedWorkerとglobalThis</h2>
+        <button class="target" value="runSharedWorker">run</button>
+        <textarea class="resultarea" readonly></textarea>
+      </section>
+    </main>
+    <aside>
+      <h3>参考</h3>
+      <ul>
+        <li><a href="https://github.com/tc39/proposal-global">tc39/proposal-global</a></li>
+        <li><a href="https://tc39.github.io/proposal-global/">Stage 3 Draft / September 12, 2018 global</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis">globalThis(MDN)</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers">Using Web Workers</a></li>
+      </ul>
+    </aside>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

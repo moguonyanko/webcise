@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Web Workers</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="../../favicon.ico" />
+		<style>
+			canvas {
+				border: 1px solid grey;
+				border-radius: 10px;
+			}
+
+			#WorkerCanvas {
+				background-color: aliceblue;
+			}
+
+			#SnapshotCanvas {
+				background-color: lemonchiffon;
+			}
+
+			#FibResult {
+				width: 25em;
+			}
+		</style>
+	</head>	
+	<body>
+		<header role="banner">
+			<h1>Web Workers</h1>
+		</header>
+
+		<div role="main">
+			<section>
+				<h2>描画と重い計算の並列処理</h2>
+				<canvas id="WorkerCanvas" width="800" height="100"></canvas>
+				<p>変換画像のスナップショット</p>
+				<canvas id="SnapshotCanvas" width="800" height="100"></canvas>
+				<div>
+					<label>
+						計算の引数
+						<input id="FibInput" type="text" value="40" />
+					</label>
+					<label>
+						計算結果
+						<input id="FibResult" type="text" value="" readonly="readonly" />
+					</label>
+				</div>
+				<div>
+					<input id="EnableWorkers" type="checkbox" checked="checked" />
+					<label for="EnableWorkers">
+						<span>Web Workers有効</span>
+					</label>
+					<div>
+						<label><input name="ParallelType" type="radio" value="fib" checked="checked" />重い計算処理</label>
+						<label><input name="ParallelType" type="radio" value="download" />XMLHttpRequest</label>
+						<label><input name="ParallelType" type="radio" value="buffer" />ArrayBuffer</label>
+					</div>
+					<button id="ParallelRunner">並列処理開始</button>
+				</div>
+			</section>
+			<section>
+				<h2>Workerで共有ライブラリの利用</h2>
+				<p>関数の文字列表現をevalしても現時点では成功するだろうが，importScriptsを使うのが妥当と思われる。</p>
+				<textarea id="worker-shared-result" cols="120" rows="10" readonly="readonly"></textarea>
+				<div>
+					<div>
+						<label>左辺値<input id="lhs-value" type="number" value="1"></label>
+						<label>右辺値<input id="rhs-value" type="number" value="2"></label>
+						<label>メッセージ:<input id="worker-message" type="text" value="こんにちは" /></label>
+						<div>
+							<label><input name="calc-type" type="radio" value="add" checked="checked" />加算</label>
+							<label><input name="calc-type" type="radio" value="sub" />減算</label>
+							<label><input name="calc-type" type="radio" value="mul" />乗算</label>
+							<label><input name="calc-type" type="radio" value="div" />除算</label>
+						</div>
+					</div>
+					<button id="shared-test-runner1">Blobによる共有(失敗)</button>
+					<button id="shared-test-runner2">importScriptsによる共有(成功)</button>
+					<button id="shared-test-clearer">クリア</button>
+				</div>
+				<script id="worker-shared-library" type="javascript/worker">
+					/**
+					 * このWorkerのlocation.hrefがblobURLになる。
+					 * importScriptsは引数のスクリプトをlocation.hrefの
+					 * 相対パスで探しで実行する。従ってここのimportScriptsは
+					 * 引数のスクリプトのパスを解決できずエラーになる。 
+					 */
+					console.log(location.href);
+					//self.importScripts("sharedlibrary.js");
+					/**
+					 * imoportScripts以外にWorkerコンストラクタ呼び出しも
+					 * 同じ理由でエラーになる。
+					 * ただしChrome42ではworker内でのWorkerコンストラクタ呼び出し
+					 * 自体がエラーになる。
+					 */
+					//var subWorker = new Worker("sharedlibrary.js");
+					
+					function workerLibTest(args){
+						/**
+						 * このページのドキュメント内に定義された
+						 * グローバルオブジェクト配下のライブラリであっても
+						 * 参照できない。 
+						 */
+						console.log(my);
+
+						self.postMessage({
+							sharedResult : 100,
+							sentence : args.sentence + ", Worker!"
+						});
+					}
+					
+					self.onmessage = function(evt){
+						workerLibTest(evt.data);
+					};
+				</script>
+			</section>
+		</div>
+
+		<footer role="contentinfo">
+			<small>Copyright &copy; 2015 moguonyanko All rights reserved.</small>
+		</footer>
+
+		<script src="/webcise/common.js"></script>
+		<script src="mainthread.js"></script>
+		<script src="worker.js"></script>
+		<script src="libshared.js"></script>
+	</body>
+</html>

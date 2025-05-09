@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Web Crypto API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Web Crypto API</h1>
+      <a href="../">home</a>
+    </header>
+    <main>
+      <section class="encryption-sample">
+        <h2>入力文字列の暗号化と復号化</h2>
+        <p>SHA-256以外はエラーになる。</p>
+        <div class="control-panel">
+          <div class="sub-control-panel">
+            <label>対象文字列: <input class="source" type="text" value="Hello" /></label>
+            <label>パスワード: <input class="password" type="password" value="sample" /></label>
+          </div>
+          <div class="sub-control-panel">
+            <label><input class="hashfunction" type="radio" name="hashfunction" 
+                          value="SHA-1" />SHA-1</label>
+            <label><input class="hashfunction" type="radio" name="hashfunction" 
+                          value="SHA-256" checked="checked" />SHA-256</label>
+            <label><input class="hashfunction" type="radio" name="hashfunction" 
+                          value="SHA-384" />SHA-384</label>
+            <label><input class="hashfunction" type="radio" name="hashfunction" 
+                          value="SHA-512" />SHA-512</label>
+          </div>
+          <div class="sub-control-panel">
+            <button class="encryption">暗号化</button>
+            <button class="decryption">復号化</button>
+          </div>
+        </div>
+        <div>
+          <p>パスワードから求めたハッシュ値(16進数)</p>
+          <div class="hash output"></div>
+          <p>暗号化文字列(Uint8Array)</p>
+          <div class="encrypted-array output"></div>
+          <p>復号化文字列</p>
+          <div class="decrypted-value output"></div>
+        </div>
+      </section>
+    </main>
+    <aside>
+      <h3>参考</h3>
+      <p>MDN</p>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API">Web Crypto API</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/encrypt">SubtleCrypto.encrypt()</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/decrypt">SubtleCrypto.decrypt()</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey">SubtleCrypto.importKey()</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest">SubtleCrypto.digest()</a></li>
+      </ul>
+    </aside>
+    <script src="main.js" type="module"></script>
+  </body>
+</html>

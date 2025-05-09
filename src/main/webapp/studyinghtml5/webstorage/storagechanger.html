@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>Storage Changer</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	</head>
+	<body>
+		<h1>Storage Changer</h1>
+		<p>Storageの値を変更してStorageEventを発生させます。</p>
+		
+		<section>
+			<h2>Storageの値の更新・保存・削除</h2>
+			<div>
+				<div>
+					<p>Storage種別選択</p>
+					<label><input type="radio" name="storage-type-names" value="localStorage" />ローカルストレージ</label>
+					<label><input type="radio" name="storage-type-names" value="sessionStorage" checked="" />セッションストレージ</label>
+				</div>
+				<div>
+					<p>保存する値の選択</p>
+					<label><input type="radio" name="localstorage-key-names" value="count" />カウンタ</label>
+					<label><input type="radio" name="localstorage-key-names" value="time" checked="checked" />現在時刻</label>
+				</div>
+				<div>
+					<p>Storageの操作</p>
+					<button id="UpdateStorage">値の更新</button>
+					<button id="SaveStorage">値の保存</button>
+					<button id="RemoveStorage">値の削除</button>
+				</div>
+				<div>
+					<p>Storageのクリア</p>
+					<button id="storage-clearer">全ての値を削除</button>
+				</div>
+			</div>
+		</section>
+		
+		<script src="/webcise/common.js"></script>
+		<script src="storagechanger.js"></script>
+	</body>
+</html>

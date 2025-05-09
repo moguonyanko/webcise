@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+/* custom elementで生成されたul要素やli要素にスタイルを適用することができない。 */
+/* classを使ってスタイル指定しても効果なし。 */
+simple-list {
+    list-style: square;
+}
+
+/* フォントに関するスタイル指定は適用される。 */
+calc-exec {
+    font-style: italic;
+    font-size: 200%;
+}
+
+/* marginは効くがmargin-bottomは効かない。 */
+programming-datalist {
+    margin: 0.5rem;
+}
+
+/* custom element自体はLightDOMに存在していると考えられる。 */
+/* そのため内部のShadowDOMの要素に幅が指定されていても背景色を適用できない。 */
+/* CSSカスタムプロパティを使ってステイルを適用するべきなのだろう。 */
+my-userdata {
+    /*background-color: beige;*/
+    --my-custom-bg: beige;
+}
+
+/* ユーザーが挿入した要素はLightDOMなのでユーザーのCSSでスタイル適用可能。 */
+my-userdata span {
+    border: solid red 1px;
+}
+
+my-menulist {
+    --my-custom-bg: whitesmoke;
+}
+
+light-sample {
+    cursor: pointer;
+}
+
+/* グリッドレイアウトの練習 */
+
+.note {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: 100%;
+}
+
+.object {
+    width: 100%;
+    border: 1px solid whitesmoke;
+}
+
+.object1 {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    background-color: gainsboro;
+}
+
+.object2 {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    background-color: beige;
+}
+
+.sentence {
+    /*margin: 0.5rem;*/
+}
+
+.sentence1 {
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+
+.sentence2 {
+    grid-column-start: 2;
+    grid-row-start: 2;
+}
+
+
+.infomation {
+    color: blue;
+    font-size: 120%;
+}

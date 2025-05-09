@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>New Built-In Methods</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            :root {
+                --common-bg-color: #b8b8cc;
+            }
+
+            .assign-sample-area .result-area {
+                width: 50%;
+                height: 300px;
+                margin: 5px;
+                border: 1px var(--common-bg-color) solid;
+                border-radius: 5px;
+                background-color: var(--common-bg-color);
+                overflow-y: scroll;
+            }
+            
+            .assign-sample-area .control-area {
+                margin: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <header role="banner">
+            <h1>New Built-In Methods</h1>
+            <p>
+                ECMAScript6で導入された新しい組み込みメソッドについて調べます。<br />
+                調査の際はArrow Functionsも併用してその性質を調べます。
+            </p>
+        </header>
+
+        <div role="main">
+            <section>
+                <h2>Object Property Assignment</h2>
+                <p>
+                    Object.assignでプロパティをまとめて設定できる。
+                </p>
+                <div class="assign-sample-area">
+                    <div class="result-area">
+                        
+                    </div>
+                    <div class="control-area">
+                        <label>a=<input class="assign-value" type="text" value="foo" /></label>
+                        <label>b=<input class="assign-value" type="text" value="bar" /></label>
+                        <label>c=<input class="assign-value" type="text" value="baz" /></label>
+                        <div>
+                            <button class="assign-executer">値の割り当て(オブジェクト)</button>
+                            <button class="assign-primiteive-executer">値の割り当て(基本データ型)</button>
+                            <button class="assign-merger">マージ</button>
+                            <button class="assign-clearer">クリア</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <aside role="complementary">
+            <h3>参考</h3>
+            <ul>
+                <li><a href="http://es6-features.org/">ECMAScript 6 — New Features: Overview & Comparison</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">MDN Object</a></li>
+                <li><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions">MDN Arrow functions</a></li>
+            </ul>
+        </aside>
+
+        <footer role="contentinfo">
+            <small>Copyright &copy; 2016 moguonyanko All rights reserved.</small>
+        </footer>
+
+        <script src="../../gomakit.js"></script>
+        <script src="newbuiltinmethods.js"></script>
+    </body>
+</html>

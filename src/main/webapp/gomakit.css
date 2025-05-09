@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+main {
+	margin: 0.5em;
+}
+
+footer {
+	border-top: solid darkgrey 1px;
+}
+
+.output {
+	width: 100%;
+	height: 20vh;
+	min-height: 30%;
+	background-color: whitesmoke;
+	overflow-y: scroll;
+}
+
+.contentinfo {
+	font-size: 90%;
+}
+
+.description {
+	column-count: 2;
+	column-width: 25vw;
+	column-rule: 1px solid darkgrey;
+}

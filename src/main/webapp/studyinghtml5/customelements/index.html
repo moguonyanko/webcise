@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Custom Elements</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Custom Elements</h1>
+      <a href="../">home</a>
+      <a href="extension/">Extension</a>
+    </header>
+    <main>
+      <section>
+        <h2>Autonomous custom elements</h2>
+        <div class="simple-list-container">
+          <simple-list values="apple orange banana" separator=" "></simple-list>
+        </div>
+      </section>
+      <section>
+        <h2>Customized built-in elements</h2>
+        <p is="upper-paragraph">sample paragraph</p>
+        <p>
+          Customized built-in elementsの方がブラウザの対応状況が悪いようである。
+        </p>
+      </section>
+      <section>
+        <h3>備考</h3>
+        <div class="note">
+          <p class="sentence sentence1"> 
+            HTML内のcustom elementが書かれた場所より後ろでcustom elementのcustomElements.defineが呼び出されても正常にcustom eldementは解析される。
+          </p>
+          <div class="object object1"></div>
+          <p class="sentence sentence2"> 
+            またcustomElements.defineがDOMContentLoadedイベント時に呼び出された場合でも問題なくcustom elementは解析される。
+          </p>
+          <div class="object object2"></div>
+        </div>
+      </section>
+      <section>
+        <h2>コールバック関数の利用</h2>
+        <span><calc-exec class="calculator" lhs="0" rhs="0" operator="+" /></span>
+        <div class="control">
+          <label><input class="ev-target lhs" type="number" value="0" /></label>
+          <label>
+            <!--演算子-->
+            <select class="ev-target operator">
+              <option value="+">+</option>
+              <option value="-">-</option>
+              <option value="*">×</option>
+              <option value="/">÷</option>
+            </select>
+          </label>
+          <label><input class="ev-target rhs" type="number" value="0" /></label>
+          <button class="ev-target reset">reset</button>
+        </div>
+      </section>
+      <section class="template-example">
+        <h2>templateの使用</h2>
+        <p>template要素の内容をcustom elementに取り込んでShadowDOMに追加できる。</p>
+        <programming-datalist>
+          <!-- 
+          同じslotを指定した場合、最初に見つかったslotに両方の要素が挿入される。
+          先に挿入された要素が後の要素に上書きされたりはしない。 
+          -->
+          <dt id="sampledataid" slot="programmingdata">Swift</dt>
+          <dd slot="programmingdata">Objective-Cの後継言語。</dd>
+        </programming-datalist>
+        <!-- custom elementを複数記述すれば全てtemplateでの置き換え対象となる。 -->
+        <programming-datalist memo="Memo from element attribute!">
+          <!-- 
+          slotに挿入されるDOMはLightDOMなのでslotに挿入される要素間ではidは衝突する。
+          document.getElementById("sampledataid")で返されるのは上に記述された
+          Swiftのdt要素だけである。
+          -->
+          <dt id="sampledataid" slot="programmingdata">R</dt>
+          <dd slot="programmingdata">統計計算に向いた言語。</dd>
+        </programming-datalist>
+        <template class="programming-datalist">
+          <!-- 
+          template内で読み込んだCSSのスタイルはShadowDOMにある
+          custom elementの要素にしか適用されない。slotに挿入された要素は
+          LightDOM内にあるのでスタイルが適用されない。
+          -->
+          <link rel="stylesheet" href="template.css" />
+          <dl>
+            <dt>Java</dt>
+            <dd>オブジェクト指向のプログラミング言語。静的型付け。</dd>
+            <dt>JavaScript</dt>
+            <dd>Webのフロントエンドでよく使われるプログラミング言語。動的型付け。</dd>
+            <dt>Kotlin</dt>
+            <dd>Javaのスーパーセットみたいなもの。静的型付け。</dd>
+            <slot name="programmingdata">
+              他に何かあれば追加してください。
+            </slot>
+            <!-- 同じslotへの追加は1回のみ。従ってこちらには挿入されない。 -->
+            <slot name="programmingdata">
+              <em>他に何かあれば追加してください。</em>
+              <!--
+              templateを用いた方法ではcustom elementの属性を取得して
+              DOMを構築することができない。以下のようなイベントハンドラも無意味。
+              onload="this.innerHTML = this.getAttribute('memo')"
+              ただしconnectedCallbackを利用して後から属性値をcustom elementのDOMに
+              追加することはできる。
+              -->
+              <span id="memoview"></span>
+            </slot>
+          </dl>
+        </template>
+      </section>
+      <section>
+        <h2>iframeで読み込んだファイルからTemplateを取り込む</h2>
+        <iframe class="custom-templates-frame" src="templates.html" hidden></iframe>
+        <my-userdata description="アプリケーションテスト用ユーザーです" background>
+          <span slot="user-name">名前:<input type="text" value="名無し" /></span>
+          <span slot="user-age">年齢:<input type="number" value="20" min="0" max="130" /></span>
+        </my-userdata>
+        <my-menulist shopname="近所のファストフード" background>
+          <span slot="my-menu-item-1">ハンバーガー</span>
+          <span slot="my-menu-item-2">ポテト</span>
+        </my-menulist>
+      </section>
+      <section>
+        <h2>innerHTMLで書き込んだlink要素でCSSは読み込めるのか</h2>
+        <load-css-test></load-css-test>
+        <section>
+          <h3>Firefoxについて</h3>
+          <p>Firefox61では読み込めない。Firefox62では読み込める。</p>
+          <p>さらにFirefox61ではShadowDOMでCSSを読むこと自体ができない。</p>
+          <p>ShadowDOMに含まれるtemplate要素内のlink要素からでもCSSを読み込むことができない。</p>
+        </section>
+      </section>
+      <section class="customelement-upgrade-example">
+        <h2>customElements.upgrade</h2>
+        <div class="container"></div>
+        <button class="my-form appender">append new element</button>
+      </section>
+      <section>
+        <h2>LightDOMに独自要素を生成するテスト</h2>
+        <light-sample></light-sample>
+      </section>
+      <section>
+        <h2>CSS import</h2>
+        <css-importer></css-importer>
+      </section>
+    </main>
+    <aside>
+      <h3>参考</h3>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements">Using custom elements</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define">CustomElementRegistry.define()</a></li>
+        <li><a href="https://developers.google.com/web/fundamentals/web-components/customelements">カスタム要素 v1: 再利用可能なウェブ コンポーネント</a></li>
+        <li><a href="https://developers.google.com/web/fundamentals/web-components/shadowdom">Shadow DOM v1: 自己完結型ウェブ コンポーネント</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots">Using templates and slots</a></li>
+      </ul>
+    </aside>
+    <script src="dom.js" type="module"></script>
+  </body>
+</html>

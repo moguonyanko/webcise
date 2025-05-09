@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Page Visibility</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<style>
+			#PageVisibilityState {
+				width: 50%;
+				border: 2px solid grey;
+			}
+		</style>
+	</head>
+	<body>
+		<header role="banner">
+			<h1>Page Visibility</h1>
+			<p>Page Visibilityの練習サイトです。</p>
+		</header>
+		
+		<main>
+			<section>
+				<h2>ページの表示状態のチェック</h2>
+				<div id="PageVisibilityState">
+					ページの表示状態を示す文字列が表示されます。
+				</div>
+			</section>
+		</main>
+		
+		<script>
+			(function(win, doc){
+				
+				function init(){
+					var stateEle = doc.getElementById("PageVisibilityState");
+					
+					doc.addEventListener("visibilitychange", function(evt){
+						stateEle.innerHTML = doc.visibilityState;
+						console.log("ページは非表示か？" + doc.hidden);
+						console.log(evt);
+					}, false);
+				}
+				
+				init();
+				
+			}(window, document));
+		</script>
+	</body>
+</html>

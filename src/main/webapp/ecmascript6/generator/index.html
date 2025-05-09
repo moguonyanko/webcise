@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Generator</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="../../favicon.ico" />
+		<link rel="stylesheet" href="generator.css" />
+	</head>
+	<body>
+		<header role="banner">
+			<h1>Generator</h1>
+			<p>ジェネレータの調査</p>
+		</header>
+
+		<div role="main" class="main-container">
+			<section>
+				<h2>ジェネレータの生成</h2>
+				<p>
+					yield式を含む関数はジェネレータ関数になる。
+				</p>
+				<div>
+					<label>
+						<span>カウンタの結果:</span>
+						<input type="text" readonly="readonly" id="count-result" value="" />
+					</label>
+					<button id="get-generator-count">値取得</button>
+					<button id="reset-generator-count">リセット</button>
+				</div>
+			</section>
+			<section>
+				<h2>ジェネレータに引数を渡す</h2>
+				<p>
+					ジェネレータのnextに渡した引数をyield式で受け取ることができる。
+				</p>
+				<div>
+					<label for="read-byte-size">読む行数</label>
+					<span><input id="read-byte-size" type="number" value="1" min="1" /></span>
+					<label for="read-byte-port">WebSocketのポート番号</label>
+					<span><input id="read-byte-port" type="number" value="28080" min="0" required="required" /></span>
+				</div>
+				<div>
+					<button id="run-file-reader">ファイルを読む</button>
+					<button id="close-file-reader">ファイルを閉じる</button>
+					<button id="clear-read-result">クリア</button>
+				</div>
+				<div>
+					<label>
+						<textarea id="result-read-area" rows="10" cols="80"></textarea>
+					</label>
+				</div>
+			</section>
+			<section class="async-emulator">
+				<h2>ジェネレータでasync/awaitをエミュレートする</h2>
+				<p>
+					async/awaitをエミュレートする関数をジェネレータを使って記述できる。
+				</p>
+				<div>
+					<div>
+						<button class="run-test">run</button>
+						<button class="clear-result">clear</button>
+					</div>
+					<label>
+						<textarea class="result-area" rows="10" cols="80"></textarea>
+					</label>
+				</div>
+			</section>
+		</div>
+
+        <aside>
+            <h2>参考サイト</h2>
+            <ul>
+                <li>
+                    <a href="https://jakearchibald.com/2014/es7-async-functions/">ES7 async functions</a>
+                </li>
+            </ul>
+        </aside>
+		
+		<footer role="contentinfo">
+			<small>Copyright &copy; 2016- moguonyanko All rights reserved.</small>
+		</footer>
+
+		<script src="/webcise/gomakit.js"></script>
+		<script src="generator.js"></script>
+	</body>
+</html>

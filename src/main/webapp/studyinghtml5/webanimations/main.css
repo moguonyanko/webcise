@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+main {
+    width: 100%;
+}
+
+footer {
+    margin-top: 0.5em;
+    border-top: solid 1px lightgray;
+}
+
+.animation-target {
+    width: 150px;
+    height: 150px;
+    background-color: yellowgreen;
+    border: green solid 1px;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Promise</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+    <link rel="stylesheet" href="promise.css" />
+  </head>
+  <body>
+    <header role="banner">
+      <h1>Promise</h1>
+      <p>Promiseの調査</p>
+    </header>
+
+    <div class="promise-result-container">
+      <div>
+        <div id="promise-result-area"></div>
+      </div>
+      <div class="promise-result-control-panel">
+        <button id="clear-promise-element">クリア</button>
+      </div>
+    </div>
+
+    <div role="main" class="main-container">
+      <section>
+        <h2>Promiseの生成と評価</h2>
+        <div>
+          <p>
+            Promiseを使って非同期処理を実行する。<br />
+            Promiseコンストラクタに渡した関数は即時呼び出される。
+          </p>
+          <div>
+            <label>引数1:<input type="number" name="promise-parameter" value="1" /></label>
+            <label>引数2:<input type="number" name="promise-parameter" value="2" /></label>
+            <label>引数3:<input type="number" name="promise-parameter" value="3" /></label>
+            <div>
+              <label>
+                <input type="radio" name="promise-operator" value="add" checked="checked" /><span>加算</span>
+              </label>
+              <label>
+                <input type="radio" name="promise-operator" value="sub" /><span>減算</span>
+              </label>
+              <label>
+                <input type="radio" name="promise-operator" value="mul" /><span>乗算</span>
+              </label>
+              <label>
+                <input type="radio" name="promise-operator" value="div" /><span>除算</span>
+              </label>
+            </div>
+            <div>
+              <label>タイムアウト時間(ミリ秒):<input id="promise-timeout-seconds" type="number" min="1" value="1000" required="required" /></label>
+            </div>
+            <div>
+              <label><button id="promise-runner">計算実行</button></label>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Promiseのチェーン</h2>
+        <div>
+          <p>
+            Promiseを値の代わりに返してチェーンにすることができる。
+          </p>
+          <div>
+            <p>成功(resolve)させるPromiseにはチェックを入れる</p>
+            <label><input type="checkbox" name="promise-state-check" value="chain1" checked="checked" />Promise1</label>
+            <label><input type="checkbox" name="promise-state-check" value="chain2" checked="checked" />Promise2</label>
+            <label><input type="checkbox" name="promise-state-check" value="chain3" checked="checked" />Promise3</label>
+          </div>
+          <div>
+            <label><button id="promise-chain-runner">Promiseチェーンテスト実行</button></label>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Promiseをまとめて処理</h2>
+        <p>
+          Promiseをまとめて処理するためのAPIがある。
+        </p>
+        <section>
+          <h3>Promise.all()</h3>
+          <p>
+            Promiseを配列で受け取り，各々の処理結果を含む配列をthenの引数で受け取る。<br />
+            <strong>
+              Promise.allの引数に渡したPromise配列の順序と処理結果の配列の順序は一致する。
+            </strong>
+          </p>
+          <div>
+            <canvas class="promise-result-canvas" width="800" height="200"></canvas>
+            <canvas class="promise-result-canvas" width="800" height="200"></canvas>
+            <canvas class="promise-result-canvas" width="800" height="200"></canvas>
+          </div>
+          <div>
+            <label>
+              <button id="promise-image-downloader">ダウンロード</button>
+            </label>
+            <label>
+              <button id="promise-image-clearer">クリア</button>
+            </label>
+          </div>
+        </section>
+        <section>
+          <h3>Promise.race()</h3>
+          <p>
+            Promiseを配列で受け取り，最初にresolveあるいはrejectした
+            Promiseの処理結果をthenあるいはcatchの引数で受け取る。
+          </p>
+          <p>
+            引数のPromise群は並列に処理される。<br />
+            成功するPromiseより先に失敗するPromiseが現れた場合は
+            catchが呼び出されて，その他のPromiseの処理結果は全て無視される。
+          </p>
+          <div>
+            <p>
+              成功(resolve)させるダウンロードにチェックを入れる。
+            </p>
+            <div>
+              <label>
+                <input name="promise-download-image-check" 
+                       type="checkbox" value="star1" checked="checked" />star1
+              </label>
+              <label>
+                <input name="promise-download-image-check" 
+                       type="checkbox" value="star2" checked="checked" />star2
+              </label>
+              <label>
+                <input name="promise-download-image-check" 
+                       type="checkbox" value="star3" checked="checked" />star3
+              </label>
+            </div>
+            <div>
+              <label>
+                <button id="promise-race-downloader">ダウンロード</button>
+              </label>
+            </div>
+            <div id="promise-race-result">
+              ダウンロード結果表示領域
+            </div>
+          </div>
+        </section>
+      </section>
+      <section>
+        <h2>Promiseによる非同期処理</h2>
+        <p>
+          Promiseで非同期処理を記述することで
+          変数のスコープを小さくしたりコードをシンプルにできるらしい。
+        </p>
+        <div>
+          <div>
+            <label>
+              <input id="promise-prime-check" type="checkbox" checked="checked" />計算を終了する
+            </label>
+            <label>
+              <span>得る素数の個数</span><input id="promise-prime-limit-size" type="number" value="5" />
+            </label>
+          </div>
+          <div>
+            <p>promise-prime-number1</p>
+            <label>
+              <input id="promise-prime-number1" class="promise-prime-number" type="number" value="1" />
+            </label>
+            <p>promise-prime-number2</p>
+            <label>
+              <input id="promise-prime-number2" class="promise-prime-number" type="number" value="10" />
+            </label>
+            <p>promise-prime-number3</p>
+            <label>
+              <input id="promise-prime-number3" class="promise-prime-number" type="number" value="20" />
+            </label>
+          </div>
+        </div>
+        <div>
+          <label>
+            <button id="promise-prime-calc-executer">計算実行</button>
+          </label>
+        </div>
+      </section>
+    </div>
+
+    <footer role="contentinfo">
+      <small>Copyright &copy; 2015- moguonyanko All rights reserved.</small>
+    </footer>
+
+    <script src="/webcise/gomakit.js"></script>
+    <script src="promise.js"></script>
+  </body>
+</html>

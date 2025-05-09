@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Template Literals</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            :root {
+                --common-bg-color: #ABC;
+            }
+			
+			.result-area {
+				width: 70vw;
+				height: 30vh;
+				background-color: lightgrey;
+				border-radius: 5px;
+				overflow-y: scroll;
+			}
+
+            #sample-infomation-container {
+                width: 50%;
+                height: 300px;
+                border: 1px var(--common-bg-color) solid;
+                border-radius: 5px;
+                background-color: var(--common-bg-color);
+            }
+
+            .sample-string-container {
+                width: 600px;
+                border: yellowgreen 1px solid;
+                border-radius: 5px;
+                display: flex;
+                flex-wrap: wrap;                
+            }
+
+            .sample-string-container label {
+                flex: 1 0 150px;
+                /*
+                flex: initial;
+                */
+                border: solid 1px yellow;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <header role="banner">
+            <h1>Template Literals</h1>
+            <p>
+                ECMAScript6で導入されるリテラルの拡張について調べます。<br />
+                調査の際はArrow Functionsも併用してその性質を調べます。
+            </p>
+        </header>
+
+        <div role="main">
+            <section>
+                <h2>String Interpolation</h2>
+                <p>
+                    ヒアドキュメントのように変数を文字列内で展開できます。
+                </p>
+                <div id="sample-infomation-container">
+                    ここにHTMLが追加されます。
+                </div>
+                <div>
+                    <div>
+                        <p>サンプル情報欄</p>
+                        <div class="sample-infomation">
+                            <label for="sample-name">名前</label>
+                            <input id="sample-name" type="text" value="NO NAME" />
+                        </div>
+                        <div class="sample-infomation">
+                            <label for="sample-age">年齢</label>
+                            <input id="sample-age" type="number" value="30" />
+                        </div>
+                        <div class="sample-infomation">
+                            <label for="sample-age">備考</label>
+                            <input id="sample-memo" type="text" value="特に無し" />
+                        </div>
+                        <div class="sample-infomation">
+                            <label for="sample-password">パスワード</label>
+                            <input id="sample-password" type="password" value="password" />
+                        </div>
+                    </div>
+                    <button id="add-infomation">情報追加</button>
+                </div>
+            </section>
+            <section class="string-raw-container">
+                <h2>Raw String Access</h2>
+                <p>
+                    エスケープシーケンス等を含む元の文字列を確認することができます。
+                </p>
+                <div class="sample-string-container">
+                    <label><input type="radio" name="sample-string" class="select-sample-string" value="linefeedcode" checked="checked" />
+                        linefeed<br />
+                        code
+                    </label>
+                    <label><input type="radio" name="sample-string" class="select-sample-string" value="tab" />
+                        tab tab
+                    </label>
+                    <label><input type="radio" name="sample-string" class="select-sample-string" value="unicode" />
+                        unicode0unicode
+                    </label>
+                </div>
+                <div>
+                    <p>出力</p>
+                    <textarea class="output-sample-string" cols="40" rows="5" readonly="readonly"></textarea>
+                </div>
+                <div>
+                    <button class="view-raw-string">元の文字列出力</button>
+                    <button class="clear-output">出力結果クリア</button>
+                </div>
+            </section>
+			<section class="tagged-template-sample">
+				<h2>Tagged template literals</h2>
+				<p>
+					タグとして定義した関数内で文字列を組み立てることができます。
+				</p>
+				<div>
+					<div>
+						<label><input class="tag-lang" type="radio" name="lang" value="ja" checked="checked" />ja</label>
+						<label><input class="tag-lang" type="radio" name="lang" value="en" />en</label>
+					</div>
+					<label>name=<input class="username" type="text" value="hogehoge" /></label>
+				</div>
+                <div>
+                    <button class="runner">run</button>
+                    <button class="clearer">clear</button>
+                </div>
+				<div class="result-area"></div>
+			</section>
+            <section class="tag-function-sample">
+                <style scoped="scoped">
+                    .user-container-output {
+                        width: 50vw;
+                        height: 5em;
+                        background-color: lightgray;
+                    }
+                </style>
+                <h2>Tag Function</h2>
+                <p>
+                    Tag Functionの引数を元にテンプレートを生成することができます。<br />
+                    Tag Functionの戻り値は文字列だけでなく関数を指定することもできます。
+                </p>
+                <div class="user-container-output"></div>
+                <div>
+                    <div>
+                        <p>Template Type</p>
+                        <div class="template-type-container">
+                            <label><input name="template-type" type="radio" value="html" checked="checked" />HTML</label>
+                            <label><input name="template-type" type="radio" value="json" />JSON</label>
+                            <label><input name="template-type" type="radio" value="properties" />PROPERTIES</label>
+                        </div>
+                    </div>
+                    <label>title<input class="user-container-title" type="text" value="My container" /></label>
+                    <label>contents<input class="user-container-contents" type="text" value="HELLO" /></label>
+                </div>
+                <div>
+                    <button class="runner">run</button>
+                    <button class="clearer">clear</button>
+                </div>
+            </section>
+        </div>
+
+        <aside role="complementary">
+            <h3>参考</h3>
+            <ul>
+                <li><a href="http://es6-features.org/">ECMAScript 6 — New Features: Overview & Comparison</a></li>
+                <li><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions">MDN Arrow functions</a></li>
+				<li><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals">Template literals</a></li>
+            </ul>
+        </aside>
+
+        <footer role="contentinfo">
+            <small>Copyright &copy; 2016 moguonyanko All rights reserved.</small>
+        </footer>
+
+        <script src="../../gomakit.js"></script>
+        <script src="templateliterals.js"></script>
+    </body>
+</html>

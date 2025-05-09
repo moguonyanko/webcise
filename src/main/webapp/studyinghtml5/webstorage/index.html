@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Web Storage Sample</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Web Storage Sample</h1>
+      <a href="../">home</a>
+    </header>
+    <main>
+      <section>
+        <h2>StorageEvent</h2>
+        <p>StorageEventの振る舞いを調べます。</p>
+        <div>
+          <p>StorageEventから得た情報</p>
+          <textarea id="ResultArea" cols="50" rows="10" readonly="readonly"></textarea>
+        </div>
+        <div>
+          <button id="EventWindowOpener">イベント受信用ウインドウを開く</button>
+          <button id="EventFrameOpener">イベント受信用フレームを開く</button>
+          <button id="diplay-all-keyvalue">全てのキーと値を表示</button>
+          <button id="result-clearer">クリア</button>
+        </div>
+        <div id="EventFrameContainer"></div>
+      </section>
+      <section class="storage-cache-test">
+        <h2>キャッシュ削除時の振る舞い</h2>
+        <p>LocalStorageに保存した内容はブラウザの履歴やキャッシュ削除時に削除されてしまう。</p>
+        <p>IndexedDBやCacheStorageに保存した内容は消えない。</p>
+        <p>
+          ブラウザキャッシュを削除するとServiceWorkerの再インストールは発生するので
+          CacheStorageに保存済みの内容をそのまま読み込んで使うことはできない可能性がある。
+        </p>
+        <p>
+          そもそもServiceWorkerと合わせて使う都合上CacheStorageを利用するアプリケーションは
+          HTTPSでなければならない。
+        </p>
+        <div>
+          <label>テキスト:<input class="inputtext" type="text" value="local storage" /></label>
+          <button class="settext">保存</button>
+          <button class="gettext">読み込み</button>
+          <button class="removetext">削除</button>
+        </div>
+      </section>
+    </main>
+    <script src="../../gomakit.js"></script>
+    <script src="webstorage.js"></script>
+    <script src="cachetest.js"></script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Optimisation</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../../gomakit.css" />
+	</head>
+	<body>
+		<header>
+			<h1>Bindings</h1>
+			<p>変数や関数の束縛されるタイミングやその結果について調べます。</p>
+			<a href="../">back</a>
+		</header>
+		
+		<main>
+			<section class="block-level-sample">
+				<h2>Block-level function declaration</h2>
+				<p>
+					strictモードかそうでないかによってブロック内に宣言された関数に
+					対する束縛の結果が変化する。
+				</p>
+				<p>
+					strictモードならばブロック内の関数宣言はその外側の関数宣言を
+					上書きしない。関数名の重複による事故は起きないということである。
+				</p>
+				<div class="output"></div>
+				<div>
+					<label><input class="check-strict" type="checkbox" checked="checked" />strict mode</label>
+					<button class="runner">run</button>
+					<button class="clearer">clear</button>
+				</div>
+			</section>
+		</main>
+		
+		<aside>
+			<h2>参考</h2>
+			<ul>
+				<li><a href="http://kangax.github.io/compat-table/es6/">ECMAScript 6 compatibility table</a></li>
+			</ul>
+		</aside>
+		
+		<footer>
+			<small>Copyright &copy; 2016 moguonyanko All rights reserved.</small>
+		</footer>
+		
+		<script src="../../gomakit.js"></script>
+		<script src="main.js"></script>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Server Sentr Events</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Server Sent Events</h1>
+    </header>
+
+    <main>
+      <section class="basic-sample">
+        <h2>Basic Sample</h2>
+        <p>Server Sent Eventsでメッセージをサーバに送信してJSONを取得する。</p>
+        <div class="result-area"></div>
+        <div class="control">
+          <div>
+            <label>message:<input class="messager" type="text" value="Hello" /></label>
+          </div>
+          <div>
+            <button class="runner">SSE start</button>
+            <button class="sender">send message</button>
+            <button class="closer">SSE close</button>
+            <button class="clearer">clear result</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside role="complementary">
+      <h2>参考サイト</h2>
+      <ul>
+        <li><a href="https://developer.mozilla.org/ja/">Mozilla Developer Network</a></li>
+      </ul>
+    </aside>
+
+    <footer>
+      <small>Copyright &copy; 2017 moguonyanko All rights reserved.</small>      
+    </footer>
+
+    <script src="../../gomakit.js"></script>
+    <script src="serversentevents.js"></script>
+  </body>
+</html>

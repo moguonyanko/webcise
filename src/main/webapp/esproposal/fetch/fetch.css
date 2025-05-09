@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+:root {
+	--common-width: 90%;
+}
+
+em {
+    font-size: 1.2em;
+}
+
+em::before {
+    content: "!";
+    color: red;
+}
+
+.result-area {
+	width: 100%;
+	height: 20em;
+	background-color: beige;
+    overflow-y: scroll;
+}
+
+.sample-code {
+	width: var(--common-width);
+    margin-right: auto;
+    margin-left: auto;
+	font-size: 90%;
+	background-color: linen;
+}

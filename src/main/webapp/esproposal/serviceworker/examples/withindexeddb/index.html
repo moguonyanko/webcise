@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>With IndexedDB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <header>
+      <h1>With IndexedDB</h1>
+    </header>
+    <main>
+      <h2>ServiceWorker内でIndexedDBを利用する</h2>
+      <div class="controlpanel">
+        <div>
+          <p>Service Worker Controler</p>
+          <button class="appinput swcontrol register">register</button>
+          <button class="appinput swcontrol unregister">unregister</button>
+          <button class="appinput swcontrol update">update</button>
+        </div>
+        <div>
+          <button class="appinput download">download image</button>
+          <button class="appinput clear">clear images</button>
+        </div>
+      </div>
+      <div class="imagecontainer"></div>
+    </main>
+    <script src="main.js" type="module"></script>
+  </body>
+</html>

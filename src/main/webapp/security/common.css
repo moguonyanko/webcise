@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+h1 {
+    text-align: center;
+}
+
+.output {
+    background: whitesmoke;
+    border: 1px solid darkgray;
+    max-width: 100px;
+    min-height: 1em;
+}

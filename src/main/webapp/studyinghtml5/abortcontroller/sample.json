@@ -1,0 +1,24 @@
+{
+    "members": [
+        {
+            "name": "foo",
+            "age": 19
+        },
+        {
+            "name": "bar",
+            "age": 28
+        },
+        {
+            "name": "baz",
+            "age": 59
+        },
+        {
+            "name": "fuga",
+            "age": 45
+        },
+        {
+            "name": "hoge",
+            "age": 38
+        }
+    ]
+}

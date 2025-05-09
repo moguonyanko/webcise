@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fetch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="fetch.css" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+  </head>
+  <body>
+    <header>
+      <h1>Fetch</h1>
+      <p><a href="../../">home</a></p>
+    </header>
+    <main>
+      <em>注意</em>
+      <p>
+        セキュリティに関するHTTPレスポンスヘッダがWebサーバで正しく
+        設定されていないとクロスオリジンでなくても画像を正常に表示できない。
+      </p>
+      <div>
+        <h3>Apache設定例</h3>
+        <pre class="sample-code">
+&lt;Location /webcise/&gt;
+	Header always set X-XSS-Protection "1; mode=block"
+	Header always set Strict-Transport-Security "max-age=2678400; includeSubdomains;
+	Header always set X-Frame-Options "deny"
+	Header always set X-Content-Type-Options nosniff
+	Header always set Referrer-Policy "no-referrer"
+	Header always set Content-Security-Policy  "default-src 'self' https://localhost blob:;"
+&lt;/Location&gt;</pre>
+      </div>
+      <section class="fetch-request-sample">
+        <h2>fetch関数で非同期リクエストを行う</h2>
+        <div class="result-area"></div>
+        <div>
+          <button class="load-image">画像読込</button>
+        </div>
+      </section>
+      <section class="headers-request-sample">
+        <h2>HeadersでHTTPヘッダーを設定してリクエストを行う</h2>
+        <div class="result-area"></div>
+        <div>
+          <button class="load-image">画像読込</button>
+        </div>
+      </section>
+      <section class="new-request-sample">
+        <h2>Requestオブジェクトを作成してリクエストを行う</h2>
+        <div class="result-area"></div>
+        <div>
+          <button class="load-image">画像読込</button>
+        </div>
+      </section>
+      <section class="request-mode-sample">
+        <h2>モードを指定してリクエストを行う</h2>
+        <p>
+          クロスオリジンのリソースをfetch関数でリクエストする際はRequestのmodeにcorsを指定し，<br />
+          かつWebサーバが適切にAccess-Control-Allow-Originヘッダを設定していなければならない。
+        </p>
+        <div>
+          <h3>Apache設定例</h3>
+          <pre class="sample-code">
+&lt;Location /webcise/esproposal/fetch/&gt;
+	ProxyPass ajp://127.0.0.1:28009/webcise/esproposal/fetch/ ttl=30
+#Access-Control-Allow-Originにはリクエスト元のオリジンを指定する。
+	Header set Access-Control-Allow-Origin https://localhost
+	Header set Access-Control-Allow-Credentials true
+&lt;/Location&gt;</pre>
+        </div>
+        <div class="result-area"></div>
+        <div>
+          <div class="mode-type-select-panel">
+            <label><input name="request-mode" type="radio" value="cors" checked="checked" />cors</label>
+            <label><input name="request-mode" type="radio" value="no-cors" />no-cors</label>
+            <label><input name="request-mode" type="radio" value="same-origin" />same-origin</label>
+            <label><input name="request-mode" type="radio" value="navigate" />navigate</label>
+          </div>
+          <button class="load-image">画像読込</button>
+        </div>
+      </section>
+      <section class="request-body-sample">
+        <h2>fetchでリクエストボディを送信する</h2>
+        <div>
+          <div class="result-area"></div>
+          <textarea class="url-text" rows="5" cols="50">https://localhost/webcise/esproposal/fetch/index.html?name=admin&password=secret
+          </textarea>
+        </div>
+        <button class="post-data">送信</button>
+      </section>
+      <section class="new-response-sample">
+        <h2>レスポンスを自前で生成する</h2>
+        <div>
+          <div class="result-area"></div>
+        </div>
+        <div>
+          <label>送信ファイル<input class="file-selector" type="file" /></label>
+          <button type="button" class="runner">送信</button>
+        </div>
+      </section>
+      <section class="keepalive-check-sample">
+        <h2>keepaliveの状態を確認する</h2>
+        <div class="result-area"></div>
+        <div>
+          <button class="runner">run</button>
+          <button class="clearer">clear</button>
+        </div>
+      </section>
+      <section class="readablestream-sample">
+        <h2>レスポンスのボディをストリームとして処理する</h2>
+        <p>Response.bodyはReadableStreamになっている。</p>
+        <div class="result-area"></div>
+        <div>
+          <button class="runner">run</button>
+          <button class="clearer">clear</button>
+        </div>
+      </section>
+      <section class="readablestream-iteration-sample">
+        <h2>ReadableStreamをiterateする</h2>
+        <div class="result-area"></div>
+        <div>
+          <label>bound<input class="bound" type="number" value="100" min="1" max="10000" /></label>
+          <label>size<input class="size" type="number" value="10" min="1" max="20" /></label>
+          <button class="runner">get</button>
+          <button class="clearer">clear</button>
+        </div>
+      </section>
+    </main>
+    <aside>
+      <p>参考</p>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en/docs/Web/API/Fetch_API">MDN Fetch API</a></li>
+        <li><a href="https://content-security-policy.com/">Content Security Policy Reference</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream">ReadableStream(MDN)</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStreamDefaultReader">ReadableStreamDefaultReader(MDN)</a></li>
+        <li><a href="https://jakearchibald.com/2017/async-iterators-and-generators/">Async iterators and generators</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Using_readable_streams">Using readable streams</a></li>
+      </ul>
+    </aside>
+    <script src="../../gomakit.js"></script>
+    <script src="fetch.js"></script>
+  </body>
+</html>

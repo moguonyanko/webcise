@@ -1,0 +1,14 @@
+{
+    "shop1": {
+        "name" : "abc",
+        "items" : [
+            "apple", "orange", "lemon"
+        ]
+    },
+    "shop2": {
+        "name" : "fuga",
+        "items" : [
+            "pencil", "eraser", "ruler"
+        ]
+    }
+}

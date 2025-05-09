@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+button {
+    width: 10em;
+    height: 3em;
+}
+
+aside {
+    border-top: 1px solid lightgray;
+}
+
+form {
+    border: solid 1px gray;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px;
+    border: solid red 1px;
+}
+
+.user-control {
+    background-color: beige;
+}
+
+.resultarea {
+    width: 100%;
+    max-width: 500px;
+    min-height: 100px;
+}

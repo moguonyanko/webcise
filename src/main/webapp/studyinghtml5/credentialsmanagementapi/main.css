@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    border: solid darkgray 1px;
+}
+
+aside {
+    background-color: beige;
+    margin: 0.5em;
+}
+
+.example {
+    width: 100%;
+    max-width: 500px;
+}
+
+button.action {
+    font-size: 16px;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Intersection Observer API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="shortcut icon" href="../../favicon.ico" />    
+  </head>
+  <body>
+    <header>
+      <a href="../">home</a>
+      <h1>Intersection Observer API</h1>
+    </header>
+    <main>
+      <infinity-scroller src="sample.json">
+        <div slot="contentblock">
+          <p class="content">Hello</p>
+          <p class="content">HTML</p>
+          <p class="content">CSS</p>
+          <p class="content">JavaScript</p>
+          <p class="content">World</p>
+        </div>
+      </infinity-scroller>
+      <!-- templateが対応するcustom elementより後に記述されていても問題ない。 -->
+      <template class="infinite-scrolling">
+        <link rel="stylesheet" href="element.css" />
+        <p class="title">読み込み結果一覧</p>
+        <div class="base">
+          <slot name="contentblock"></slot>
+          <p class="content">...</p>
+        </div>
+      </template>
+    </main>
+    <aside>
+      <h3>参考サイト</h3>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">Intersection Observer API(MDN)</a></li>
+      </ul>
+    </aside>
+    <script src="main.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+CACHE MANIFEST
+#v1.1.1 - 2015-01-25
+
+#キャッシュ対象ファイルを指定します。ワイルドカードは使えません。
+CACHE:
+index.html
+appcache.css
+
+#キャッシュしないファイルを指定します。
+NETWORK:
+*
+
+#キャッシュしたファイルが利用不可のときに利用されます。
+FALLBACK:
+*.html fallback.html
+*.css fallback.css

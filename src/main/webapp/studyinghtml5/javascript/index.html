@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScript(Core and Client)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+    <style>
+      section {
+          margin: 2px;
+          padding: 3px;
+          border: 1px solid lightgrey;
+          border-radius: 5px;
+      }
+    </style>
+    <script src="../../gomakit.js"></script>
+  </head>
+  <body>
+    <header role="banner">
+      <h1>JavaScript(Core and Client)</h1>
+      <p>コア及びクライアントサイドのJavaScriptの練習サイトです。</p>
+      <div>
+        <h3>その他のコンテンツ</h3>
+        <p><a href="dblclick.html">Double Click Test</a></p>
+      </div>
+    </header>
+
+    <div role="main">
+      <section>
+        <style scoped="">
+          .ClosureButton {
+              width: 200px;
+              height: 100px;
+          }
+
+          #closure-sample-list li {
+              border: 1px green solid;
+              background-color: yellowgreen;
+              padding: 5px;
+              margin: 5px;
+              width: 100px;
+              cursor: pointer;
+          }
+
+          #closure-sample-list li[data-list-value="3"] {
+              background-color: red;
+          }
+        </style>
+        <h2>クロージャ</h2>
+        <section>
+          <h3>thisの扱い</h3>
+          <button class="ClosureButton">0</button>
+          <button class="ClosureButton">0</button>
+          <button class="ClosureButton">0</button>
+        </section>
+        <div>
+          <h3>クロージャとスコープチェーン</h3>
+          <p>
+            正常時は3番目だけがクリックで赤くなるように書かれている。
+          </p>
+          <ul id="closure-sample-list">
+            <li data-list-value="0">apple</li>
+            <li data-list-value="0">orange</li>
+            <li data-list-value="0">banana</li>
+          </ul>
+          <div>
+            <button id="success-listener-setter">正常リスナ設定</button>
+            <button id="fail-listener-setter">失敗リスナ設定</button>
+          </div>
+        </div>
+        <script src="closure.js"></script>
+      </section>
+      <section>
+        <style scoped="scoped">
+          .NewClass {
+              color: red;
+              font-weight: bold;
+              /*font-size: 150%;*/
+          }
+        </style>
+        <h2>クラスリスト</h2>
+        <p id="ClassListSampleElement" class="Hoge Foo Bar">サンプル</p>
+        <button id="ToggleClass">Toggle class</button>
+        <textarea id="ClassListResult" readonly="readonly" cols="40" rows="5">
+        </textarea>
+        <script src="classlist.js"></script>
+      </section>
+      <section>
+        <h2>イベントリスナ</h2>
+        <textarea id="MultiListenerArea" readonly="readonly" cols="40" rows="5"></textarea>
+        <div>
+          <p>addEventListenerで同じリスナを何回追加しても1つしか追加されません。</p>
+          <p>リスナ追加回数:<input id="MultiListenerSize" type="text" value="5" /></p>
+          <button id="MultiListenerSample">イベント発火</button>
+          <button id="ClearListenerArea">リセット</button>
+        </div>
+        <script src="eventlistener.js"></script>
+      </section>
+      <section>
+        <h2>配列</h2>
+        <div id="ArrayResultArea">
+          処理結果出力
+        </div>
+        <div>
+          <button value="addAll" class="RunArrayFunc">addAll</button>
+          <button value="sparseArray" class="RunArrayFunc">sparseArray</button>
+        </div>
+        <script src="array.js"></script>
+      </section>
+      <section>
+        <h2>部分適用</h2>
+        <div id="BindResultArea">
+          結果確認
+        </div>
+        <div>
+          <button onclick="bindNS.log(bindNS.fnArray());">配列を適用</button>
+          <button onclick="bindNS.log(bindNS.fnNumber());">数値を適用</button>
+          <button onclick="bindNS.log(new bindNS.fnNumber(100));">コンストラクタで適用</button>
+        </div>
+        <script src="partial.js"></script>
+      </section>
+      <section>
+        <h2>コンストラクタ</h2>
+        <div id="ConstructorResult">
+          結果確認
+        </div>
+        <div>
+          <label>
+            <input type="radio" name="inheritFuncs" value="objectNew" checked="checked" />new Object
+          </label>
+          <label>
+            <input type="radio" name="inheritFuncs" value="objectCreate" />Object.create
+          </label>
+          <label>
+            <input type="radio" name="inheritFuncs" value="functionBind" />Function.prototype.bind
+          </label>
+        </div>
+        <div>
+          <!-- テスト目的以外でonclickは使わないこと。 -->
+          <button onclick="constructorNS.dumpSubInstance();">サブクラス生成</button>
+          <button onclick="constructorNS.getSubName();">サブクラス::getName</button>
+        </div>
+        <script src="constructor.js"></script>
+      </section>
+      <section>
+        <h2>アクセッサメソッドとオブジェクト属性</h2>
+        <div>
+          <textarea id="ResultAccessorArea" cols="60" rows="10"></textarea>
+        </div>
+        <div>
+          <p><label>name<input id="InputNameAccessorValue" type="text" value="HOGE" /></label></p>
+          <p><label>mode<input id="InputModeAccessorValue" type="text" value="special" /></label></p>
+          <p><label>option<input id="InputOptionAccessorValue" type="text" value="ARGUMENTS" /></label></p>
+          <div>
+            <button onclick="accessorNS.printName();">setName→getName</button>
+            <button onclick="accessorNS.printMode();">setMode→getMode</button>
+            <button onclick="accessorNS.printOption();">setOption→getOption</button>
+          </div>
+          <div>
+            <button onclick="accessorNS.dumpObject();">dump</button>
+            <button onclick="accessorNS.objectMethodTest();">Object method test</button>
+          </div>
+          <div>
+            <button onclick="document.getElementById('ResultAccessorArea').value = '';">クリア</button>
+          </div>
+        </div>
+        <script src="accessor.js"></script>
+      </section>
+      <section>
+        <style scoped="scoped">
+          .InnerFrameContainer {
+              border: 1px solid black;
+              border-radius: 5px;
+          }
+        </style>
+        <h2>複数のウインドウとフレーム</h2>
+        <div>
+          <p>テストフレーム</p>
+          <div class="InnerFrameContainer">
+            <iframe id="SubInnerFrame0" src="sub0.html" name="sub0" width="300" height="100"></iframe>
+            <!-- width, heightに%指定できるのはHTML5以降 -->
+            <!--<iframe id="SubInnerFrame0" src="sub0.html" name="sub0" width="100%" height="100%"></iframe>-->
+          </div>
+          <div class="InnerFrameContainer">
+            <iframe id="SubInnerFrame1" src="sub1.html" name="sub1" width="300" height="100"></iframe>
+            <!--<iframe id="SubInnerFrame1" src="sub1.html" name="sub1" width="100%" height="100%"></iframe>-->
+          </div>
+        </div>
+        <div>
+          <textarea id="ResultInnerFrameArea" cols="60" rows="10"></textarea>
+        </div>
+        <div>
+          <button onclick="frameNS.dumpFrames();">iframe情報一覧</button>
+          <button onclick="frameNS.openWindows();">開いたウインドウの調査</button>
+          <button onclick="frameNS.checkInstanceViaFrames();">フレーム毎のインスタンス調査</button>
+          <button onclick="frameNS.displaySubContainer();">サブウインドウの要素取得</button>
+        </div>
+        <div>
+          <button onclick="document.getElementById('ResultInnerFrameArea').value = '';">クリア</button>
+        </div>
+        <script src="frame.js"></script>
+      </section>
+      <section>
+        <style scoped="scoped">
+        </style>
+        <h2>データ型</h2>
+        <div>
+          <textarea id="ResultDataTypeArea" cols="60" rows="10"></textarea>
+        </div>
+        <div>
+          <button id="InstanceChecker">instanceofによる型の確認</button>
+        </div>
+        <div>
+          <button onclick="my.ref('ResultDataTypeArea').value = '';">クリア</button>
+        </div>
+        <script src="datatype.js"></script>
+      </section>
+      <section>
+        <style scoped="scoped">
+        </style>
+        <h2>正規表現</h2>
+        <div>
+          <textarea id="RegExpResultArea" cols="60" rows="10"></textarea>
+        </div>
+        <div>
+          <label for="RegExpSampleValue">サンプル文字列</label>
+          <span><input id="RegExpSampleValue" type="text" value="JavaScript Lisp Java Python" /></span>
+          <label for="RegExpSamplePattern">パターン</label>
+          <span><input id="RegExpSamplePattern" type="text" value="java" /></span>
+          <div>
+            <span>フラグ</span>
+            <label><input type="checkbox" name="RegExpSampleFlag" value="g" checked="checked" />global</label>
+            <label><input type="checkbox" name="RegExpSampleFlag" value="i" checked="checked" />ignoreCase</label>
+            <label><input type="checkbox" name="RegExpSampleFlag" value="m" checked="checked" />multiline</label>
+          </div>
+        </div>
+        <div>
+          <button onclick="regexpNS.match();">String::match</button>
+          <button onclick="regexpNS.split();">String::split</button>
+        </div>
+        <div>
+          <button onclick="my.ref('RegExpResultArea').value = '';">クリア</button>
+        </div>
+        <script src="regexp.js"></script>
+      </section>
+      <section>
+        <style scoped="scoped">
+          .DataTransformRow {
+              padding: 3px;
+              border: lightgrey 1px solid;
+              border-radius: 5px;
+          }
+
+          .DataTransformResult {
+              font-weight: bold;
+              border-bottom: solid 1px black;
+          }
+
+          .FormulaSummary {
+              width: 75%;
+          }
+        </style>
+        <h2>演算子と型変換</h2>
+        <div class="FormulaContainer">
+          <p class="FormulaSummary">
+            二項演算子の+演算子はオペランドの型の異なる場合<strong>文字列</strong>に変換して揃える。<br />
+            即ちオペランドのどれかが文字列であればもう一方のオペランドも文字列に変換される。
+          </p>
+          <p class="DataTransformRow">x = "1" + 1;<br />
+            x = <span id="DataTransformResult0" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = 1 + "1";<br />
+            x = <span id="DataTransformResult1" class="DataTransformResult"></span></p>
+
+          <p class="FormulaSummary">
+            単項算術演算子はオペランドを数値に変換する。<br />
+            インクリメント，デクリメントでも必ず数値へ変換される。<br />
+            nullやtrue, false，文字列など数値でない値はそのままインクリメントすると
+            エラーになってしまうが，一度別の変数に代入すればインクリメントできる。<br />
+            デクリメントも同様の振る舞いを示す。
+          </p>
+          <p class="DataTransformRow">x = "1";<br />x++;<br />
+            x = <span id="DataTransformResult2" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = null;<br />x++;<br />
+            x = <span id="DataTransformResult20" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = null;<br />
+            +x; //<span id="DataTransformResult27" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = null;<br />
+            -x; //<span id="DataTransformResult28" class="DataTransformResult"></span></p>
+
+          <p class="FormulaSummary">
+            論理値やnullも<strong>文字列変換されない状況では</strong>数値に変換される。<br />
+            trueは1，falseとnullは0に変換される。
+          </p>
+          <p class="DataTransformRow">x = true + false + null;<br />
+            x = <span id="DataTransformResult3" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = true + "false" + null;<br />
+            x = <span id="DataTransformResult4" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = Math.pow(null, false);<br />
+            x = <span id="DataTransformResult11" class="DataTransformResult"></span></p>
+
+          <p class="FormulaSummary">
+            undefinedはNaNに変換される。NaNが1つでも含まれている式の結果はNaNになる。
+          </p>
+          <p class="DataTransformRow">x = 1 + undefined;<br />
+            x = <span id="DataTransformResult5" class="DataTransformResult"></span></p>
+
+          <p class="FormulaSummary">
+            JavaScriptの数値は全て浮動小数点数である。
+            計算結果が自動的に切り捨て切り上げされて整数になったりしない。<br />
+            整数のように見えても整数ではない(と考えるのが安全)。
+          </p>
+          <p class="DataTransformRow">x = 5 / 2;<br />
+            x = <span id="DataTransformResult6" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = 6.3 / 2.1;<br />
+            x = <span id="DataTransformResult7" class="DataTransformResult"></span></p>
+
+          <p class="FormulaSummary">
+            %演算子は小数に対しても動作する。結果の符号は最初のオペランドと同じになる。
+          </p>
+          <p class="DataTransformRow">x = 6.5 % -2.1;<br />
+            x = <span id="DataTransformResult8" class="DataTransformResult"></span></p>
+
+          <p class="FormulaSummary">
+            オペランドのオブジェクトがvalueOfを実装していればその戻り値を使って計算を行う。<br />
+            valueOfが実装されていなければオブジェクトはtoStringを使って文字列変換される。
+          </p>
+          <p class="DataTransformRow">x = new Sample() + 1;<br />
+            x = <span id="DataTransformResult9" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = new Sample2() + 1;<br />
+            x = <span id="DataTransformResult10" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = [] + 1;<br />
+            x = <span id="DataTransformResult12" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = [9] + 1;<br />
+            x = <span id="DataTransformResult13" class="DataTransformResult"></span></p>
+
+          <p class="FormulaSummary">
+            空文字と配列の変換は変換を行う関数によって結果が異なる。
+          </p>
+          <p class="DataTransformRow">x = Number("");<br />
+            x = <span id="DataTransformResult14" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = parseInt("");<br />
+            x = <span id="DataTransformResult15" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = Number([]);<br />
+            x = <span id="DataTransformResult16" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = parseInt([]);<br />
+            x = <span id="DataTransformResult17" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = Number([1]);<br />
+            x = <span id="DataTransformResult18" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = Number([1,2]);<br />
+            x = <span id="DataTransformResult19" class="DataTransformResult"></span></p>
+
+          <p class="FormulaSummary">
+            -演算子はオペランドの型の異なる場合<strong>数値</strong>に変換して揃える。<br />
+            数値にならない値はNaNに変換される。<br />
+            *演算子と/演算子も-演算子と同じように振る舞う。+演算子だけが文字列変換を優先する。
+          </p>
+          <p class="DataTransformRow">x = 1;<br />y = "1";<br />
+            x - y = <span id="DataTransformResult23" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = 1;<br />y = "one";<br />
+            x - y = <span id="DataTransformResult24" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = 2;<br />y = "2";<br />
+            x * y = <span id="DataTransformResult25" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = 2;<br />y = "2";<br />
+            x / y = <span id="DataTransformResult26" class="DataTransformResult"></span></p>
+
+          <p class="FormulaSummary">
+            等値演算子(==)はオペランドの型の異なる場合<strong>数値</strong>に変換して揃える。<br />
+            比較演算子も同様に振る舞う。
+          </p>
+          <p class="DataTransformRow">x = 1;<br />y = "1";<br />
+            x == y; //<span id="DataTransformResult21" class="DataTransformResult"></span></p>
+          <p class="DataTransformRow">x = 1;<br />y = "2";<br />
+            x $gt; y; //<span id="DataTransformResult22" class="DataTransformResult"></span></p>
+        </div>
+        <script src="operator.js"></script>
+      </section>
+      <section>
+        <style scoped="">
+          #NowModeInfo {
+              border-bottom: solid 1px black;
+              text-align: center;
+          }
+        </style>
+        <h2>eval</h2>
+        <div>
+          <p id="NowModeInfo"></p>
+          <div>
+            <p>グローバルevalを使うための準備</p>
+            <pre>
+var globalEval = eval;						
+            </pre>
+            <p>グローバル変数</p>
+            <pre>
+x = "x not changed";
+y = "y not changed";
+            </pre>
+          </div>
+          <div>
+            <h3>直接eval</h3>
+            <pre>
+function direct(){
+	var x = "local x not changed";
+	eval("x = \"x changed!\";");
+	return x;
+}
+            </pre>
+            <div id="DirectEvalResultArea">評価結果</div>
+            <button onclick="evalNS.direct();">評価</button>
+          </div>
+          <div>
+            <h3>グローバルeval</h3>
+            <pre>
+function indirect(){
+	var y = "local y not changed";
+	globalEval("y = \"y changed!\";");
+	return y;
+}
+            </pre>
+            <div id="IndirectEvalResultArea">評価結果</div>
+            <button onclick="evalNS.indirect();">評価</button>
+          </div>
+        </div>
+        <script src="eval.js"></script>
+      </section>
+      <section>
+        <h2>with</h2>
+        <p>with文の問題のために入力された名前は決して使われない。</p>
+        <div id="WithResultArea">結果確認</div>
+        <div>
+          <label>名前:<input id="WithSampleName" type="text" value="INPUT NAME" /></label>
+          <button onclick="withNS.displayName();">名前確認</button>
+          <button onclick="withNS.changeObject();">メソッド変更</button>
+        </div>
+        <script src="with.js"></script>
+      </section>
+      <section>
+        <style scoped="">
+          #JSONResultArea {
+              width: auto;
+              height: 200px;
+              border: 1px solid lightgrey;
+          }
+        </style>
+        <h2>JSON</h2>
+        <p>parseやstringifyでは入力値をフィルタリングすることができる。</p>
+        <div>
+          <h3>サンプルJSON</h3>
+          <pre id="SampleJSONObject">
+{
+	"5114096": {
+		"id": "5114096",
+		"name": "FOO",
+		"height": 180.5,
+		"weight": 80.5,
+		"age": 30,
+		"favorite": ["apple", "orange", "melon"],
+		"married": false,
+		"note": null
+	},
+	"1509355": {
+		"id": "1509355",
+		"name": "BAR",
+		"height": 160.1,
+		"weight": 73.8,
+		"age": 45,
+		"favorite": ["egg", "milk", "chocolate"],
+		"married": true,
+		"note": {
+			"disease": "cold"
+		}
+	}
+}
+          </pre>
+        </div>
+        <h3>JSONのメソッド呼び出し結果</h3>
+        <div id="JSONResultArea"></div>
+        <div>
+          <div class="JSONOptionPanel">
+            <label><input name="JSONFilters" type="radio" value="weight" checked="checked" />weight</label>
+            <label><input name="JSONFilters" type="radio" value="none" />none</label>
+            <div>
+              <label>しきい値<input id="JSONBorderValue" type="text" value="80" /></label>
+            </div>
+            <label>nameとageのみ文字列化<input id="JSONPropertySqeezeCheck" type="checkbox" checked="checked" /></label>
+          </div>
+          <button id="DisplayParsedJSON">JSON::parse→stringify</button>
+          <button id="DisplayStringifiedJSON">プロパティを指定してJSON::stringify</button>
+        </div>
+        <script src="json.js"></script>
+      </section>
+      <section>
+        <style scoped="">
+          .NodeSample {
+              border: 1px solid lightgrey;
+              border-radius: 5px;
+              margin: 5px;
+          }
+
+          ul.nodelist-sample-list {
+              margin: 5px;
+              width: 300px;
+              height: 100px;
+              background-color: snow;
+              border: pink solid 1px;
+              border-radius: 5px;
+          }
+
+          #SampleElementNodeContainer {
+              height: 30%;
+              max-height: 500px;
+          }
+        </style>
+        <h2>Node</h2>
+        <h3>Nodeのプロパティ確認</h3>
+        <div id="SampleElementNodeContainer" class="NodeSample">				
+          <p id="SampleTextNodeContainer" class="NodeSample">テキストノード</p>
+          <p id="SampleCommentNodeContainer" class="NodeSample"><!-- コメントノード --></p>
+          <pre id="SamlePreNode" class="NodeSample">
+					整形済みテキスト
+          </pre>
+          <input id="SampleInputNode" class="NodeSample" type="text" value="INPUT NODE" readonly="" />
+          <script id="SampleInlineScriptNode">
+            //(function(){ console.log("Inline script node!"); }());
+          </script>
+        </div>
+        <h3>Nodeの等しさ確認</h3>
+        <div id="NodeEqualitySampleContainer">
+          <input id="NodeEqualitySample1" type="text" value="Equality test" />
+          <input id="NodeEqualitySample2" type="text" value="Equality test" />
+          <input id="NodeEqualitySample3" type="text" value="Equality test" />
+          <div id="NodeEqualitySample4">
+            <span></span>
+            <span></span>
+            <span>Equality test</span>
+          </div>
+        </div>
+        <h3>Node情報出力結果</h3>
+        <textarea id="SampleNodeInfomationArea" readonly="readonly" cols="80" rows="5"></textarea>
+        <div>
+          <button id="NodeOutputExecuter">Node情報出力</button>
+          <button id="NodeEqualityTestExecuter">Nodeの等しさテストの結果出力</button>
+        </div>
+        <h3>生きているNodeList</h3>
+        <div>
+          <ul class="nodelist-sample-list">
+            <li>apple</li>
+            <li>orange</li>
+            <li>banana</li>
+          </ul>
+        </div>
+        <div>
+          <button id="sample-node-remover">li要素を削除した後その数結果表示</button>
+          <button id="sample-node-resetter">li要素復元</button>
+        </div>
+        <div>
+          <button id="node-result-clearer">クリア</button>
+        </div>
+        <script src="nodetest.js"></script>
+      </section>
+      <section>
+        <style scoped="">
+          .MainSampleEventContainer {
+              border: 1px solid lightsteelblue;
+              border-radius: 5px;
+          }
+
+          .SampleEventContainer {
+              margin-top: 5px;
+              padding-top: 5px;
+              margin-right: 5px;
+              padding-right: 5px;
+              border-radius: 5px;
+              border-style: dotted;
+              border-width: 1px;
+              background-color: white;
+          }
+
+          .EmphasisStroke {
+              border-width: 2px;
+              border-style: solid;
+          }
+
+          .EmphasisFill {
+              background-color: rgba(100, 255, 50, 0.3);
+          }
+
+          #ParentEventContainer {
+              width: 300px;
+              height: 300px;
+              border-color: lightcoral;
+          }
+
+          #ChildEventContainer {
+              width: 500px;
+              height: 200px;
+              border-color: lightseagreen;
+          }
+
+          #GrandchildEventContainer {
+              width: 200px;
+              height: 300px;
+              border-color: limegreen;
+          }
+        </style>
+        <h2>イベント伝搬</h2>
+        <div class="MainSampleEventContainer">
+          <div id="ParentEventContainer" class="SampleEventContainer">
+            <span>親コンテナ(イベントリスナ登録対象要素)</span>
+            <div id="ChildEventContainer" class="SampleEventContainer">
+              <span>子コンテナ</span>
+              <div id="GrandchildEventContainer" class="SampleEventContainer">
+                <span>孫コンテナ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <textarea id="EventInfoArea" readonly="readonly" cols="80" rows="5"></textarea>
+        </div>
+        <div>
+          <div>
+            <label><input id="EnableEventCapture" type="checkbox" />キャプチャリング</label>
+            <button id="EventListenerSetter">イベント設定</button>
+            <button id="ClearEventInfoArea">クリア</button>
+          </div>
+        </div>
+        <script src="evevtpropagation.js"></script>
+      </section>
+      <section>
+        <style scoped="">
+          .ContainerText {
+              border: 2px solid green;
+              background-color: rgba(0, 255, 0, 0.3);
+          }
+
+          .CoordinatesResultArea {
+              width: 50%;
+              padding: 5px;
+              margin: 5px;
+              background-color: khaki;
+              border: 1px solid khaki;
+              border-radius: 5px;
+          }
+
+          .CoordinatesContainer {
+              border-width: 5px;
+          }
+
+          .SizeResultArea {
+              width: 50%;
+              background-color: beige;
+          }
+
+          #CoordinatesParentContainer0 {
+              width: 300px;
+              height: 300px;
+              border-style: solid;
+              border-color: red;
+              background-color: rgba(255, 0, 0, 0.3);
+          }
+
+          #CoordinatesChildContainer0 {
+              position: relative;
+              left: 10px;
+              top: 5px;
+              width: 200px;
+              height: 100px;
+              border-style: solid;
+              border-color: blue;
+              background-color: rgba(0, 0, 255, 0.3);
+          }
+
+          #CoordinatesChildContainer1 {
+              position: relative;
+              left: 20px;
+              top: 10px;
+              width: 250px;
+              height: 150px;
+              border-style: solid;
+              border-color: orange;
+              background-color: rgba(33, 33, 33, 0.3);
+              overflow: scroll;
+          }
+
+          #CoordinatesChildContainer1 .LongWidthSample {
+              white-space: nowrap;
+          }
+
+          #CoordinatesChildContainer1 .LongHeightSample {
+              height: 500px;
+          }
+        </style>
+        <h2>ドキュメント座標とビューポート座標</h2>
+        <p>
+          ブラウザ上で得られる様々な座標やサイズを検証します。<br />
+          座標は現在のスクロール位置や対象要素のボーダーの幅で変化します。
+        </p>
+        <div id="CoordinatesParentContainer0" class="CoordinatesContainer">
+          <span id="CoordinatesParentContainerText0" class="ContainerText">親コンテナ(width: 300px, height: 300px)</span>
+          <div id="CoordinatesChildContainer0" class="CoordinatesContainer">
+            <span id="CoordinatesChildContainerText0" class="ContainerText">子コンテナ0(width: 200px, height: 100px)</span>
+          </div>
+          <div id="CoordinatesChildContainer1" class="CoordinatesContainer">
+            <span id="CoordinatesChildContainerText1" class="ContainerText">
+              子コンテナ1(width: 250px, height: 150px) 複数行に渡って表示されるとサイズが変化する。
+            </span>
+            <span class="LongWidthSample">
+              test inline element 
+              test inline element 
+              test inline element 
+              test inline element 
+              test inline element
+            </span>
+            <div class="LongHeightSample">test block element(height: 500px)</div>
+          </div>
+        </div>
+        <div>
+          <div class="CoordinatesResultArea">
+            <h3>座標取得結果</h3>
+            <label>X=<input id="CoordinatesResultX" type="text" value="" readonly="" /></label>
+            <label>Y=<input id="CoordinatesResultY" type="text" value="" readonly="" /></label>
+          </div>
+          <div>
+            <h3>座標取得設定</h3>
+            <div>
+              <p>座標取得対象コンテナ</p>
+              <label><input type="radio" name="ContainerType" value="c0" checked="checked" />親コンテナ0</label>
+              <label><input type="radio" name="ContainerType" value="c0-0" />子コンテナ0</label>
+              <label><input type="radio" name="ContainerType" value="c0-1" />子コンテナ1</label>
+            </div>
+            <div>
+              <p>座標種別</p>
+              <label><input type="radio" name="CoordinatesType" value="document" checked="checked" />ドキュメント座標</label>
+              <label><input type="radio" name="CoordinatesType" value="viewport" />ビューポート座標(ウインドウ座標)取得</label>
+            </div>
+          </div>
+          <div>
+            <div>
+              <h3>各コンテナ(ブロック要素)の左上のデバイス座標</h3>
+              <button id="ContainerCoordinatesGetter">コンテナの座標取得</button>
+            </div>
+            <div>
+              <h3>各コンテナのテキスト(インライン要素)の左上のデバイス座標</h3>
+              <button id="ContainerTextCoordinatesGetter">コンテナのテキストの座標取得</button>
+            </div>
+            <div>
+              <h3>ポインタの座標取得</h3>
+              <label><input id="EnablePointerCoordinates" type="checkbox" />座標取得有効</label>
+            </div>
+            <div>
+              <h3>ビューポート(ウインドウ)のサイズ</h3>
+              <p>
+                WindowオブジェクトのinnerWidthプロパティとinnerHeightプロパティから
+                ビューポート(ウインドウ)のサイズを取得する。<br />
+                ここでいうビューポート(ウインドウ)とは表示領域のことである。
+              </p>
+              <div id="ViewportSizeResultArea" class="SizeResultArea">ウインドウサイズ結果</div>
+              <button id="ViewportSizeGetter">サイズ取得</button>
+            </div>
+            <div>
+              <h3>コンテナのサイズ</h3>
+              <p>
+                ElementのoffsetWidth, offsetHeightにはボーダーと(表示されていれば)スクロールバーの
+                サイズが含まれる。<br />
+                ElementのclientWidth, clientHeightにはそれらは含まれない。<br />
+                従ってスクロールバーが表示されるとそのElementのclientWidth, clientHeightはCSSで指定されたサイズよりも
+                小さくなる。<br />
+                ElementのscrollWidth, scrollHeightにはElementが領域からはみ出している部分を<br />
+                clientWidth, clientHeightに加算した値が保持される。<br />
+                はみ出していなければclientWidth, clientHeightと同じ値になる。
+              </p>
+              <div id="ContainerSizeResultArea" class="SizeResultArea">コンテナサイズ結果</div>
+              <label><input id="IncludeBorderSize" type="checkbox" />ボーダー・スクロールバーを含める</label>
+              <label><input id="IncludeInvisibleArea" type="checkbox">非表示領域を含める</label>
+              <button id="ContainerSizeGetter">サイズ取得</button>
+            </div>
+            <div>
+              <h3>コンテナのテキストのサイズ</h3>
+              <p>
+                インライン要素のclientWidth, clientHeightは常にゼロである。<br />
+                インライン要素のサイズを得たければElementのoffsetWidth, offsetHeightを使う。<br />
+                ボックス要素同様offsetWidth, offsetHeightにはボーダーのサイズが含まれる。<br />
+                インライン要素なのでスクロールバーを考慮する必要は無い。<br />
+                インライン要素が複数行で表示されている時，offsetHeightにはその表示状態を<br />
+                反映したサイズが保持されている。つまり行数が増えるほどoffsetHeightが増す。<br />
+                複数行で表示されていても1行で表示されている時のサイズが得たいときは<br />
+                ElementのscrollWidth, scrollHeightを使い，必要に応じボーダーのサイズを加算する。
+              </p>
+              <div id="ContainerTextSizeResultArea" class="SizeResultArea">コンテナのテキストのサイズ結果</div>
+              <label><input id="IncludeTextBorderSize" type="checkbox" />ボーダーとスクロールバーを含める</label>
+              <label><input id="IncludeMultiLineSize" type="checkbox" />複数行になっている場合を考慮する</label>
+              <button id="ContainerTextSizeGetter">サイズ取得</button>
+            </div>
+          </div>
+        </div>
+        <script src="coordinate.js"></script>
+      </section>
+      <section>
+        <style scoped="">
+          .emphasis-input {
+              font-weight: bold;
+          }
+
+          .simple-input {
+              font-style: normal;
+          }
+
+          .simple-input0 {
+              color: blue;
+              font-style: normal;
+          }
+
+          .simple-input1 {
+              color: red;
+              font-style: normal;
+          }
+
+          .input-container {
+              padding: 5px;
+              margin: 5px;
+              border: solid 1px lightgrey;
+              border-radius: 5px;
+          }
+
+          #copy-text-area {
+              height: 100px;
+              background-color: snow;
+              border: solid snow 1px;
+              border-radius: 5px;
+          }
+
+          #unicode-key-info {
+              height: 1em;
+          }
+        </style>
+        <h2>キーボードイベント</h2>
+        <div>
+          <div class="input-container">
+            <p>入力された文字</p>
+            <div id="copy-text-area">
+              入力文字の表示
+            </div>
+            <div>
+              <div id="unicode-key-info" class="input-container"></div>
+              <button id="clear-input-result">クリア</button>
+            </div>
+          </div>
+          <div class="input-container">
+            <div>
+              <p>入力可能文字</p>
+              <label><input type="radio" name="input-char-filter" value="alpha" />英字</label>
+              <label><input type="radio" name="input-char-filter" value="digit" />数字</label>
+              <label><input type="radio" name="input-char-filter" value="alphadigit" checked="checked" />英数字</label>
+            </div>
+            <label>入力テスト<input id="text-input-sample-area" type="text" value="" /></label>
+          </div>
+        </div>
+        <div class="input-container">
+          <label><input id="enable-input-char-diplay" type="checkbox" checked="checked" />入力テスト有効</label>
+        </div>
+        <script src="keyboard.js"></script>
+      </section>
+      <section>
+        <style id="stylesheet-sample" scoped="">
+          div.stylesheet-sample-container {
+              font-family: monospace;
+              border: solid 1px pink;
+              background-color: bisque;
+              width: 30%;
+              height: 5em;
+              margin: 5px;
+          }
+
+          div.stylesheet-sample-container:hover {
+              border: 2px solid red;
+              background-color: lightpink;
+          }
+
+          div.style-result-info-area {
+              border: solid lightgrey 1px;
+              width: 500pt;
+              height: 150pt;
+              overflow-y: scroll;
+          }
+        </style>
+        <h2>スタイルシートの制御</h2>
+        <p>スタイル変更対象コンテナ</p>
+        <div class="stylesheet-sample-container">
+          <p>スタイルシートの差し替えを動的に行うことができます。</p>
+        </div>
+        <h3>スタイル情報確認</h3>
+        <p>このセクションのcssTextの確認</p>
+        <div id="csstext-result-area" class="style-result-info-area"></div>
+        <p>スタイル変更対象コンテナの算出スタイル確認</p>
+        <div id="style-result-area" class="style-result-info-area"></div>
+        <div>
+          <label><input id="enable-pseudo-element-style" type="checkbox" />擬似要素のスタイル取得</label>
+          <button id="display-style-executer">スタイル一覧出力</button>
+          <div>
+            <button id="section-style-sheet-insert">セクション用スタイルシート追加</button>
+            <button id="section-style-sheet-delete">セクション用スタイルシート削除</button>
+          </div>
+          <button id="clear-style-result">クリア</button>
+        </div>
+        <script src="stylesheet.js"></script>
+      </section>
+      <section>
+        <h2>型付け配列</h2>
+        <div>
+          <p>
+            pngファイルのサイズ(バイト)・幅(px)・高さ(px)・色深度を取得する。<br />
+            png以外の画像フォーマットのファイルを選択すると意図した値が得られない。
+          </p>
+          <label><input id="image-file-input" type="file" accept="imgae/png" /></label>
+        </div>
+        <div>
+          <textarea id="typed-array-result-area" 
+                    readonly="readonly" cols="80" rows="5"></textarea>
+        </div>
+        <div>
+          <button id="clear-typed-array-element">クリア</button>
+        </div>
+        <script src="typedarray.js"></script>
+      </section>
+      <section class="enumerableproperty-sample">
+        <style scoped="scoped">
+          .output {
+              width: 90vw;
+              height: 90vh; /* 90%では要素が潰れたままである。 */
+              max-width: 800px;
+              max-height: 150px;
+              border: 1px solid lightgray;
+              background-color: cornsilk;
+              overflow-y: scroll;
+          }
+        </style>
+        <h2>列挙可能プロパティ</h2>
+        <p>
+          enumerable=falseであるはずのプロパティが一部ブラウザでは列挙されてしまう。
+        </p>
+        <div class="output"></div>
+        <div>
+          <button class="run">run</button>
+          <button class="reset">reset</button>
+        </div>
+        <script src="enumerableproperty.js"></script>
+      </section>
+    </div>
+
+    <footer>
+      <aside>
+        <h3>参考サイト</h3>
+        <a href="http://kangax.github.io/compat-table/es5/">ECMAScript 5 compatibility table</a>
+      </aside>
+    </footer>
+  </body>
+</html>

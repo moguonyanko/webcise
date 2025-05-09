@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+pre {
+    font-family: serif;
+}
+
+aside {
+    border-top: 1px solid lightgray;
+}
+
+.camera-container {
+    width: 50vw;
+    min-height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: grey;
+}
+
+.infomation {
+    width: 75vw;
+    min-height: 3em;
+    margin: 0.5em auto;
+    background-color: linen;
+    overflow-y: scroll;
+}

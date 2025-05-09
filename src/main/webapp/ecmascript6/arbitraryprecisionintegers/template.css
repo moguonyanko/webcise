@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+:host {
+    display: block;
+    contain: content;
+}
+
+.resultarea {
+    width: 100%;
+    max-width: 400px;
+    height: 60vh;
+    max-height: 300px;
+    overflow-y: scroll;
+    background-color: beige;
+}

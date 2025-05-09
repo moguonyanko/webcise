@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Geolocation API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+  </head>
+  <body>
+    <header role="banner">
+      <h1>Geolocation API</h1>
+      <p>Geolocation APIの練習サイトです。</p>
+      <ul>
+        <li><a href="gps.html">GPS詳細テスト</a></li>
+      </ul>
+    </header>
+
+    <main>
+      <section>
+        <h2>現在位置取得</h2>
+        <button id="GetCurrentPosition">現在位置取得</button>
+      </section>
+    </main>
+
+    <script>
+      (function (win, doc, navi) {
+
+          function el(id, node) {
+              return (node || doc).getElementById(id);
+          }
+
+          var geo = navi.geolocation;
+
+          function dispPosition(pos) {
+              alert(pos.x + " : " + pos.y);
+          }
+
+          function getCurrentPosition(callback) {
+              var onsuccess = function (pos) {
+                  var lon = pos.coords.longitude,
+                          lat = pos.coords.latitude;
+
+                  callback({
+                      x: lon,
+                      y: lat
+                  });
+              },
+                      onerror = function (evt) {
+                          alert(evt.message + " CODE:" + evt.code);
+                      },
+                      options = {
+                          enableHighAccuracy: true,
+                          maximumAge: 60000, /* ミリ秒 */
+                          timeout: 100000 /* ミリ秒 */
+                      };
+
+              geo.getCurrentPosition(onsuccess, onerror, options);
+          }
+
+          function getPositionCallback(callback) {
+              return function () {
+                  getCurrentPosition(callback);
+              };
+          }
+
+          function addEvent() {
+              el("GetCurrentPosition").addEventListener("click",
+                      getPositionCallback(dispPosition),
+                      false);
+          }
+
+          function init() {
+              addEvent();
+          }
+
+          init();
+
+      }(window, document, navigator));
+    </script>
+  </body>
+</html>

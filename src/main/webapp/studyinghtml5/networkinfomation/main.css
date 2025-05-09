@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+h1 {
+    text-align: center;
+}
+
+.component {
+    height: 50vh;
+    max-height: 200px;
+    width: 100%;
+    max-width: 500px;
+    background-color: snow;
+    overflow-y: scroll;
+}

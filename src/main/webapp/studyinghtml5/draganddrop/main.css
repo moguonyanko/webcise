@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+footer {
+    position: relative;
+    top: 5px;
+    border-top: solid 1px lightgray;
+}
+
+p.section-title {
+    background-color: snow;
+}
+
+div[draggable="true"] {
+
+}
+
+#drop-target-container {
+    width: 400px;
+    height: 400px;
+    background-color: rgba(0, 0, 255, 0.3);
+}
+
+#drop-target-container:-moz-drag-over {
+    border: solid 3px red;
+}
+
+#main-container {
+    position: relative;
+}
+
+#main-container section {
+    position: relative;
+    left: 5px;
+}
+
+#draggable-container {
+    position: relative;
+    left: 5px;
+    width: 200px;
+    height: 200px;
+    z-index: 1;
+    background-color: rgba(0, 255, 0, 0.3);
+    /* -webkit-user-drag: element; */
+}
+
+/*
+#draggable-container:-webkit-drag {
+    width: 400px;
+    height: 400px;
+}
+*/

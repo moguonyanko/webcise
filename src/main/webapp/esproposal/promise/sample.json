@@ -1,0 +1,16 @@
+{
+    "member": [
+        { 
+            "name": "foo",
+            "age": 18
+        },
+        { 
+            "name": "bar",
+            "age": 17
+        },
+        { 
+            "name": "baz",
+            "age": 23
+        },
+    ]
+}

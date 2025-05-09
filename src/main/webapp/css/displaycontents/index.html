@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Display Contents</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Display Contents</h1>
+      <a href="../">home</a>
+    </header>
+    <main>
+      <h2>Example</h2>
+      <div class="container lv1">
+        <div class="container lv2">
+          <p class="name">Container A</p>
+        </div>
+        <div class="container lv2 enclosing">
+          <div class="container lv3">
+            <p class="name">Container B</p>
+          </div>
+          <div class="container lv3">
+            <p class="name">Container C</p>
+          </div>
+        </div>
+        <div class="container lv2">
+          <p class="name">Container D</p>
+        </div>
+      </div>
+      <form class="switch-style-form">
+        <fieldset>
+          <legend>Style Switching</legend>
+          <label><input type="radio" name="switch-style" value="default" checked>default</label>
+          <label><input type="radio" name="switch-style" value="contents">contents</label>
+        </fieldset>
+      </form>
+    </main>
+    <script src="main.js" type="module"></script>
+    <aside>
+      <h2>References</h2>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form">New in Chrome 65</a></li>
+        <li><a href="https://rachelandrew.co.uk/archives/2016/01/29/vanishing-boxes-with-display-contents/">Vanishing boxes with display contents</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display#display-box">display(MDN)</a></li>
+      </ul>
+    </aside>
+  </body>
+</html>

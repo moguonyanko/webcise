@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title>CSS Variables</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<style>
+			:root {
+				/**
+				 * 変数の値はダブルクォートで囲んではいけない。 
+				 * ルート要素に対し変数定義しないとスクリプト内で変数を参照できない。
+				 */
+				--common-bg-color: #ABC;
+			}
+
+			aside {
+				padding: 5px;
+				margin: 5px;
+				background-color: beige;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>CSS Variables</h1>
+		</header>
+
+		<div role="main">
+			<section>
+				<style scoped="scoped">
+					.component {
+						background-color: whitesmoke;
+					}
+
+					.component p {
+						background-color: var(--common-bg-color);
+					}
+				</style>
+				<h2>CSS Variablesの読み書き</h2>
+				<details>
+					<summary>CSS Variablesはスクリプトで読み書きできる</summary>
+					<p>
+						CSS Variablesを使うことでスタイルに分かりやすい名前を付けることができる。<br />
+						変数の値はスクリプトで参照することができ，変更することもできる。
+					</p>
+				</details>
+				<div class="component">
+					<p class="var-a-element">変数A</p>
+					<p class="var-b-element">変数B</p>
+					<p class="var-c-element">変数C</p>
+				</div>
+				<div>
+					<div>
+						<p>
+							CSS Variablesの値を確認する。(変数名： 変数の値)<br />
+							スクリプトで変数の値を変更するとページ内の全ての要素に影響がある。<br />
+							スクリプトで変数の値を変更した後は変更後の値が得られる。
+						</p>
+						<textarea id="css-var-viewer" rows="5" cols="60"></textarea>
+					</div>
+					<div>
+						<button id="exec-css-var-view">Variables表示</button>
+						<button id="exec-css-var-clear">クリア</button>
+						<button id="exec-css-var-set" value="--common-bg-color">表通背景色をredに変更</button>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<style scoped="scoped">
+					.sub-component {
+						--common-bg-color: #A5C;
+					}
+
+					.sub-component p {
+						background-color: var(--common-bg-color);
+					}
+
+					.any-component p {
+						background-color: var(--common-bg-color);
+					}
+				</style>
+				<h2>CSS Variablesの上書き</h2>
+				<details>
+					<summary>CSS Variablesは上書きできる。</summary>
+					<p>
+						変数を上書きしてもdocumentElementから得られる値は変化せず，<br />
+						ルート要素に対して変数上書きを行っても変化しない。
+					</p>
+				</details>
+				<div class="component">
+					<div class="sub-component">
+						<p>子要素は親要素での変数上書きの影響を受ける。</p>
+					</div>
+					<div class="any-component">
+						<p>子要素でなければ変数上書きの影響を受けない。</p>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<aside role="complementary">
+			<h3>参考</h3>
+			<ul>
+				<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables">MozillaDeveloperNetwork</a></li>
+				<li><a href="https://developers.google.com/web/updates/2016/02/css-variables-why-should-you-care?hl=en">GoogleDevelopers</a></li>
+			</ul>
+		</aside>
+
+		<footer role="contentinfo">
+			<small>Copyright &copy; 2016 moguonyanko All rights reserved.</small>
+		</footer>
+
+		<script src="../../gomakit.js"></script>
+		<script src="cssvariables.js"></script>
+	</body>
+</html>

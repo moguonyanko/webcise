@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+:root {
+    --common-bg-color: rgba(255, 250, 250, 0.8);
+}
+
+main {
+    width: 100%;
+}
+
+footer {
+    border-top: solid 1px lightgray;
+}
+
+.result-area {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90vw;
+    height: 10em;
+    border: 1px solid gray;
+    overflow-y: scroll;
+    background-color: var(--common-bg-color);
+}
+
+.control {
+    margin: 0.5em;
+}

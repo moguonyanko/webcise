@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Canvas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+    <style>
+      canvas {
+          border: 2px solid grey;
+          border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header role="banner">
+      <h1>Canvas</h1>
+      <p>CanvasAPIの練習サイトです。</p>
+      <p>その他のサンプルはこちら</p>
+      <ul>
+        <li><a href="imagebitmaprenderingcontext/">ImageBitmapRenderingContext</a></li>
+      </ul>
+    </header>
+
+    <main>
+      <section>
+        <h2>テキスト</h2>
+        <canvas id="TextCanvas" width="400" height="300"></canvas>
+      </section>
+      <section>
+        <h2>合成</h2>
+        <canvas id="CompositeCanvas" width="400" height="300"></canvas>
+      </section>
+      <section>
+        <h2>パス構築方向の調査</h2>
+        <p>
+          次の2つの矩形のうち，内側の矩形のパスは外側の矩形の逆回りで<br />
+          構築されているので塗りつぶされない。
+          (ノンゼロワインディング規則)
+        </p>
+        <canvas id="CCWCanvas" width="400" height="300"></canvas>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <small>Copyright &copy; 2015 moguonyanko All rights reserved.</small>
+    </footer>
+
+    <script>
+      (function (win, doc) {
+
+          function getGraphics(id) {
+              var cvsEle = doc.getElementById(id);
+
+              if (cvsEle && typeof cvsEle.getContext === "function") {
+                  return cvsEle.getContext("2d");
+              } else {
+                  throw new Error("Canvas is null with " + id);
+              }
+          }
+
+          function initTextSample() {
+              var g = getGraphics("TextCanvas");
+
+              g.font = "bold 32px 'Monospace'";
+              g.textAlign = "center";
+              g.textBaseline = "middle";
+
+              /* 第2，第3引数は省略するとFirefox, Chromeではエラーになる。 */
+              g.fillText("Hello, Canvas!", 150, 25);
+
+              /* fontプロパティ内に1つでも正しくない設定があると他の設定も無視される。 */
+              g.font = "16px 'serif'";
+              g.strokeStyle = "#0000FF";
+
+              var greetText = "ごきげんよう";
+              /* 第4引数のmaxWidthは省略可能。 */
+              g.strokeText(greetText, 150, 55, 50);
+              var metrics = g.measureText(greetText);
+              g.font = "24px 'sans-serif'";
+              g.fillStyle = "#FF0000";
+              g.textBaseline = "ideographic";
+              /* TextMetricsにはwidthしかない。値はフォントやブラウザによって異なる。 */
+              g.fillText("TextMetricsのwidthは" + parseInt(metrics.width), 150, 85);
+
+              /* 影付きの矩形 */
+              g.shadowOffsetX = 5;
+              g.shadowOffsetY = 5;
+              g.shadowBlur = 10;
+              g.shadowColor = "#000000";
+              g.fillStyle = "#AAAAAA";
+              g.fillRect(20, 100, 200, 100);
+
+              /* 影付きのテキスト */
+              g.shadowColor = "#000000";
+              g.fillStyle = "#001111";
+              /* Firefoxはitalicにならない。 */
+              g.font = "italic 32px 'Arial'";
+              g.textBaseline = "middle";
+              g.fillText("キャンバス", 110, 150);
+          }
+
+          function makeCanvas(w, h) {
+              var canvas = doc.createElement("canvas");
+              canvas.width = w;
+              canvas.height = h;
+
+              return canvas;
+          }
+
+          function initCompositeSample() {
+              var baseCanvas = doc.getElementById("CompositeCanvas"),
+                  baseGrapchics = baseCanvas.getContext("2d");
+
+              var c1 = makeCanvas(baseCanvas.width, baseCanvas.height),
+                  g1 = c1.getContext("2d");
+              g1.fillStyle = "#FF0000";
+              g1.globalAlpha = 1;
+              g1.fillRect(10, 10, 200, 150);
+
+              var c2 = makeCanvas(baseCanvas.width, baseCanvas.height),
+                  g2 = c1.getContext("2d");
+              g2.fillStyle = "#0000FF";
+              g2.globalAlpha = 0.5;
+              g2.fillRect(100, 100, 200, 150);
+
+              baseGrapchics.drawImage(c1, 0, 0);
+
+              baseGrapchics.globalCompositeOperation = "xor";
+
+              baseGrapchics.drawImage(c2, 50, 50);
+          }
+
+          function initCCWSample() {
+              var c = doc.getElementById("CCWCanvas"),
+                  g = c.getContext("2d");
+
+              g.strokeStyle = "black";
+              g.lineWidth = 5;
+              g.lineJoin = "round";
+              g.fillStyle = "red";
+
+              g.beginPath();
+
+              g.moveTo(10, 10);
+              g.lineTo(200, 10);
+              g.lineTo(200, 200);
+              g.lineTo(10, 200);
+              g.closePath();
+
+              /* 1つ目のパスとは逆回りでパスを構築する。 */
+              g.moveTo(50, 50);
+              g.lineTo(50, 100);
+              g.lineTo(100, 100);
+              g.lineTo(100, 50);
+              g.closePath();
+
+              g.fill();
+              g.stroke();
+          }
+
+          function init() {
+              initTextSample();
+              initCompositeSample();
+              initCCWSample();
+          }
+
+          init();
+
+      }(window, document));
+    </script>
+  </body>
+</html>

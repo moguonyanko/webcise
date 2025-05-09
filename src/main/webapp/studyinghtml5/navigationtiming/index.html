@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Navigation Timing and High Resolution Time</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="../../favicon.ico" />
+		<style>
+			.InfoView {
+				width: 70%;
+				min-height: 10%;
+				max-height: 250px;
+				background-color: beige;
+				border: 2px solid beige;
+				border-radius: 10px;
+				overflow-y: scroll;
+			}
+		</style>
+	</head>
+	<body>
+		<header role="banner">
+			<h1>Navigation Timing and High Resolution Time</h1>
+			<p>Navigation TimingとHigh Resolution Timeの練習サイトです。</p>
+		</header>
+		
+		<main>
+			<section>
+				<h2>各種時刻の確認</h2>
+				<p>PerformanceTimingオブジェクトから情報を取得できる。</p>
+				<div id="TimingView" class="InfoView">
+				</div>
+			</section>
+			<section>
+				<h2>ナビゲーションの種類やリダイレクト数の確認</h2>
+				<p>PerformanceNavigationオブジェクトから情報を取得できる。</p>
+				<div id="NavigationTypeView" class="InfoView">
+				</div>
+			</section>
+			<section>
+				<h2>高精度のタイムスタンプ</h2>
+				<p>navigationStartからの経過時間</p>
+				<div id="HighResolutionTimeView" class="InfoView">
+				</div>
+			</section>
+			<section>
+				<h2>ユーザーがページ読み込み完了までに体感する待ち時間</h2>
+				<p>
+					ユーザーが別のページから移動してきて現在のページの読み込まれるまでの待ち時間です。<br />
+					「ユーザー待ち時間」とでも呼ぶべきか？
+				</p>
+				<div>
+					<button id="UserWatedTimeGetter">待ち時間取得</button>
+				</div>
+				<div id="UserWaitedTimeResultArea" class="InfoView"></div>
+			</section>
+			<section>
+				<h2>ページロード完了時間</h2>
+				<div class="InfoView">
+					<p><label>Performance.now()=<input id="PerformanceNowResultArea" type="text" value="" />マイクロ秒</label></p>
+					<p><label>PerformanceTiming.loadEventEnd=<input id="LoadEventEndResultArea" type="text" value="" />ミリ秒</label></p>
+				</div>
+			</section>
+			<section>
+				<h2>ページのDOM解析完了までに掛かる時間</h2>
+				<p>
+					PerformanceTiming.domLoadingとPerformanceTiming.domCompleteの差をDOM解析完了時間としている。<br />
+					このDOM解析完了時間をユーザー待ち時間に近づけると，
+					ユーザーがページを操作しようとする時間と<br />
+					ページが操作されても問題の無い時間が近づくので
+					ユーザビリティの改善に繋がると思われる。<br />
+					しかし非同期に読み込まれたスクリプトやXMLHttpRequestの非同期処理が未完了である場合は<br />
+					DOMの解析が完了していてもページは正常に動作しないかもしれない。
+				</p>
+				<div>
+					<button id="DomLoadTimeGetter">DOM解析時間取得</button>
+				</div>
+				<div id="DomLoadedTimeResultArea" class="InfoView"></div>
+			</section>
+			<section>
+				<h2>DOMContentLoadedとload</h2>
+				<p>
+					非同期に読み込まれたスクリプトやXMLHttpRequestの非同期処理が重い場合は<br />
+					DOMContentLoadedイベントとloadイベントの間の差が大きくなる。
+				</p>
+				<div>
+					<button id="LoadTimeGetter">ロード関連イベント完了時間取得</button>
+				</div>
+				<div class="InfoView">
+					<p><label>DOMContentLoaded(PerformanceTiming.domContentLoadedEventEnd)=
+							<input id="DomContentLoadedResultArea" type="text" value="" />ミリ秒</label></p>
+					<p><label>load(PerformanceTiming.loadEventEnd)=
+							<input id="LoadResultArea" type="text" value="" />ミリ秒</label></p>
+				</div>
+			</section>
+		</main>
+
+		<footer role="contentinfo">
+			<small>Copyright &copy; 2015 moguonyanko All rights reserved.</small>
+		</footer>
+		
+		<script src="/webcise/common.js"></script>
+		<script src="async.js" async=""></script>
+		<script src="navigationtiming.js"></script>
+	</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Indexed Database Sample</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+    <style>
+      .disable-element {
+          display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Indexed Database Sample</h1>
+
+    <div role="main">
+      <section>
+        <h2>Indexed Databaseへの要求</h2>
+        <div>
+          <p>DB操作</p>
+          <div>
+            <p>レコードの追加</p>
+            <div>
+              <div>
+                <label><input id="auto-create-id" type="checkbox" checked="checked" />ID自動作成</label>
+                <label><input id="unique-name" type="checkbox" />名前をユニークとする</label>
+              </div>
+              <p><label>名前:<input id="record-name" type="text" value="testname" /></label></p>
+              <p><label>年齢:<input id="record-age" type="text" value="100" /></label></p>
+              <p><label>添付画像:<input id="record-image" type="file" accept="image/*" /></label></p>
+              <button id="AddRecord">追加</button>
+            </div>
+            <div>
+              <p>レコードの検索</p>
+              <div>
+                <label><input id="enable-search-condition" type="checkbox" />絞り込む</label>
+                <div id="search-condition-container" class="disable-element">
+                  <p>条件</p>
+                  <div>
+                    <p>絞り込みに用いる列を選択</p>
+                    <label><input type="radio" name="search-condition-type" value="name" checked="checked" />名前</label>
+                    <label><input type="radio" name="search-condition-type" value="age" />年齢</label>
+                  </div>
+                  <div>
+                    <p>絞り込み条件値入力</p>
+                    <p><label>名前が<input id="search-condition-name" type="text" value="testname" /></label>に一致</p>
+                    <form id="condition-form" oninput="result.value = parseInt(ageCondition.value)">
+                      <label><input id="search-condition-age" name="ageCondition" type="range" min="0" max="100" value="20" /></label>
+                    </form>
+                    <p><label><output form="condition-form" name="result"></output>歳以上のみ検索</label></p>
+                  </div>
+                </div>
+              </div>
+              <button id="display-records">検索</button>
+            </div>
+            <div>
+              <p>レコードの削除</p>
+              <div>
+                <button id="clear-all-records">全削除</button>
+              </div>
+            </div>
+            <div>
+              <p>DB接続の切断とDBの削除</p>
+              <button id="CloseDB">切断</button>
+              <button id="DeleteDB">DB削除</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p>結果出力</p>
+          <div>
+            <button id="result-clearer">結果のクリア</button>
+          </div>
+          <div>
+            <p>ログ</p>
+            <textarea id="InfoArea" rows="10" cols="50" readonly=""></textarea>
+          </div>
+          <div>
+            <p>添付画像一覧</p>
+            <div id="record-image-view"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer role="contentinfo">
+      <small>Copyright &copy; 2015 moguonyanko All rights reserved.</small>
+    </footer>
+
+    <script src="../../gomakit.js"></script>
+    <script src="indexeddb.js"></script>
+  </body>
+</html>

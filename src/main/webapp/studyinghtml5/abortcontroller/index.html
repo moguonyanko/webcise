@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Abort Controller</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Abort Controller</h1>
+      <a href="../">home</a>
+    </header>
+    <main>
+      <section class="example1">
+        <h2>Download Sample JSON</h2>
+        <div class="result"></div>
+        <div class="control">
+          <label><input class="timeout" type="number" min="0" max="10" value="3" />秒後にリクエスト</label>
+          <button class="subject download">download</button>
+          <button class="subject abort">abort</button>
+          <button class="subject clear">clear</button>
+        </div>
+      </section>
+    </main>
+    <aside>
+      <section>
+        <h3>Reference</h3>
+        <ul>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController">AbortController(MDN)</a></li>
+          <li><a href="https://developers.google.com/web/updates/2017/09/abortable-fetch">Abortable fetch</a></li>
+        </ul>
+      </section>
+    </aside>
+    <script src="dom.js" type="module"></script>
+  </body>
+</html>

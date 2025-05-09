@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Array</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../gomakit.css" />
+    <style>
+      .source {
+          background-color: beige;
+          padding: 0.5em;
+      }
+
+      .input-container input[type='number'] {
+          width: 3em;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Array</h1>
+      <p>Arrayに関して提案されているAPIを調べます。</p>
+      <p><a href="../../">home</a></p>
+      <p><a href="flat.html">Flat Functions</a></p>
+    </header>
+
+    <main>
+      <section class="array-includes-sample">
+        <h2>Array.prototype.includes</h2>
+        <p>検索対象数値列</p>
+        <div class="source"></div>
+        <div>
+          <button class="initializer">reload</button>
+        </div>
+        <p>検索結果</p>
+        <div class="output"></div>
+        <div>
+          <div class="input-container">
+            <label>検索対象数値<input class="target" type="number" 
+                                value="5" min="0" max="100" 
+                                required="required" /></label>
+            <label>検索開始インデックス<input class="from-index" type="number" 
+                                    value="0" required="required" /></label>
+          </div>
+          <div>
+            <button class="runner">search</button>
+            <button class="clearer">clear</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <small>Copyright &copy; 2016-2019 moguonyanko All rights reserved.</small>
+    </footer>
+
+    <script src="../../gomakit.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

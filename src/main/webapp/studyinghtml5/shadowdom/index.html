@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Shadow DOM</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<style>
+			:root {
+				--shadow-font-color: #A3F;
+			}
+			
+			#my-shadow-root {
+				width: 600px;
+				height: 150px;
+				border: solid 1px grey;
+				border-radius: 5px;
+				overflow: scroll;
+			}
+            
+            #info-area {
+                border: solid 1px tomato;
+            }
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Shadow DOM</h1>
+            <p>
+                Firefox47では動作しない。
+            </p>
+		</header>
+		
+		<div role="main">
+			<section>
+				<h2>Shadow DOMに要素を追加する</h2>
+				<div id="my-shadow-root"></div>
+				<div>
+					<div>
+                        <div>
+                            <textarea id="input-add-element" rows="5" cols="80">テストテキスト</textarea>
+                        </div>
+                        <p>追加タグ名:<input id="input-tag-name" type="text" value="p" /></p>
+						<button id="add-to-shadow-dom">要素追加</button>
+						<button id="clear-shadow-dom">クリア</button>
+					</div>
+					<div>
+                        <p>エラー情報</p>
+                        <div>
+    						<textarea id="info-area" rows="5" cols="80" readonly="readonly"></textarea>
+                        </div>
+						<button id="clear-info-area">クリア</button>
+					</div>
+				</div>
+			</section>
+		</div>
+		
+		<aside role="complementary">
+			<h3>参考</h3>
+			<ul>
+				<li><a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Shadow_DOM">MDN Shadow DOM</a></li>
+			</ul>
+		</aside>
+		
+		<footer role="contentinfo">
+			<small>Copyright &copy; 2016 moguonyanko All rights reserved.</small>
+		</footer>
+		
+        <script src="../../gomakit.js"></script>
+		<script src="shadowdom.js"></script>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>はじめてのWebGL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+    <style>
+      canvas {
+          width: 100%;
+          max-width: 500px;
+          height: 100vh;
+          max-height: 300px;
+          border: 1px solid lightgray;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>はじめてのWebGL</h1>
+    </header>
+    <main>
+      <section>
+        <h2>WebGLによる描画</h2>
+        <canvas></canvas>
+      </section>
+    </main>
+    <aside>
+      <h3>参考サイト</h3>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL">Getting started with WebGL</a>
+    </aside>
+    <script>
+      ((window, document) => {
+          "use strict";
+
+          const init = () => {
+              const canvas = document.querySelector("main canvas");
+              const context = canvas.getContext("webgl");
+              if (context) {
+                  context.clearColor(0, 1, 0, 1);
+                  // 引数なしだとエラーになる。
+                  context.clear(context.COLOR_BUFFER_BIT);
+              }
+          };
+
+          window.addEventListener("DOMContentLoaded", init);
+      })(window, document);
+    </script>
+  </body>
+</html>

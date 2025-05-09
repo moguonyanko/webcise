@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Iterators</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            :root {
+                --common-bg-color: rgba(102, 102, 153, 0.2);
+                --common-result-color: rgba(204, 204, 204, 0.2);
+            }
+
+            .result-area {
+                width: 50%;
+                height: 100px;
+                margin: 5px;
+                border: 1px var(--common-result-color) solid;
+                border-radius: 5px;
+                background-color: var(--common-result-color);
+                overflow-y: scroll;
+            }
+            
+            .fruit-container select {
+                width: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <header role="banner">
+            <h1>Iterators</h1>
+            <p>
+                反復機構を持つオブジェクトを独自に定義しfor...of文で反復することができます。
+            </p>
+        </header>        
+
+        <div role="main">
+            <section class="iterators-container">
+                <h2>イテレータプロトコル</h2>
+                <p>イテレータプロトコルで独自の反復機構を定義する。</p>
+                <div class="iterators-protocol-container">
+                    <div class="result-area"></div>
+                    <div>
+                        <div class="fruit-container">
+                            <select multiple="multiple">
+                                <option value="りんご">りんご</option>
+                                <option value="バナナ">バナナ</option>
+                                <option value="メロン">メロン</option>
+                                <option value="みかん">みかん</option>
+                                <option value="いちじく">いちじく</option>
+                                <option value="レモン">レモン</option>
+                                <option value="はっさく">はっさく</option>
+                                <option value="なし">なし</option>
+                                <option value="ぶどう">ぶどう</option>
+                                <option value="いちご">いちご</option>
+                            </select>
+                        </div>
+                        <div>
+                            <div>
+                                <p>列挙方法</p>
+                                <label><input type="radio" name="fruit-method" value="iterator" checked="checked" />イテレータ</label>
+                                <label><input type="radio" name="fruit-method" value="generator" />ジェネレータ</label>
+                                <label><input type="radio" name="fruit-method" value="spreader" />分割</label>
+                                <label><input type="radio" name="fruit-method" value="destructuring" />構造化代入</label>
+                            </div>
+                            <div>
+                                <button class="fruit-getter">選択要素を表示</button>
+                                <button class="fruit-clearer">クリア</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <aside role="complementary">
+            <h3>参考</h3>
+            <ul>
+                <li><a href="http://es6-features.org/">ECMAScript 6 — New Features: Overview & Comparison</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols">MDN Iteration protocols</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of">MDN for...of</a></li>
+                <li><a href="http://www.asahi-net.or.jp/~kc7k-nd/onlispjhtml/destructuring.html">On Lisp destructuring-bind</a></li>
+            </ul>
+        </aside>
+
+        <footer role="contentinfo">
+            <small>Copyright &copy; 2016 moguonyanko All rights reserved.</small>
+        </footer>
+
+        <script src="../../gomakit.js"></script>
+        <script src="iterators.js"></script>
+    </body>
+</html>

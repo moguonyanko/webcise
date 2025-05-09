@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>WebAuthn API Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="apitest.css" />
+  </head>
+  <body>
+    <header>
+      <h1>WebAuthn API Test</h1>
+      <a href="../../">home</a>
+    </header>
+    <main>
+      <section class="register example">
+        <h2>アカウント登録</h2>
+        <pubkey-creator></pubkey-creator>
+      </section>
+    </main>
+    <aside>
+      <h3>参考サイト</h3>
+      <ul>
+        <li><a href="https://www.w3.org/TR/webauthn/">Web Authentication(W3C)</a></li>
+        <li><a href="https://webauthn.guide/">Guide to Web Authentication</a></li>
+        <li><a href="https://www.iana.org/assignments/cose/cose.xhtml">CBOR Object Signing and Encryption (COSE)</a></li>
+      </ul>
+    </aside>
+    <template class="register">
+      <link rel="stylesheet" href="custom.css" />
+      <form>
+        <label>name<input class="user-name" type="text" value="taro@example.com" /></label>
+        <label>display name<input class="user-display-name" type="text" value="Taro" /></label>
+        <div class="sub-form">
+          <label><input class="attachment" type="radio" name="attachment" value="platform" checked />WindowsHelloやTouchIDなどOSの機能で認証する</label>
+          <label><input class="attachment" type="radio" name="attachment" value="cross-platform" />USBやBluetoothを介した認証器で認証する</label>
+        </div>
+        <button type="button" class="create-publickey">Create Credencial</button>
+        <textarea class="credencials-info"></textarea>
+      </form>      
+    </template>
+    <script type="module" src="registering.js"></script>
+  </body>
+</html>

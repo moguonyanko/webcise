@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+:root {
+    --common-bg-color: linen;
+}
+
+main {
+    width: 100%
+}
+
+canvas {
+    border: 1px solid black;
+}
+
+.result {
+    /* mobile firstで取り組む場合，中央揃えは意識しない方がいい。 */
+    /*margin: auto;*/
+    min-width: 100%;
+    height: 10em;
+    background-color: var(--common-bg-color);
+    overflow-y: auto;
+}
+
+.control {
+    margin: 1em;
+}

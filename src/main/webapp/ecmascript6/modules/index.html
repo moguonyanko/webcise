@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Modules</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+          --common-bg-color: rgba(102, 102, 153, 0.2);
+          --common-result-color: rgba(204, 204, 204, 0.2);
+      }
+
+      .result-area {
+          width: 50%;
+          height: 100px;
+          margin: 5px;
+          border: 1px var(--common-bg-color) solid;
+          border-radius: 5px;
+          background-color: var(--common-bg-color);
+          overflow-y: scroll;
+      }
+
+      .decode-result {
+          background-color: whitesmoke;
+      }
+    </style>
+  </head>
+  <body>
+    <header role="banner">
+      <h1>Modules</h1>
+      <p>
+        type="module"で読み込まれたスクリプトではimport及びexportを使い
+        関数やプロパティを参照したり公開したりできます。
+      </p>
+    </header>        
+    <div role="main">
+      <section class="import-container">
+        <h2>インポート・エクスポート</h2>
+        <p>importキーワードで外部スクリプトがexportした関数やプロパティを利用する。</p>
+        <div>
+          <div class="result-area"></div>
+          <div>
+            <label><input class="calc-source-value" type="number" value="10" /></label>
+            <label><input class="calc-source-value" type="number" value="20" /></label>
+            <label><input class="calc-source-value" type="number" value="30" /></label>
+            <div>
+              <button class="calc-executer">平均値</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="default-function-export-sample">
+        <h2>defaultエクスポート</h2>
+        <section>
+          <h3>関数のエクスポート</h3>
+          <label>input:<input class="encode-target" type="text" value="1+1=2" /></label>
+          <label>output:<span class="decode-result"></span></label>
+          <div>
+            <button class="encode-runner">encode</button>
+          </div>
+        </section>
+        <section class="default-class-export-sample">
+          <h3>クラスのエクスポート</h3>
+          <div class="result-area"></div>
+          <div>
+            <label>name:<input class="user-name" type="text" value="Taro" /></label>
+            <label>age:<input class="user-age" type="number" min="0" max="130" value="30" /></label>
+            <div>
+              <button class="runner">run</button>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section class="nomodule-support-example">
+        <h2>nomodule属性とModule読み込み回数</h2>
+        <p>
+          ブラウザがtype=moduleに対応していない場合、script要素のsrcに指定されたスクリプトは読み込まれない。
+        </p>
+        <p>
+          <strong>type=moduleに対応しているブラウザはnomodule属性があるscript要素を無視する。</strong>
+        </p>
+        <p>
+          nomodule属性を指定しておけばtype=moduleに対応しているブラウザに影響を与えずに、
+          type=moduleに対応していないブラウザにスクリプトを読ませることができる。
+        </p>
+        <p>
+          type=moduleが指定されたscript要素ではそのscript要素が何回記述されていても
+          同じスクリプトは1回しか実行されない。
+        </p>
+        <p>
+          type=moduleが指定されていない場合はscript要素で指定された数だけスクリプトが実行される。
+          nomodule属性が指定されている場合も同じ。
+        </p>
+        <div class="result-area"></div>
+        <script type="module" src="yesmodule.js"></script>
+        <script type="module" src="yesmodule.js"></script>
+        <script nomodule src="nomodule.js"></script>
+        <script nomodule src="nomodule.js"></script>
+      </section>
+      <section class="credentials-example">
+        <h2>Moduleとクッキー</h2>
+        <p>
+          crossorigin="use-credentials"を指定しなければクッキーなどをモジュール読み込み時に
+          受け取ることができないはずだが、crossorigin属性の有無に関わらずできてしまっている。
+        </p>
+        <div class="result-area"></div>
+        <script type="module" src="/webcise/ModuleScript"></script>
+        <!--<script type="module" crossorigin="use-credentials">-->
+        <script type="module">
+          // 同じモジュールでもimportから読み込む場合は再度読むことができる？
+          import helloModule from "/webcise/ModuleScript";
+          
+          const result = document.querySelector(".credentials-example .result-area");
+          result.innerHTML += helloModule();
+        </script>
+      </section>
+    </div>
+    <aside role="complementary">
+      <h3>参考</h3>
+      <ul>
+        <li><a href="http://es6-features.org/">ECMAScript 6 — New Features: Overview & Comparison</a></li>
+        <li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import">MDN import</a></li>
+        <li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export">MDN export</a></li>
+        <li><a href="http://exploringjs.com/es6/ch_modules.html">Exploring ES6 16. Modules</a></li>
+        <li><a href="https://hacks.mozilla.org/2015/08/es6-in-depth-modules/">ES6 In Depth: Modules</a></li>
+        <li><a href="https://jakearchibald.com/2017/es-modules-in-browsers/">ECMAScript modules in browsers</a></li>
+        <li><a href="https://ponyfoo.com/articles/es6-modules-in-depth">ES6 Modules in Depth</a></li>
+      </ul>
+    </aside>
+    <script src="../../gomakit.js"></script>
+    <script src="modules.js" type="module"></script>
+    <script type="module">
+      // このブロック内でimportされた関数や宣言された変数もグローバルオブジェクトにはならない。
+      // つまりtype="module"内では明示的にwindowオブジェクトに紐付けない限り
+      // 何を宣言してもグローバルオブジェクトにならない。
+      // default exportされたモジュールにasを使って別名をつけることはできない。
+      // 別名でimportすることは可能。
+      import encd from "./encoding.js";
+      const runner = document.querySelector(".encode-runner");
+      runner.addEventListener("click", () => {
+        const target = document.querySelector(".encode-target").value;
+        if (target) {
+          const result = encd(target);
+          document.querySelector(".decode-result").innerHTML = result;
+        }
+      });
+      //window.runner = runner;
+    </script>
+    <script type="module">
+      import MyUser from "./userclass.js";
+      // 何もインポートしない時つまりモジュールによる副作用だけを期待する時は
+      // importの後にモジュールのパスだけ記述する。
+      //import "./userclass.js";
+      const base = document.querySelector(".default-class-export-sample");
+      const listener = () => {
+        const name = base.querySelector(".user-name").value;
+        const age = base.querySelector(".user-age").value;
+        const user = new MyUser({name, age});
+        const resultArea = base.querySelector(".result-area");
+        resultArea.innerHTML = user.toString();
+      };
+      base.querySelector(".runner").addEventListener("click", listener);
+    </script>
+  </body>
+</html>

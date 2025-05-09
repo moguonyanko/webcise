@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WebRTC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+  </head>
+  <body>
+    <header>
+      <h1>WebRTC</h1>
+      <p>WebRTCで利用されるMediaStream関連の調査も含みます。</p>
+      <a href="../">home</a>
+      <ul>
+        <li><a href="rtcdatachannel/">RTCDataChannel Sample</a></li>
+      </ul>
+    </header>
+    <main>
+      <section>
+        <h2>動作確認用Video</h2>
+        <div>
+          <video class="sample-video" width="400" height="300" controls>
+            <source src="../../movies/samplenote.m4v" type="video/mp4">
+          </video>
+        </div>
+      </section>
+      <section class="getuserdata-sample">
+        <h2>getUserMedia</h2>
+        <pre>
+          ブラウザからデバイスのカメラを介して動画を再生します。
+          Secure Contextでない場合，getUserMediaを呼び出すとエラーになります。
+        </pre>
+        <div>
+          <div class="camera-container"></div>
+          <div class="infomation"></div>
+          <div>
+            <!--
+          <div>
+            <p>解像度</p>
+            <label>width:<input class="resolution-width" type="number" value="400" min="1" max="1280"/></label>
+            <label>height:<input class="resolution-height" type="number" value="300" min="1" max="720"/></label>
+          </div>
+            -->
+            <button class="runner">再生</button>
+            <button class="pauser">一時停止</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <aside>
+      <p>MDN</p>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia">MediaDevices.getUserMedia()</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Streams_API">Media Capture and Streams API (Media Streams)</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/Apps/Fundamentals/Audio_and_video_manipulation">Audio and video manipulation</a></li>
+      </ul>
+    </aside>
+    <script src="main.js"></script>
+  </body>
+</html>

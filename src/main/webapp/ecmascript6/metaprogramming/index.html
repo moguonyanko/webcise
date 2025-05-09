@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Meta-Programming</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+          --common-bg-color: rgba(102, 102, 153, 0.2);
+          --common-result-color: rgba(204, 204, 204, 0.2);
+      }
+
+      main {
+          font-family: "IBM Plex Mono", 'Menlo';
+      }
+
+      footer {
+          border-top: 1px solid black;
+      }
+
+      .result-area,
+      .output {
+          width: 50%;
+          height: 10rem;
+          margin: 5px;
+          border: 1px var(--common-result-color) solid;
+          border-radius: 5px;
+          background-color: var(--common-result-color);
+          overflow-y: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <header role="banner">
+      <h1>Meta-Programming</h1>
+      <p>
+        ProxyやReflectを介してオブジェクトの情報を調べることができる。
+      </p>
+    </header>        
+    <main>
+      <section class="proxy-container">
+        <h2>Proxyによるgetメソッドの挙動変更</h2>
+        <p>
+          Proxyで既存オブジェクトのプロパティ参照時の操作を追加することができます。
+        </p>
+        <div class="result-area"></div>
+        <div>
+          <button class="view-objects">オブジェクト表示</button>
+          <button class="view-objects-proxy">Proxyを通してオブジェクト表示</button>
+        </div>
+        <div>
+          <button class="clear-result">クリア</button>
+        </div>
+      </section>
+      <section class="reflect-container">
+        <h2>Reflectによるプロパティ列挙</h2>
+        <p>
+          ReflectはObjectとほぼ同じstaticメソッドを持っています。<br />
+          シンボルを含むオブジェクトのキーを列挙することができます。
+        </p>
+        <div class="result-area"></div>
+        <div>
+          <button class="view-objects">オブジェクト表示</button>
+        </div>
+        <div>
+          <button class="clear-result">クリア</button>
+        </div>
+      </section>
+      <section class="reflect-methods-sample">
+        <h2>Reflectのメソッド調査</h2>
+        <p>
+          Reflectのstaticメソッドでオブジェクトを生成したりメソッドを呼び出したり
+          できる。<br />プロパティの削除も行える。
+        </p>
+        <div class="output"></div>
+        <div>
+          <div>
+            <label>name:<input class="sample-person-name" type="text" value="hogehoge" /></label>
+            <label>age:<input class="sample-person-age" type="number" value="30" 
+                              min="0" /></label>
+          </div>
+          <div>
+            <button class="runner">run</button>
+            <button class="clearer">clear</button>
+          </div>
+        </div>
+      </section>
+      <section class="reflect-construct-example">
+        <h2>Reflect.constructによるインスタンス生成</h2>
+        <p>classをnewしてインスタンス生成するのと同じようなプロセスでインスタンス生成できる。</p>
+        <p>new.targetもundefinedにならない。Object.createではundefinedになる。</p>
+        <reflect-constructor></reflect-constructor>
+      </section>
+    </main>
+    <template class="reflect-constructor">
+      <link rel="stylesheet" href="template.css" />
+      <button class="target">run</button>
+      <div class="output"></div>
+    </template>
+    <aside role="complementary">
+      <h3>参考</h3>
+      <ul>
+        <li><a href="http://es6-features.org/">ECMAScript 6 — New Features: Overview & Comparison</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy">MDN Proxy</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect">MDN Reflect</a></li>
+        <li><a href="https://ponyfoo.com/articles/es6-proxies-in-depth">ES6 Proxies in Depth</a></li>
+      </ul>
+    </aside>
+    <script src="../../gomakit.js"></script>
+    <script src="metaprogramming.js"></script>
+  </body>
+</html>

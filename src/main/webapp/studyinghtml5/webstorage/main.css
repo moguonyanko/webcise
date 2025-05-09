@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.ResultArea {
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    max-height: 200px;
+    border: 1px solid lightgrey;
+    background-color: aliceblue;
+}

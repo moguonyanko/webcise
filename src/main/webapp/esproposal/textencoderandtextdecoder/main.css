@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+footer {
+    border-top: solid 1px lightgrey;
+    margin-top: 0.5em;
+}
+
+.sampleinput {
+    width: 20em;
+}
+
+.result {
+    background-color: beige;
+    width: 100%;
+    max-width: 500px;
+    height: 10em;
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+}

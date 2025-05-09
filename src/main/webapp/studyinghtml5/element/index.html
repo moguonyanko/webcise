@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>New Element exercise</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ページ内の相対URLの基点(基底URL)を指定します。 -->
+    <base target="_blank" href="/webcise/studyinghtml5/element/" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+    <link rel="stylesheet" href="element.css" />
+  </head>
+  <body>
+    <header role="banner">
+      <h1>New element and attribute exercise</h1>
+      <h2>HTML5で新しく追加された要素や属性の練習ページです。</h2>
+    </header>
+
+    <section role="application">
+      <h2>HTML5で追加された要素や属性</h2>
+
+      <article>
+        <h2>abbr</h2>
+        <p>abbr要素で略語を表現します。何の略かはツールチップに表示されます。</p>
+        <abbr title="World Wide Web">WWW</abbr>
+      </article>
+
+      <article>
+        <h2>figure, figcaption</h2>
+        <p>figureで図表や参考情報を表現します。figcaptionはそのタイトルです。</p>
+        <figure>
+          <figcaption>
+            JavaScriptによるHelloWorldの一例です。
+          </figcaption>
+          <h3>code</h3>
+          <code>
+            var greeting = function(name){
+            alert("Hello, " + name);
+            };
+          </code>
+          <h3>pre</h3>
+          <pre>
+						var greeting = function(name){
+							alert("Hello, " + name);
+						};
+          </pre>
+        </figure>
+      </article>
+
+      <article>
+        <h2>mark</h2>
+        <p>mark要素は一般的には検索結果を<mark>ハイライト</mark>するための要素です。</p>
+      </article>
+
+      <article>
+        <h2>time</h2>
+        <p>time要素は人間と機械に可読な時刻表現を行うのに有用です。</p>
+        <p><time datetime="2014-06-24">２０１４年６月２４日</time></p>
+      </article>
+
+      <article>
+        <h2>details, summary</h2>
+        <p>details要素ではsummary要素に指定された要素だけを表示することはできます。</p>
+        <details open="open">
+          <summary>Relational JavaScript Language</summary>
+          <p>JavaScriptを拡張または代替しようとするプログラミング言語</p>
+          <ul>
+            <li>TypeScript</li>
+            <li>Dart</li>
+            <li>その他</li>
+          </ul>
+        </details>
+      </article>
+
+      <article>
+        <h2>meter</h2>
+        <p>meter要素はディスクの使用領域などを表現するのに使用します。</p>
+        <meter value="0" min="0" max="100">未使用</meter>
+        <meter value="50" max="100">半分使用</meter>
+        <meter value="100" max="100">全て使用</meter>
+        <meter value="10" low="20" max="100">かなり少ない</meter>
+        <meter value="90" high="80" max="100">かなり多い</meter>
+        <meter value="70" optimum="70" max="100">丁度良い</meter>
+      </article>
+
+      <article>
+        <h2>keygen</h2>
+        <p>keygen要素は公開鍵を生成し，送信することが出来ます。</p>
+        <form role="form" action="/webcise/ParamChecker" method="POST">
+          <fieldset>
+            <legend>鍵送信テスト</legend>
+            <label>
+              <keygen name="pubkey" challenge="challenge string" keytype="RSA" />
+            </label>
+          </fieldset>
+          <p><button type="submit">送信</button></p>
+        </form>
+      </article>
+
+      <article>
+        <h2>output</h2>
+        <p>output要素ではform要素での計算結果を出力することができます。</p>
+        <form id="calcform" role="form" oninput="result.value = parseInt(x.value) * parseInt(y.value)">
+          <fieldset>
+            <legend>計算値入力</legend>
+            <label for="numberinput">number</label>
+            <input id="numberinput" type="number" name="x" value="10" min="0" max="100" step="5" />
+            <label for="rangeinput">range</label>
+            <input id="rangeinput" type="range" name="y" value="50" min="0" max="100" />
+          </fieldset>
+        </form>
+        <label for="calcresult">計算結果</label>
+        <output form="calcform" id="calcresult" name="result"></output>
+      </article>
+
+      <article>
+        <h2>datalist</h2>
+        <p>datalist要素で入力候補を表示できます。</p>
+        <form role="form">
+          <p>言語入力</p>
+          <label>
+            <input type="text" value="" name="language" list="langlist" />
+          </label>
+          <datalist id="langlist">
+            <option>Java</option>
+            <option>C#</option>
+            <option>JavaScript</option>
+            <option>Python</option>
+            <option>Scheme</option>
+          </datalist>
+        </form>
+      </article>
+
+      <article>
+        <h2>ruby, rt, rp</h2>
+        <p>ruby, rt, rpで文字にルビを振ります。</p>
+        <p>
+          <ruby>
+            逸見<rp>(</rp><rt>へみ</rt><rp>)</rp>
+            横須賀<rp>(</rp><rt>よこすか</rt><rp>)</rp>
+            久里浜<rp>(</rp><rt>くりはま</rt><rp>)</rp>
+          </ruby>
+        </p>
+        <p>
+          <ruby>
+            東京<rp>(</rp><rt>とうきょう</rt><rp>)</rp>
+            博多<rp>(</rp><rt>はかた</rt><rp>)</rp>
+            札幌<rp>(</rp><rt>さっぽろ</rt><rp>)</rp>
+          </ruby>
+        </p>
+      </article>
+
+      <article>
+        <h2>dir, bdi</h2>
+        <p>dir要素，bdi要素で文字の表記順を指定できます。</p>
+        <p dir="ltr">テキストの向きが左から右になる予定</p>
+        <p dir="rtl">右から始まる文章</p>
+        <p>
+          bdi要素に対応していないブラウザはコロンの後に記述した
+          数値の表示位置がコロンより前になってしまう。
+        </p>
+        <p><bdi>شلاؤيث</bdi>: 54321 test</p>
+      </article>
+
+      <article contenteditable="true">
+        <h2>contenteditable</h2>
+        <p>contenteditable属性が指定された要素は内容を変更することができます。</p>
+      </article>
+
+      <article>
+        <h2>wbr</h2>
+        <p>wbr要素は文章に対する領域のサイズが足りないときの改行位置を任意で指定できます。</p>
+        <div>
+          <style scoped="scoped">
+            .wbrsample p {
+                background-color: yellow;
+                width: 100px;
+            }
+          </style>
+          <div class="wbrsample">
+            <p>http://localhost<wbr />.localdomain/test<wbr />.app/index<wbr />.html</p>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <h2>input</h2>
+        <p>input要素の新しい属性は入力チェックや必須要素の確認を行います。</p>
+        <form id="inputtestform" role="search" action="/webcise/ParamChecker" method="GET">
+          <fieldset>
+            <legend>入力値のチェック</legend>
+            <p><label>Eメール	<input type="email" value="" name="email" placeholder="test@test.co.jp" /></label></p>
+            <p><label>電話番号
+                <input type="tel" value="" name="tel" placeholder="000-1234-5678" 
+                       pattern="[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]" />
+              </label></p>
+            <p><label>色<input type="color" value="" name="color" /></label></p>
+            <p><label>URL
+                <input type="url" value="" name="url" 
+                       placeholder="http://test/" title="正しいURLを入力してください。" />
+              </label></p>
+            <p>
+              <label>
+                <strong>*パスワード</strong>
+                <input type="password" 
+                       value="" name="password" required="" autocomplete="off" />
+              </label>
+            </p>
+            <p><label>検索<input type="search" value="" name="search" /></label></p>
+            <p><label>週<input type="week" value="" name="week" /></label></p>
+            <p><label>月<input type="month" value="" name="month" /></label></p>
+            <p><label>日付<input type="datetime" value="" name="datetime" /></label></p>
+            <p><label>日付(ローカル)<input type="datetime-local" value="" name="datetime-local" /></label></p>
+          </fieldset>
+        </form>
+        <p>リクエストの結果を別のページに出力します。</p>
+        <iframe name="responsepage" src="response.html" width="300" height="300"></iframe>
+        <!-- formnovalidateを指定するとrequiredを無視され入力チェックが行われない。 -->
+        <button form="inputtestform" formtarget="responsepage" type="submit"
+                formaction="/webcise/ParamChecker?testnumber=12345" 
+                formmethod="POST">送信
+        </button>
+      </article>
+
+      <article>
+        <h2>progress</h2>
+        <p>progress要素で進捗を示すバーを表示することができます。</p>
+        <progress id="sampleprogress" max="100" value="0">
+          <span id="progressvalue">0</span><span>％</span>
+        </progress>
+        <button id="progressswitch">切替</button>
+      </article>
+
+      <article>
+        <style scoped="scoped">
+          .context-area {
+              background-color: yellowgreen;
+              width: 150px;
+              height: 100px;
+          }
+        </style>
+        <h2>menu</h2>
+        <p>コンテキストメニューに追加する選択肢を定義します</p>
+        <p>
+          menuやmenuitemに非対応だとmenuitemの内容がそのままページ上に表示されてしまいます。
+        </p>
+        <div class="context-area" contextmenu="menusamplecontainer">ここを右クリック</div>
+        <menu type="context" id="menusamplecontainer">
+          <menuitem type="command" onclick="alert(this.innerText);">サンプルメニュー1</menuitem>
+          <menuitem type="command" onclick="alert(this.innerText);">サンプルメニュー2</menuitem>
+          <hr />
+          <menuitem type="command" 
+                    label="This is sample menu item" 
+                    icon="../../favicon.ico"
+                    onclick="alert(this.innerText);">サンプルメニュー3</menuitem>
+          <hr />
+          <menuitem type="checkbox">サンプルメニュー4</menuitem>
+          <hr />
+          <menuitem type="radio" radiogroup="samplemenuA" checked="checked">サンプルメニュー5-1</menuitem>
+          <menuitem type="radio" radiogroup="samplemenuA">サンプルメニュー5-2</menuitem>
+        </menu>	
+      </article>
+
+      <article>
+        <h2>draggable, dropzone</h2>
+        <p>
+          draggable要素はdropzoneにドラッグアンドドロップできます。
+          しかしHTMLのみではドラッグアンドドロップできません。
+        </p>
+        <div draggable="true">
+          ドラッグできます。
+        </div>
+        <div dropzone="copy">
+          ここにドロップします。
+        </div>
+      </article>
+
+      <article>
+        <h2>hidden</h2>
+        <p>
+          必要な要素ではあるが状況によっては非表示にしておきたい要素に指定します。
+          !important付きのユーザー定義スタイルシート対策？
+          未認証ユーザーには見せたくない情報を隠すため？
+          そもそもそういった情報を含んだ要素はむやみにページに追加するべきでない。
+        </p>
+        <p hidden="">この文章は見せません。</p>
+      </article>
+
+      <article>
+        <h2>async</h2>
+        <p>
+          スクリプトは非同期に実行されます。インラインスクリプトには効果無し。
+          appendChildによる追加ならば元々非同期だったような気がする。
+          しかし処理の重いスクリプトを読み込むと固まってしまった。
+        </p>
+        <script async="async" src="heavyprocess.js"></script>
+      </article>
+
+      <article>
+        <h2>spellcheck</h2>
+        <p>入力可能もしくは編集可能な要素内の英単語に対してスペルチェックを行います。</p>
+        <label>スペルチェック確認<input type="text" value="" spellcheck="true" /></label>
+        <p contenteditable="true" spellcheck="true">Applo</p>
+      </article>
+
+      <!-- Chrome35やSafari7は未対応。Firefox30は対応されている。 -->
+      <article>
+        <h2>scoped</h2>
+        <p>scoped属性で適用するスタイルのスコープを定義できます。</p>
+        <div class="scopedcontainer">
+          <p>scoped属性対応ブラウザならばスタイルが適用されない</p>
+        </div>
+        <div class="scopedcontainer">
+          <!-- scoped stylesheetは親要素の先頭に記述する。 -->
+          <style scoped="scoped">
+            .scopedcontainer {
+                background-color: red;
+            }
+          </style>
+          <p>スタイルが適用される</p>
+        </div>
+      </article>
+
+      <article>
+        <h2>reversed, start</h2>
+        <p>reversed属性はリストを逆順にできます。start属性は開始番号を指定できます。</p>
+        <p>value属性が指定されていると逆順で表示されない</p>
+        <ol reversed="">
+          <!-- valueは数値のみ。reversedよりもliのvalueが優先される。 -->
+          <li value="1">国語</li>
+          <li value="2">数学</li>
+          <li value="3">英語</li>
+          <li value="4">社会</li>
+          <li value="5">理科</li>
+        </ol>
+        <p>value属性が指定されていなければ逆順で表示される</p>
+        <ol reversed="">
+          <li>国語</li>
+          <li>数学</li>
+          <li>英語</li>
+          <li>社会</li>
+          <li>理科</li>
+        </ol>
+        <ol start="10">
+          <li>Apple</li>
+          <li>Orange</li>
+          <li>Melon</li>
+        </ol>
+      </article>
+
+      <article>
+        <h2>itemscope, itemprop, itemtype</h2>
+        <p>マイクロデータで文書のメタデータを伝えます。</p>
+        <section itemscope="" itemtype="http://schema.org/Person">
+          <h2>Micro Datas</h2>
+          <p itemprop="name">Hoge</p>
+          <div itemprop="location">
+            <p itemprop="name">Hoge Center</p>
+            <div itemprop="address" itemscope="" 
+                 itemtype="http://schema.org/PostalAddress">
+              <p itemprop="streetAddress">12345 Hoge Institute</p>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <article>
+        <h2>RDFa</h2>
+        <p>RDFaでも文書のメタデータを扱えます。XMLとしても解釈できます。</p>
+        <div vocab="http://schema.org/" typeof="Person">
+          <p property="name">Hoge</p>
+          <p property="telephone">xxx-xxx-xxxx</p>
+          <a property="url" href="http://dummy/">My Site</a>
+        </div>
+      </article>
+
+      <article>
+        <h2>data-*</h2>
+        <p>カスタムデータで自由に属性を追加できます。</p>
+        <ul id="customdatalist" contenteditable="true">
+          <li data-age="26" data-from="Tokyo">Foo</li>
+          <li data-age="41" data-from="Osaka">Bar</li>
+          <li data-age="14" data-from="Yokohama">Baz</li>
+        </ul>
+        <form role="form">
+          <label for="newage">新しい年齢</label>:<input id="newage" type="text" value="100" />
+        </form>
+        <button id="setdataset">dataset変更</button>
+        <button id="displaydataset">dataset出力</button>
+        <p>
+          <textarea id="outputarea" cols="50" rows="5" placeholder="ここにdatasetが出力されます。"></textarea>
+        </p>
+      </article>
+
+      <article>
+        <h2>hidden</h2>
+        <p>開発者向け情報領域を非表示にします。（Chromeの場合，内部でdisplay: noneを指定している。）</p>
+        <div id="hiddenarea" hidden="hidden">
+          <textarea cols="25" rows="5" placeholder="開発者向け情報" readonly="readonly"></textarea>
+        </div>
+        <button id="hiddenstylechanger">表示切替</button>
+      </article>
+
+      <article>
+        <h2>b, i, hr, s, small, u</h2>
+        <p>これらの要素はHTML5で意味合いが変更され再定義された。</p>
+        <div>
+          <ul>
+            <li><i>iは区別される要素。大抵italicで記述されます。</i></li>
+            <li><b>bは重要性は小さいが文体は変えたい要素。大抵太字になります。</b></li>
+            <li><s>sは正確でなくなった要素。大抵打ち消し線が表示されます。</s></li>
+            <li><u>uは伝わりにくい要素。下線が引かれます。</u></li>
+            <li>hrは意味的な気切りを示します。</li>
+          </ul>
+          <hr />
+          <small>smallはコピーライトなど注釈的な要素に対して使います。</small>
+        </div>
+      </article>
+
+      <article>
+        <h2>audio</h2>
+        <p>音楽を再生します。</p>
+        <div>
+          <style scoped="scoped">
+            .audiocontainer p:first-of-type {
+                width: 800px;
+                height: 200px;
+                background-color: rgba(204, 255, 51, 0.5);
+                border: 2px solid darkolivegreen;
+                border-radius: 10px;
+                columns: 100px 3;
+                -webkit-columns: 100px 3;
+                -moz-columns: 100px 3;
+                column-gap: 40px;
+                -webkit-column-gap: 40px;
+                -moz-column-gap: 40px;
+                column-rule: double 4px green;
+                -webkit-column-rule: double 4px green;
+                -moz-column-rule: double 4px green;
+            }
+          </style>
+          <div class="audiocontainer">
+            <p>
+              最近のFirefoxは.mp3に対応しているので
+              .mp3フォーマットのオーディオファイルを用意すれば主要ブラウザでは
+              同じ音楽を再生できるはずである。Safariは7.0.5でも.oggには対応していない。
+              preload="metadata"ではページ読み込み時と
+              音楽再生開始時の2回オーディオファイルのダウンロードが発生する。
+              preload="none"ではページ読み込み時にダウンロードが発生しないが
+              再生時間が分からない。
+            </p>
+            <audio controls="controls" preload="metadata">
+              <source src="./media/tam-z02_loop.ogg" />
+              <source src="./media/tam-z01.mp3" />
+            </audio>
+            <p>初期状態でミュート</p>
+            <audio controls="controls" preload="metadata" muted="muted" loop="loop">
+              <source src="./media/Fairwind_loop.ogg" />
+              <source src="./media/tam-z02.mp3" />
+            </audio>
+          </div>
+        </div>
+      </article>
+
+      <article class="dialog-element-sample">
+        <h2>dialog</h2>
+        <p>ダイアログを表示します。</p>
+        <p>
+          HTML5.2でmenu及びmenuitemは廃止されたためコンテキストメニューにmenuitemを
+          表示することはいずれ不可能になるものと思われます。
+        </p>
+        <dialog open="open" contextmenu="dialog-sample-1">
+          <p>sample dialog 1</p>
+          <menu type="context" id="dialog-sample-1">
+            <menuitem>dialog menu 1</menuitem>
+            <menuitem>dialog menu 2</menuitem>
+            <menuitem>dialog menu 3</menuitem>
+          </menu>
+        </dialog>
+        <button class="dialog-open-button">sample dialog 2</button>
+        <dialog class="dialog-sample-2">
+          <p>sample dialog 2</p>
+          <form>
+            <section>
+              <h2>サンプルフォーム</h2>
+              <p><label>text<input type="text" value="Hello" /></label></p>
+              <p><label>number<input type="number" value="1" /></label></p>
+              <p><label>datetime-local<input type="datetime-local" value="" /></label></p>
+            </section>
+            <button class="dialog-close-button">close</button>
+          </form>
+        </dialog>
+        <dialog open="open" class="dialog-sample-3">
+          <p>sample dialog 3</p>
+          <div>
+            シンプルなダイアログ
+          </div>
+          <button class="dialog-clos-button">閉じる</button>
+        </dialog>
+      </article>
+
+      <article>
+        <h2>cite</h2>
+        <p>情報の引用元を示します。</p>
+        <cite>Mozilla Developper Network</cite>
+        <blockquote>引用</blockquote>
+      </article>
+
+      <article>
+        <h2>グローバル属性</h2>
+        <div contenteditable="true">
+          <dl>
+            <dt>定義リスト</dt>
+            <dd>定義データ</dd>
+            <dd><a href="tel:xxx-xxxx-xxxx">ダミー連絡先</a></dd>
+          </dl>
+        </div>
+      </article>
+
+      <article>
+        <style scoped="scoped">
+          section {
+              background-color: whitesmoke;
+          }
+        </style>
+        <h2>article内のheaderとfooter</h2>
+        <p>
+          article内にheaderやfooterを記述することができる。
+        </p>
+        <header>
+          <h3>sample header</h3>
+        </header>
+        <section>
+          <h3>sample content</h3>
+          <p>
+            sample text
+          </p>
+        </section>
+        <footer>
+          <span>sample footer</span>
+        </footer>
+      </article>
+
+      <article class="table-element-sample">
+        <h2>table</h2>
+        <section>
+          <h3>table関連要素の各種属性</h3>
+          <div class="table-element-description">
+            <p>
+              HTML5から多くの属性が非サポートになっている。
+              特にスタイルを指定する属性が非サポートになっている。
+              theadはどこに記述しても表のヘッダーとして表示されるが
+              tbodyやtfootよりは先に記述していないとエディタに警告される。
+              tfootはどこに記述しても表のフッターとして表示され警告もされない。
+            </p>
+            <p>
+              colgroup要素にはtable要素内共通の設定を記述する。
+              ページ上に表示されることはない。
+              プレーンテキストも含めcol以外を記述することはできない。
+              <span class="table-element-description-memo">
+                colgroupもcolもスタイルを指定するためだけの要素にしか思えない。
+                テーブルの列単位でスタイルを指定するための
+                プロパティがCSSに定義されているべきではないか。
+                行単位のスタイルはtrに指定すればいい。
+              </span>
+              colgroupはcaptionより後theadやtbody，tfoot，trより前に
+              記述されていなければならない。
+            </p>
+            <p>
+              col要素のstyle属性の値はCSSに記述しても有効。
+              最初のcolのspanに2と書くと「最初2つの列の設定を指定する」という意味になる。
+              colのspanとcolの数で算出される列数がtableの列数と一致しないと
+              エディタは警告は出す。以下の例だとtableの列数は4でなければならない。
+            </p>
+          </div>
+          <table>
+            <caption>SAMPLE TABLE</caption>
+            <colgroup>
+              <!-- 1から2列目の設定(CSSに記述) -->
+              <col span="2"/>
+              <!-- 3列目の設定  -->
+              <col style="background-color: yellow;" />
+              <!-- 4列目の設定(CSSに記述) -->
+              <col />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>ヘッダー</th>
+                <th>は</th>
+                <th>最初に書かないと</th>
+                <th>エディタから警告される</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <td>フッター</td>
+                <td>は</td>
+                <td>必ず最後の行</td>
+                <td>に表示される</td>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr>
+                <td>foo</td>
+                <td>bar</td>
+                <td>baz</td>
+                <td>fuga</td>
+              </tr>
+              <tr>
+                <td>おはよう</td>
+                <td>こんにちは</td>
+                <td>こんばんは</td>
+                <td>おやすみ</td>
+              </tr>
+              <tr>
+                <td>11111</td>
+                <td>22222</td>
+                <td>33333</td>
+                <td>44444</td>
+              </tr>
+              <tr>
+                <td>Java</td>
+                <td>Python</td>
+                <td>Swift</td>
+                <td>C</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </article>
+      <article>
+        <h2>picture</h2>
+        <section>
+          <h3>media属性による表示画像の切り替え</h3>
+          <p>
+            メディアクエリの条件に合っていればsrcsetの画像がダウンロードされる。
+            このとき後続のimg要素の画像はダウンロードされない。
+            逆にメディアクエリの条件に合わない場合，srtsetの画像はダウンロードされず
+            img要素の画像がダウンロードされる。
+            ただしブラウザサイズを変更するなどしてメディアクエリの条件を満たすようになる，
+            あるいは満たさないようになる場合，もう一方の画像ダウンロードが開始され表示される。
+          </p>
+          <p>
+            picture要素内にimg要素が記述されていないと画像のダウンロードが一切行われない。
+          </p>
+          <picture>
+            <source srcset="../../images/square.png" media="(min-width: 600px)" />
+            <img src="../../images/star.png" alt="default image" />
+          </picture>
+          <p>解像度で切り替えることもできる。</p>
+          <picture>
+            <source media="(min-width: 1000px)"
+                    srcset="../../images/star.png, 
+                    ../../images/low_reso.png 1.5x, 
+                    ../../images/hi_reso.png 2x" />
+            <source media="(min-width: 200px)"
+                    srcset="../../images/star.png, 
+                    ../../images/low_reso.png 1.5x, 
+                    ../../images/hi_reso.png 2x" />
+            <img src="../../images/star.png" alt="default image" />
+          </picture>
+        </section>
+        <section>
+          <h3>sizes属性による表示画像の切り替え</h3>
+          <p>sizesはpictureにもimgにも使用できる。</p>
+          <p>メディアクエリに指定した幅の条件に合致するデバイスでは横長の画像を表示するといったことが可能。</p>
+          <picture>
+            <source media="(min-width: 800px)"
+                    sizes="50vw"
+                    srcset="../../images/circle.png 800w,
+                    ../../images/square.png 1200w" />
+            <img src="../../images/star.png" alt="default image"
+                 sizes="50vw"
+                 srcset="../../images/launcher1.png 180w,
+                 ../../images/launcher2.png 240w" />
+          </picture>
+        </section>
+        <section>
+          <h3>基底URLによるアンカーの解決</h3>
+          <p></p>
+          <a href="#myanchor">a要素のhrefをbase要素のhrefの末尾につけてページがリクエストされます。</a>
+          <div id="myanchor">
+            <p>ページ遷移後id="myanchor"の位置にジャンプする。</p>
+            <p>つまりこのテキストを含む要素にジャンプします。</p>
+          </div>
+        </section>
+      </article>
+    </section>
+    <aside>
+      <h3 class="aside-text">参考サイト</h3>
+      <p class="aside-text"><a href="http://www.w3schools.com/">w3schools.com</a></p>
+      <p class="aside-text"><a href="https://developer.mozilla.org/">MDN</a></p>
+      <p class="aside-text"><a href="https://www.html5rocks.com/ja/tutorials/responsive/picture-element/">レスポンシブイメージのネイティブサポート</a></p>
+      <p class="aside-text"><a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/base">&lt;base&gt;: 文書の基底 URL 要素</a></p>
+    </aside>
+    <script src="element.js" async="async"></script>
+  </body>
+</html>

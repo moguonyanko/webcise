@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Sub Page 0</title>
+	</head>
+	<body>
+		<h1>Sub Page 0</h1>
+		<div id="SubCountainer0">
+			コンテナ０
+		</div>
+		<script>
+			(function(win){
+				
+				var sampleArray = [1,2,3,4,5];
+				
+				win.sub0NS = {
+					checkInstance : function(){
+						return sampleArray instanceof Array;
+					},
+					getArray : function(){
+						return sampleArray;
+					},
+					getContainer : function(){
+						var my = win.top.my;
+						return my.ref("SubCountainer0", document);
+					}
+				};
+				
+			}(window));
+		</script>
+	</body>
+</html>

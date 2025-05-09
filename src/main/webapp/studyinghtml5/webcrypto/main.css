@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+aside {
+    background-color: ivory;
+}
+
+/* 参考: 「CSSシークレット」 */
+/* TODO: スタイルが適用されていてもページ上で反映されない。 */
+.dimmed::before {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.control-panel {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sub-control-panel {
+    background-color: floralwhite;
+}
+
+.output {
+    /* fit-contentではテキストが折り返されない。 */
+    /*width: fit-content;*/
+    width: 100%;
+    min-height: 1.5em;
+    background-color: snow;
+    word-wrap: break-word;
+}
+
+#error-dialog {
+    position: absolute;
+    min-width: 90vw;
+    min-height: 50vh;
+    text-align: center;
+    font-size: 120%;
+    border: solid red 2px;
+    background-color: darkgray;
+    /* TODO: box-shadowがunknown-propertyと言われてしまう。 */
+    /*box‐shadow: 0 0 0 50vmax rgba(0, 0, 0, 0.8);*/
+}
+
+/* backdrop擬似要素に対応しているブラウザが少ない。 */
+#error-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+}

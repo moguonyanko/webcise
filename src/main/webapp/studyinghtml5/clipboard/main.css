@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.result-area {
+    width: 100%;
+    max-width: 400px;
+    height: 80vh;
+    max-height: 200px;
+    background-color: whitesmoke;
+    overflow-y: scroll;
+}
+
+.async-clipboard-base {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.clip-container {
+    flex: 1;
+    min-width: 400px;
+}
+
+.cliptarget-container {
+    background-color: beige;
+}
+
+.paste-area {
+    height: 10rem;
+    overflow-y: scroll;
+    background-color: snow;
+}

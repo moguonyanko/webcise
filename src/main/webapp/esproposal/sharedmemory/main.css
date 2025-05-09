@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.result {
+	width: 40em;
+	height: 10em;
+	overflow-y: scroll;
+	border: solid 1px black;
+}
+

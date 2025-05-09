@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Classes</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            :root {
+                --common-bg-color: rgba(102, 102, 153, 0.2);
+                --common-result-color: rgba(204, 204, 204, 0.2);
+            }
+
+            pre code {
+                font-size: 80%;
+            }
+
+            footer {
+                padding-top: 1em;
+                border-top: 1px solid lightgray;
+            }
+
+            .code-container {
+                background-color: var(--common-result-color);
+                width: fit-content;
+            }
+            
+            .result-area {
+                width: 50%;
+                height: 100px;
+                margin: 5px;
+                border: 1px var(--common-bg-color) solid;
+                border-radius: 5px;
+                background-color: var(--common-bg-color);
+                overflow-y: scroll;
+            }
+        </style>
+    </head>
+    <body>
+        <header role="banner">
+            <h1>Classes</h1>
+            <p>
+                ECMAScript6からclassキーワードを使ってクラスを定義できるようになりました。<br />
+            </p>
+            <a href="field.html">Field</a>
+        </header>        
+
+        <div role="main">
+            <section class="class-practice-container">
+                <h2>クラスとメソッドの定義</h2>
+                <p>
+                    クラスにコンストラクタとメソッド，静的メソッドを定義できます。
+                </p>
+                <div class="code-container">
+                    <pre><code>
+    class Point{
+        constructor(x, y){
+            this.x = x;
+            this.y = y;
+        }
+        
+        get coords(){
+            return [this.x, this.y];
+        }
+        
+        toString(){
+            return this.coords.toString();
+        }
+        
+        calcDistance(point){
+            const deltaX = this.x - point.coords[0]; 
+            const deltaY = this.y - point.coords[1]; 
+            return Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+        }
+        
+        static getDistance(p1, p2){
+            return p1.calcDistance(p2);
+        }
+    }
+                    </code></pre>
+                </div>
+                <div>
+                    <div class="result-area"></div>
+                    <div>
+                        <button class="append-info">追加</button>
+                        <button class="clear-info">クリア</button>
+                        <button class="distance-info">距離計算</button>
+                    </div>
+                </div>
+            </section>
+            <section class="class-extends-container">
+                <h2>クラスの継承</h2>
+                <p>
+                    extendsキーワードでクラスを継承することができます。
+                </p>
+                <div>
+                    <div class="result-area"></div>
+                    <div>
+                        <span>x=<input class="extends-coords" type="number" value="1" /></span>
+                        <span>y=<input class="extends-coords" type="number" value="2" /></span>
+                        <span>z=<input class="extends-coords" type="number" value="3" /></span>
+                    </div>
+                    <div>
+                        <button class="display-extends-coords">座標表示</button>
+                        <button class="clear-extends-result">クリア</button>
+                    </div>
+                </div>
+            </section>
+            <section class="class-mixin-container">
+                <h2>クラスのミックスイン</h2>
+                <p>
+                    ECMAScriptでは多重継承はできませんが別のクラスを<br />
+                    ミックスインしたクラスを継承することはできます。
+                </p>
+                <div class="code-container">
+                    <pre><code>
+    const Sail = Base => class extends Base {
+        sail() {
+            return this.name + Base.getVersion() + "Sail::sailing!";
+        }
+    };
+    
+    const Fly = Base => class extends Base {
+        fly() {
+            return this.decoratedName + "Fly::flying!";
+        }
+    };
+    
+    class Plane {
+        constructor(name) {
+            this.name = name;
+        }
+        
+        get decoratedName() {
+            return "***" + this.name + "***";
+        }
+        
+        static getVersion() {
+            return "1.0";
+        }
+        
+        cruise() {
+            return "Plane::cruising!";
+        }
+    }
+    
+    class SeaPlane extends Sail(Fly(Plane)) {
+        constructor(name){
+            super(name);
+        }
+        
+        cruise() {
+            return [this.sail(), this.fly(), super.cruise()].join(" ");
+        }
+        
+        toString() {
+            return this.name + " -> " + this.cruise();
+        }
+    }
+                </code></pre>
+                </div>
+                <div class="result-area"></div>
+                <div>
+                    <button class="display-mixin-result">結果表示</button>
+                    <button class="clear-mixin-result">クリア</button>
+                </div>
+            </section>
+            <section class="inspection-new-target">
+                <h2>new.targetプロパティ</h2>
+                <p>
+                    new.targetプロパティでコンストラクタを調べることができる。<br />
+                    継承されたクラスのnew.targetプロパティはサブクラスの値になっている。<br />
+                    クラスのnew.targetプロパティはconstructor関数<strong>外</strong>ではundefinedになる。
+                </p>
+                <div class="result-area"></div>
+                <div class="control-new-target">
+                    <div class="new-target-type-selection">
+                        <label><input type="radio" name="new-target-type" value="function_sentence" checked="checked" />function文</label>
+                        <label><input type="radio" name="new-target-type" value="class_no_inheritance" />基底クラス</label>
+                        <label><input type="radio" name="new-target-type" value="class_with_inheritance" />サブクラス</label>
+                        <label><input type="radio" name="new-target-type" value="arrow_function" />アロー関数</label>
+                    </div>
+                    <div>
+                        <p><label><input class="with-new-operator" type="checkbox" checked="checked" />new演算子あり</label></p>
+                        <button class="display-result">プロパティ確認</button>
+                        <button class="clear-result">クリア</button>
+                    </div>
+                </div>
+            </section>
+            <section class="override-constructor">
+                <h2>constructorのオーバーライド</h2>
+                <p>
+                   constructor関数をオーバーライドした時はその内部において<br />
+                   super()を使いスーパークラスのコンストラクタを呼び出しておかないと<br />
+                   スーパークラスのメソッドが参照された時にエラーになる。<br />
+                   呼び出されたメソッド内でthisを参照しているかどうかは関係なくエラーになる。<br />
+                   シンタックスエラーにはならない。
+                </p>
+                <div>
+                    <button class="display-result">結果表示</button>
+                    <button class="clear-result">クリア</button>
+                </div>
+                <div class="result-area"></div>
+            </section>
+        </div>
+
+        <aside role="complementary">
+            <h3>参考</h3>
+            <ul>
+                <li><a href="http://es6-features.org/">ECMAScript 6 — New Features: Overview & Comparison</a></li>
+                <li><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes">MDN Classes</a></li>
+                <li><a href="https://googlechrome.github.io/samples/classes-es6/">Classes (ES6) Sample</a></li>
+            </ul>
+        </aside>
+
+        <footer role="contentinfo">
+            <small>Copyright &copy; 2016 moguonyanko All rights reserved.</small>
+        </footer>
+
+        <script src="../../gomakit.js"></script>
+        <script src="classes.js"></script>
+    </body>
+</html>

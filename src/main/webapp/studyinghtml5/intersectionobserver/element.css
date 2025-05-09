@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+/** 
+ * templateのCSSにはcustom elementを正常に表示するうえで必要最低限のスタイルを 
+ * 指定する。サイズや色関係のスタイルはユーザーが自由に指定できるようにするべきである。
+ * Light DOMのスタイルが優先的に適用されるためここにどんなスタイルを記述してもユーザーは
+ * 上書きすることができるが、ユーザーに余分な作業を要求しないのが一番好ましい。
+ */
+
+:host {
+    display: block;
+    contain: content;
+    /* custom element自体にサイズ制限を設ける必要がどうしてもある場合は:hostに指定する。 */
+    /*max-width: 600px;*/
+}
+
+.title {
+    font-weight: bold;
+}
+
+.base {
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+
+.content {
+    height: 5rem;
+    background-color: rosybrown;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Drag and Drop API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header role="banner">
+      <h1>Drag and Drop API</h1>
+      <p>ドラッグアンドドロップのAPI練習ページです。</p>
+    </header>
+    <main id="main-container" role="main">
+      <section>
+        <h2>様々な要素のドラッグアンドドロップ</h2>
+        <p class="section-title">Elementのドラッグ</p>
+        <div>
+          <p>ドラッグ画像タイプ</p>
+          <label><input type="radio" name="drag-image-type" value="image" checked="checked" />Image</label>
+          <label><input type="radio" name="drag-image-type" value="canvas" />Canvas</label>
+        </div>
+        <div>
+          <p>ドラッグデータタイプ</p>
+          <label><input class="drop-type" type="radio" name="drop-type" value="text/plain" checked="checked" />text/plain</label>
+          <label><input class="drop-type" type="radio" name="drop-type" value="text/html" />text/html</label>
+        </div>
+        <div class="drag-targets">
+          <div id="draggable-container" draggable="true">
+            <p>ドラッグできます</p>
+          </div>
+        </div>
+        <div id="drop-target-container">
+          <p>ここにドロップ</p>
+          <p>dropzone属性はHTML5.2で廃止されました。</p>
+        </div>
+      </section>
+    </main>
+    <aside>
+      <section>
+        <h2>参考サイト</h2>
+        <section>
+          <h3>Apple</h3>
+          <ul>
+            <li><a href="https://developer.apple.com/library/content/documentation/AppleApplications/Conceptual/SafariJSProgTopics/DragAndDrop.html">Dragging and Dropping</a></li>
+          </ul>
+        </section>
+      </section>
+    </aside>
+    <script src="../../gomakit.js"></script>
+    <script src="draganddrop.js"></script>
+  </body>
+</html>

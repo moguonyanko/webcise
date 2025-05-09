@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.container {
+    max-width: 600px;
+}
+
+.output {
+    height: 80vh;
+    max-height: 20em;
+    border: 1px solid red;
+    background-color: whitesmoke;
+}
+
+.control {
+    height: 20vh;
+    max-height: 2em;
+    border: 1px solid blue;
+    background-color: oldlace;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja" manifest="cache.appcache">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Application Cache Sample</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" href="appcache.css" />
+		<link rel="shortcut icon" href="../../favicon.ico" />
+	</head>
+	<body>
+		<h1>Application Cache Sample</h1>
+
+		<main>
+			<section>
+				<h2>アプリケーションキャッシュの動作確認</h2>
+				<textarea id="CacheReportArea" cols="50" rows="10"></textarea>
+				<p><input id="CaccheStatus" type="text" value="" readonly="readonly" /></p>
+				<div>
+					<button id="CacheUpdater">update</button>
+					<button onclick="document.getElementById('CacheReportArea').value = ''">clear</button>
+				</div>
+			</section>
+		</main>
+
+		<footer role="contentinfo">
+			<small>Copyright &copy; 2015 moguonyanko All rights reserved.</small>
+		</footer>
+
+		<script>
+			(function (win, doc) {
+
+				var cache = win.applicationCache,
+					reportArea = doc.getElementById("CacheReportArea"),
+					cacheStatus = doc.getElementById("CaccheStatus"),
+					updater = doc.getElementById("CacheUpdater");
+
+				function handleCacheEvent(evt) {
+					var evtType = evt.type;
+					reportArea.value += evtType;
+
+					/* loaded, totalはFirefox35には存在しない。 */
+					if ("loaded" in evt && "total" in evt) {
+						displayCacheState(evt.loaded, "/");
+						reportArea.value += " " + evt.loaded + "/" + evt.total;
+					}
+					
+					reportArea.value += "\n";
+					
+					if (evt.type === "updateready") {
+						cache.swapCache();
+						if (confirm("ページをリロードします！")) {
+							win.location.reload();
+						}
+					}
+
+					cacheStatus.value = evtType;
+				}
+
+				function addEventListener() {
+					updater.addEventListener("click", function (evt) {
+						cache.update();
+					}, false);
+
+					cache.addEventListener("checking", handleCacheEvent, false);
+					cache.addEventListener("noupdate", handleCacheEvent, false);
+					cache.addEventListener("downloading", handleCacheEvent, false);
+					cache.addEventListener("progress", handleCacheEvent, false);
+					cache.addEventListener("cached", handleCacheEvent, false);
+					cache.addEventListener("updateready", handleCacheEvent, false);
+					cache.addEventListener("obsolute", handleCacheEvent, false);
+					cache.addEventListener("error", handleCacheEvent, false);
+				}
+
+				function init() {
+					addEventListener();
+				}
+
+				init();
+
+			}(window, document));
+		</script>
+	</body>
+</html>

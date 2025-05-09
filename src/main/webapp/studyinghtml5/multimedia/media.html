@@ -1,0 +1,109 @@
+      <!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTMLMediaElement</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="media.css" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+  </head>
+  <body>
+    <header>
+      <h1>HTMLMediaElement</h1>
+      <p><a href="../../">home</a></p>
+      <ul>
+        <li><a href="#media-element-property">HTMLMediaElementのプロパティ</a></li>
+        <li><a href="#media-element-method">HTMLMediaElementのメソッド</a></li>
+        <li><a href="#media-element-event">HTMLMediaElementのイベント</a></li>
+        <li><a href="#canvas-video-cooperation">CanvasとVideoの連携</a></li>
+      </ul>
+    </header>
+    <main>
+      <section id="media-element-property">
+        <h2>HTMLMediaElementのプロパティ</h2>
+        <div class="video-container">
+          <div class="video-part">
+            <video width="400" height="300" controls="controls">
+              <source src="../../movies/samplenote.m4v" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-part infomation"></div>
+        </div>
+        <div>
+          <button class="checker">check</button>
+          <div>
+            <button class="looper">loop on/off</button>
+          </div>
+        </div>
+      </section>
+      <section id="media-element-method">
+        <h2>HTMLMediaElementのメソッド</h2>
+        <div>
+          <video class="sample-video" width="400" height="300">
+            <source src="../../movies/samplenote.m4v" type="video/mp4">
+          </video>
+        </div>
+        <div class="custom-controls">
+          <button class="play">play():動画の再生を行う</button>
+          <button class="pause">pause():動画を一時停止する</button>
+          <button class="load">load():動画データをダウンロードし直す</button>
+        </div>
+      </section>
+      <section id="media-element-event">
+        <h2>HTMLMediaElementのイベント</h2>
+        <div class="media-event-container">
+          <div class="flex-content">
+            <video class="sample-video" width="424" height="300" controls="controls">
+              <source src="../../movies/samplenote.m4v" type="video/mp4">
+            </video>
+          </div>
+          <div class="output flex-content"></div>
+        </div>
+        <div>
+          <button class="clear">clear</button>
+          <button class="load">load</button>
+        </div>
+      </section>
+      <section id="canvas-video-cooperation">
+        <h2>CanvasとVideoの連携</h2>
+        <div class="cooperation-container">
+          <div>
+            <video class="sample-video" width="400" height="300" controls="controls" loop="loop">
+              <source src="../../movies/greennote.m4v" type="video/mp4">
+            </video>
+          </div>
+          <div>
+            <canvas class="sample-canvas normal-canvas" width="400" height="300"></canvas>
+            <canvas class="sample-canvas custom-canvas" width="400" height="300"></canvas>
+          </div>
+        </div>
+      </section>
+    </main>
+    <aside>
+      <h2>参考</h2>
+      <section>
+        <h3>MDN</h3>
+        <ul>
+          <li><a href="https://developer.mozilla.org/en/docs/Web/API/HTMLMediaElement">HTMLMediaElement</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/TimeRanges">TimeRanges</a></li>
+          <li><a href="https://developer.mozilla.org/en/docs/Web/HTML/Element/video">&lt;video&gt;</a></li>
+          <li><a href="https://developer.mozilla.org/en/docs/Web/Guide/Events/Media_events">Media events</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Manipulating_video_using_canvas">Manipulating video using canvas</a></li>
+        </ul>
+      </section>
+      <section>
+        <h3>MSDN</h3>
+        <ul>
+          <li><a href="https://msdn.microsoft.com/en-us/library/ff975073(v=vs.85).aspx">video object</a></li>
+        </ul>
+      </section>
+      <section>
+        <h3>Webkit</h3>
+        <ul>
+          <li><a href="https://webkit.org/blog/6784/new-video-policies-for-ios/">New &lt;video&gt; Policies for iOS</a></li>
+        </ul>
+      </section>
+    </aside>
+    <script src="media.js"></script>
+  </body>
+</html>

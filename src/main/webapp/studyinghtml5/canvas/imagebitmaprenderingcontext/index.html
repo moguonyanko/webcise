@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ImageBitmapRenderingContext</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>ImageBitmapRenderingContext</h1>
+      <a href="../../">home</a>
+    </header>
+    <main>
+      <div class="canvascontainer">
+        <canvas class="srccanvas"></canvas>
+        <canvas class="distcanvas"></canvas>
+      </div>
+      <div class="control">
+        <button class="mc-event mc-event-transfer">描画内容転送</button>
+        <div>
+          <label><input class="mimetype" type="radio" name="mimetype" value="image/jpeg" checked>JPEG</label>
+          <label><input class="mimetype" type="radio" name="mimetype" value="image/png">PNG</label>
+        </div>
+      </div>
+    </main>
+    <aside>
+      <h3>参考</h3>
+      <ul>
+        <li><a href="https://blog.chromium.org/2018/03/chrome-66-beta-css-typed-object-model.html">Chrome 66 Beta: CSS Typed Object Model, Async Clipboard API, AudioWorklet</a></li>
+      </ul>
+    </aside>
+    <script src="main.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+.container {
+    border: 1px solid darkgray;
+    text-align: center;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.lv1 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.lv1 > .container {
+    flex-grow: 1;
+}
+
+.lv2 {
+    /*width: 100%;*/
+    background-color: honeydew;
+}
+
+.lv3 {
+    background-color: turquoise;
+}
+
+.contents-box {
+    display: contents;
+}
+
+.enclosing {
+    padding: 1em;
+    background-color: orange;
+}

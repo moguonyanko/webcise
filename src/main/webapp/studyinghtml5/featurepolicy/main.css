@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.result {
+    width: 100%;
+    max-width: 500px;
+    height: 100vh;
+    max-height: 200px;
+    background-color: linen;
+    border: solid 1px lightgray;
+    overflow-y: scroll;
+}

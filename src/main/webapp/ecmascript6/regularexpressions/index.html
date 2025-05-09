@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Regular Expressions</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../../gomakit.css" />
+	</head>
+	<body>
+		<header>
+			<h1>Regular Expressions</h1>
+			<p>Regexpコンストラクタとともに使用できる新しいフラグ等について調べます。</p>
+			<a href="../">back</a>
+		</header>
+		
+		<main>
+			<section class="unicode-matching-sample">
+				<h2>Unicodeコードポイントに対するパターンマッチング</h2>
+				<p>
+					/^.$/ というパターンを使い任意の1文字だけで文字列が構成されている時に
+					マッチングが見つかるようにしてその文字を返す。
+				</p>
+				<p>
+					uフラグを使うことで複数のコードポイントで構成された文字でも1文字と
+					見なしてマッチングを探すことができる。
+				</p>
+				<div class="output"></div>
+				<div>
+					<!-- 
+					Firefoxではmaxlength属性に指定した値はコードポイントのサイズとして
+					扱われる。従って複数のコードポイントで構成される文字を入力すると
+					maxlength以下の数の文字しか入力していないのに警告される。
+					複数のコードポイントで構成される文字を1度削除すると再入力不可に
+					なるのはFirefoxでもChromeでも同じ。
+					-->
+					<label>テスト文字<input class="test-target-text" type="text" value="𠮷" maxlength="1" /></label>
+				</div>
+				<div>
+					<label><input class="enable-u-flag" type="checkbox" checked="checked" />u flag on</label>
+					<button class="runner">matching</button>
+					<button class="clearer">clear</button>
+				</div>
+			</section>
+		</main>
+		
+		<aside>
+			<h2>参考</h2>
+			<ul>
+				<li><a href="http://kangax.github.io/compat-table/es6/">ECMAScript 6 compatibility table</a></li>
+			</ul>
+		</aside>
+		
+		<footer>
+			<small>Copyright &copy; 2016 moguonyanko All rights reserved.</small>
+		</footer>
+		
+		<script src="../../gomakit.js"></script>
+		<script src="main.js"></script>
+	</body>
+</html>

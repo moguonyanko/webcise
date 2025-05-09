@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Message Page</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	</head>
+	<body>
+		<h1>Message Page</h1>
+		
+		<div>
+			<label><input id="MessageTxt" type="text" value="メッセージ返信" /></label>
+			<button id="MessageSender">メッセージ返信</button>
+		</div>
+		
+		<div id="ReceivedMessageContainer"></div>
+		
+		<script src="/webcise/gomakit.js"></script>
+		<script>
+			(function(win, doc, m){
+				function ref(id){
+					/**
+					 * このページでもcommon.jsを読み込んでいる。すなわちcommon.jsの
+					 * 中でこのページのDocumentを参照できる。そのためrefの第2引数に
+					 * Documentを渡さなくてもidで指定された要素を取得できる。
+					 */
+					return m.ref(id);
+				}
+				
+				var container = ref("ReceivedMessageContainer");
+				
+				function sendMessage(evt){
+					var w = win.top;
+					var txt = ref("MessageTxt").value;
+					w.postMessage(txt, w.location.href);
+				}
+				
+				function receiveMessage(evt){
+					var data = JSON.parse(evt.data);
+					
+					if(!(win.location.origin in data.acceptedOrigins)){
+						throw new Error("Invalid origin!");
+					}
+					
+					var message = data.message;
+					m.println(container, message);
+				}
+				
+				(function(){
+					m.addListener(win, "message", receiveMessage, false);
+					m.addListener(ref("MessageSender"), "click", sendMessage, false);
+				}());
+			}(window, document, window.goma));
+		</script>
+	</body>
+</html>

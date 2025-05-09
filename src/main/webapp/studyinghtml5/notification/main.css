@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.result-area {
+    width: 100%;
+    max-width: 600px;
+    height: 90vh;
+    max-height: 300px;
+    background-color: whitesmoke;
+    overflow-y: scroll;
+}

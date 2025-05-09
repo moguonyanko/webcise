@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CSS Paint API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="paint.css" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+  </head>
+  <body>
+    <header>
+      <h1>CSS Paint API</h1>
+      <a href="../../">home</a>
+    </header>
+    <main>
+      <section>
+        <h2>背景画像の作成</h2>
+        <div class="container sample-target">
+          <p class="content">サンプルコンテンツ</p>
+        </div>
+      </section>
+    </main>
+    <aside>
+      <h3>参考</h3>
+      <p>Google</p>
+      <a href="https://developers.google.com/web/updates/2018/01/paintapi">Google Developers</a>
+    </aside>
+    <script type="module">
+      if ("paintWorklet" in CSS) {
+        // Safariは相対パスだとスクリプトが読み込まれない。
+        CSS.paintWorklet.addModule(`${location.pathname}simplebg.js`);
+      } else {
+        const ele = document.querySelector(".sample-target");
+        const txt = document.createTextNode("CSS Paint APIは使用できません。");
+        ele.appendChild(txt);
+      }
+    </script>
+  </body>
+</html>

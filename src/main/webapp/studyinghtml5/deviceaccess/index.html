@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+	<meta charset="UTF-8" />
+	<title>Device Access API</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="../../gomakit.css" rel="stylesheet" />
+	<link href="deviceaccess.css" rel="stylesheet" />
+  </head>
+  <body>
+	<header>
+	  <h1>Device Access API</h1>
+	  <p class="description">
+		様々なデバイスが発生させるイベントやそれを扱うAPIについてまとめます。
+	  </p>
+	  <a href="../">home</a>
+	</header>
+
+	<main>
+	  <article>
+		<header>
+		  <h2>DOM3 Events</h2>
+		  <p class="description">
+			主にフォーカスやキーボードに関するイベントを扱うためのAPIが定義されている。
+		  </p>
+		</header>
+
+		<section class="focus-sample">
+		  <h3>Focus Events</h3>
+		  <p class="description">
+			似たイベントが定義されているがバブリングの有無が異なっている。
+			イベントリスナーは各form要素に対して登録している。
+			form要素からイベントが伝搬しない場合，イベントリスナーが処理されない。
+		  </p>
+
+		  <form class="focus-sample-form-with-bubbles">
+			<fieldset>
+			  <legend>focusinとfocusoutはバブリングあり</legend>
+			  <label>name:<input class="focus-sample-name" type="text" value="" /></label>
+			  <label>password:<input class="focus-sample-password" type="password" value="" /></label>
+			</fieldset>
+		  </form>
+
+		  <form class="focus-sample-form-without-bubbles">
+			<fieldset>
+			  <legend>focusとblurはバブリングなし</legend>
+			  <label>name:<input class="focus-sample-name" type="text" value="" /></label>
+			  <label>password:<input class="focus-sample-password" type="password" value="" /></label>
+			</fieldset>
+		  </form>
+
+		  <div>
+			<label><input class="enable-focus-events-capture" type="checkbox" />capture(※イベントの伝播方向が逆になる。)</label>
+		  </div>
+		</section>
+
+		<section class="input-event-sample">
+		  <h3>Input Events</h3>
+		  <p class="description">
+			input要素やtextarea要素の内容に変更が加えられた時にInputEventが発生する。
+			ただし同じテキストをコピー・アンド・ペーストしてもInputEventは発生する。
+			テキストが空になった時も発生する。
+		  </p>
+
+		  <div class="sample-text-container">
+			<textarea class="sample-textarea">test</textarea>
+		  </div>
+		</section>
+
+		<section class="keyboard-event-sample">
+		  <h3>Keyboard Events</h3>
+		  <p class="description">
+			キーボード操作時に発生する。ただしデバイスによっては発生しない可能性がある。
+			テキスト入力に対して何らかの処理を行いたいならばInputEventを利用するべきである。
+		  </p>
+
+		  <div class="keyboard-sample-panel">
+			<textarea class="keyboard-input-textarea"></textarea>
+			<textarea class="keyboard-output-textarea"></textarea>
+		  </div>
+		</section>
+
+		<aside>
+		  <h3>関連リンク</h3>
+		  <ul>
+			<li><a href="https://www.w3.org/TR/DOM-Level-3-Events/">UI Events(W3C)</a></li>
+			<li><a href="https://developer.mozilla.org/fr/docs/DOM_Levels">DOM Levels(MDN)</a></li>
+			<li><a href="https://www.tutorialspoint.com/html5/html5_events.htm">HTML5 - Events(Tutorial Point)</a></li>
+			<li><a href="https://developer.mozilla.org/en-US/docs/Web/Events/focus">focus(MDN)</a></li>
+			<li><a href="https://developer.mozilla.org/en-US/docs/Web/Events/input">input(MDN)</a></li>
+			<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent">KeyboardEvent(MDN)</a></li>
+		  </ul>
+		</aside>
+	  </article>
+	</main>
+
+	<footer>
+	  <span class="contentinfo">Copyright &copy; 2016 moguonyanko All rights reserved.</span>
+	</footer>
+
+	<script src="../../gomakit.js"></script>
+	<script src="main.js"></script>
+  </body>
+</html>

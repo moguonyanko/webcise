@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title>WebSocket Sample</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="../../favicon.ico" />
+	</head>
+	<body>
+		<h1>WebSocket Sample</h1>
+
+		<main>
+			<section>
+				<h2>WebSocketで通信テスト</h2>
+				<textarea id="ResultArea" cols="50" rows="10" readonly="readonly"></textarea>
+				<div>
+					<p><input id="GreetContent" type="text" value="Hello!" /></p>
+                    <p><label>ポート番号:<input id="ConnectPort" type="number" min="1" value="28081" /></label></p>
+					<button id="ConnectRunner">送信</button>
+					<button id="ConnectCloser">通信切断</button>
+					<button onclick="document.getElementById('ResultArea').value = ''">ログクリア</button>
+				</div>
+			</section>
+		</main>
+
+		<footer role="contentinfo">
+			<small>Copyright &copy; 2015 moguonyanko All rights reserved.</small>
+		</footer>
+
+		<script src="/webcise/gomakit.js"></script>
+		<script>
+			(function (win, doc, loc, m) {
+                "use strict";
+                
+                var rf = m.ref;
+
+				var resArea = rf("ResultArea"),
+					greetCont = rf("GreetContent"),
+					runner = rf("ConnectRunner"),
+					closer = rf("ConnectCloser");
+
+				var ws;
+
+				function initConnection() {
+					if(ws){
+						return;
+					}
+					
+					ws = m.createWebSocket("greeting", {
+                        port : parseInt(rf("ConnectPort").value)
+                    });
+
+					/**
+					 * Firefox35ではステータスコードは101になる。 
+					 * さらにリクエストヘッダにno-cacheが指定される。
+					 */
+					ws.onopen = function () {
+						resArea.value += "通信を確立しました。\n";
+						ws.send(greetCont.value);
+					};
+
+					ws.onclose = function (evt) {
+						var reason = "code " + evt.code + " reason " + evt.reason;
+						resArea.value += reason + "で接続を閉じました。\n";
+						resArea.value += "意図的な切断" + 
+                                (evt.wasClean ? "です。" : "ではありません。") + "\n";
+						ws = null;
+					};
+
+					ws.onmessage = function (evt) {
+						var data = evt.data;
+						resArea.value += data + "\n";
+					};
+
+					ws.onerror = function (evt) {
+						console.log(evt);
+					};
+				}
+
+				function sendMessage() {
+					if (!ws) {
+						initConnection();
+					}
+
+					if (ws.readyState === WebSocket.OPEN) {
+						ws.send(greetCont.value);
+					}
+				}
+
+				function closeConnection() {
+					if (ws) {
+						ws.close();
+					}
+				}
+
+				function addEventListener() {
+					runner.addEventListener("click", sendMessage, false);
+					closer.addEventListener("click", closeConnection, false);
+				}
+
+				function init() {
+					addEventListener();
+				}
+
+				init();
+
+			}(window, document, location, my));
+		</script>
+	</body>
+</html>

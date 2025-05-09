@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Message</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .result {
+          width: 100%;
+          max-width: 400px;
+          height: 100vh;
+          max-height: 200px;
+          background-color: whitesmoke;
+          border: solid 1px darkgrey;
+          overflow-y: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Message</h1>
+      <p>ServiceWorkerのmessageイベントを使用する。</p>
+    </header>
+    <main>
+      <div class="result"></div>
+      <div>
+        <button class="register">register</button>
+        <button class="unregister">unregister</button>
+        <button class="load">load</button>
+      </div>
+    </main>
+    <aside>
+      <h3>参考</h3>
+      <div>
+        <p>MDN</p>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Client/postMessage">Client.postMessage()</a>
+      </div>
+    </aside>
+    <script src="main.js"></script>
+  </body>
+</html>

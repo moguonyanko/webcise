@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>RTCDataChannel Sample</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <h1>RTCDataChannel Sample</h1>
+      <a href="../../">home</a>
+    </header>
+    <main>
+      <section class="rtcdatachannel-sample">
+        <h2>Send message by RTCDataChannel</h2>
+        <div class="control-box">
+          <button class="connecter">connect</button>
+          <button class="disconnecter">disconnect</button>
+        </div>
+        <div class="message-box">
+          <div class="send-box">
+            <label>message:<input class="input-message" type="text" /></label>
+            <button class="sender">send</button>
+          </div>
+          <div class="received-box">
+            <p>Received Message</p>
+            <div class="output-message"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <aside>
+      <p>参考</p>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API">WebRTC API</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Simple_RTCDataChannel_sample">A simple RTCDataChannel sample</a></li>
+      </ul>
+    </aside>
+    <script src="main.js"></script>
+    <!-- adapter.jsは必須ではない。 -->
+    <!--<script src="../adapter.js"></script>-->
+  </body>
+</html>

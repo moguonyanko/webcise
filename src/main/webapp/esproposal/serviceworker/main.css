@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+header {
+    background-image: url(../../images/star.png);
+    background-size: 100px;
+}
+
+.result {
+	width: 100%;
+    max-width: 50em;
+	height: 90vh;
+    max-height: 10em;
+	overflow-y: scroll;
+}
+
+.result-area {
+	background-color: whitesmoke;
+}
+
+.result-image {
+	background-color: beige;
+}

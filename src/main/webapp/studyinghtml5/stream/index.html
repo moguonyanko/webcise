@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Stream API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+  </head>
+  <body>
+    <header>
+      <a href="../">home</a>
+      <h1>Stream API</h1>
+    </header>
+    <main>
+      <section>
+        <h2>Simple Image Stream</h2>
+        <simple-image-stream src="../../images/star.png"
+                             width="30" height="30" count="10">
+        </simple-image-stream>
+      </section>
+      <section>
+        <h2>Custom Number Stream</h2>
+        <custom-number-stream initial="0" limit="5" interval="500"></custom-number-stream>
+      </section>
+      <section>
+        <h2>Teeing a stream</h2>
+        <tee-stream></tee-stream>
+      </section>
+      <section>
+        <h2>Tee image stream</h2>
+        <tee-image-stream src="sample.png"></tee-image-stream>
+      </section>
+    </main>
+    <aside>
+      <h3>Reference</h3>
+      <p>MDN</p>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API">Streams API</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Using_readable_streams">Using readable streams</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Using_writable_streams">Using writable streams</a></li>
+      </ul>
+    </aside>
+    <template class="simple-image-stream-template">
+      <link rel="stylesheet" href="template.css" />
+      <div class="base"></div>
+    </template>
+    <template class="custom-number-stream-template">
+      <link rel="stylesheet" href="template.css" />
+      <div class="base">
+        <button class="start">Start Counting</button>
+        <button class="read">Read Stream</button>
+        <div class="output"></div>
+      </div>
+    </template>
+    <template class="tee-stream-template">
+      <link rel="stylesheet" href="template.css" />
+      <button class="target" value="start">start</button>
+      <button class="target" value="tee">tee</button>
+      <button class="target" value="stop">stop</button>
+      <div class="result-line result-main"></div>
+      <div class="result-line result-tee0"></div>
+      <div class="result-line result-tee1"></div>
+      <!--
+      <div class="result-line result-tee2"></div>
+      <div class="result-line result-tee3"></div>
+      <div class="result-line result-tee4"></div>
+      <div class="result-line result-tee5"></div>
+      -->
+    </template>
+    <template class="tee-image-template">
+      <link rel="stylesheet" href="template.css" />
+      <button class="download target">download</button>
+      <div class="result-container"></div>
+    </template>
+    <script src="main.js" type="module"></script>
+  </body>
+</html>

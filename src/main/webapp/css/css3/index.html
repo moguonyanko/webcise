@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title>CSS3 exercise</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- 電話番号の自動リンク作成を無効化する。 -->
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="shortcut icon" href="../../favicon.ico" />
+		<style>
+			body {
+				/* font-sizeは継承される。 */
+				/*font-size: 200%;*/
+			}
+			
+			/* 各プロパティの説明のスタイル */
+			h2 + p {
+				width: 50%;
+				background-color: rgba(100, 255, 50, 0.5);
+				border: yellowgreen solid 2px;
+				border-radius: 10px 10px 1px 1px;
+				/**
+				 * word-break: keep-allは相対指定のサイズと相性が悪い。 
+				 * ブラウザサイズ変更時にコンテナの外側に文字がはみ出してしまう。
+				 */
+				word-break: keep-all;
+				/*
+				columns: 300px 2;
+				-webkit-columns: 300px 2;
+				-moz-columns: 300px 2;
+				column-gap: 40px;
+				-webkit-column-gap: 40px;
+				-moz-column-gap: 40px;
+				column-rule: double 4px green;
+				-webkit-column-rule: double 4px green;
+				-moz-column-rule: double 4px green;
+				*/
+			}
+		</style>
+	</head>
+	<body>
+		<header role="banner">
+			<h1>CSS3 exercise</h1>
+		</header>
+
+	<main role="main">
+		<h2>CSSサンプル集</h2>
+
+		<article>
+			<h2>フレキシブルレイアウト</h2>
+			<p>
+				flexで要素を横並びに配置しやすくなります。
+				flex-wrapで要素を改行して表示するかどうかを指定できます。
+			</p>
+			<div>
+				<style scoped="scoped">
+					#flexcontainer {
+						width: 800px;
+						border: black 1px dotted;
+						display: flex;
+						flex-wrap: wrap;
+					}
+
+					div#flexcontainer div {
+						flex: 1 0 200px;
+						/*
+						flex: initial;
+						*/
+					}
+					
+					#flexsubcontainer1 {
+						width: 25%;
+						background-color: aquamarine;
+					}
+
+					#flexsubcontainer2 {
+						width: 50%;
+						background-color: coral;
+					}
+
+					#flexsubcontainer3 {
+						width: 25%;
+						background-color: yellow;
+					}
+				</style>
+				<div id="flexcontainer">
+					<div id="flexsubcontainer1">
+						<p>フレキシブル</p>
+					</div>
+					<div id="flexsubcontainer2">
+						<p>ボックス</p>
+					</div>
+					<div id="flexsubcontainer3">
+						<p>レイアウトレイアウトレイアウトレイアウトレイアウトレイアウト</p>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<article>
+			<h2>透過</h2>
+			<p>opacityで要素を透過します。</p>
+			<div>
+				<style scoped="scoped">
+					#opacitycontainer {
+						width: 100px;
+						height: 100px;
+						background-color: red;
+						opacity: 0.5;
+					}
+				</style>
+				<div id="opacitycontainer">
+					<p>透過テスト</p>
+				</div>
+			</div>
+		</article>
+
+		<article>
+			<h2>ボックスのドロップシャドウ</h2>
+			<p>box-shadowはボックスに影を付けます。</p>
+			<div>
+				<style scoped="scoped">
+					#shadowcontainer {
+						width: 100px;
+						height: 100px;
+						background-color: blue;
+						box-shadow: 5px 5px 5px grey;
+					}
+				</style>
+				<div id="shadowcontainer">
+					<p>影をつける</p>
+				</div>
+			</div>
+		</article>
+
+		<article>
+			<h2>グラデーション</h2>
+			<p>linear-gradient関数とradial-gradient関数でグラデーションを表現します。</p>
+			<div>
+				<style scoped="scoped">
+					#linergradientbox {
+						width: 400px;
+						height: 200px;
+						background: linear-gradient(
+							to bottom right,
+							red 0%,
+							yellow 25%,
+							green 60%,
+							blue 80%
+							);
+					}
+
+					#radialgradientbox {
+						width: 400px;
+						height: 200px;
+						background: radial-gradient(
+							ellipse farthest-side 
+							at 75% 50%,
+							red 0%,
+							orange 65%,
+							yellow 85%,
+							rgba(10,10,10,0.25) 95%
+							);
+					}
+				</style>
+				<div id="linergradientbox">
+					<p>線形</p>
+				</div>
+				<div id="radialgradientbox">
+					<p>円形</p>
+				</div>
+			</div>
+		</article>
+
+		<article>
+			<h2>テキスト</h2>
+			<p>
+				word-spacingは単語の間隔。letter-spacingは文字間隔。
+				word-breakで改行の入り方を調整します。
+				text-indentはインデント幅を指定します。
+				hyphensで<mark>&amp;shy;</mark>と記述した箇所にハイフンを入れることができます。
+			</p>
+			<div>
+				<style scoped="scoped">
+					.transformedtext {
+						background-color: oldlace;
+						width: 500px;
+						text-transform: capitalize;
+						text-align: end;
+						word-spacing: 2em;
+						letter-spacing: 0.5em;
+					}
+
+					.wrapcode {
+						background-color: floralwhite;
+						white-space: pre;
+					}
+
+					.wordbreaker {
+						background-color: floralwhite;
+						width: 100px;
+						/*word-break: break-all;*/
+						word-break: keep-all;
+						text-indent: 1em;
+					}
+
+					.hyphensarea {
+						width: 30px;
+						hyphens: manual;
+						-moz-hyphens: manual;
+						-webkit-hyphens: manual;
+					}
+				</style>
+				<p class="transformedtext">javascript language</p>
+				<div class="wrapcode">
+					var hello = function(){
+					console.log("hello");
+					};
+				</div>
+				<div class="wordbreaker">
+					<p>いろはにほへとちりぬるを
+						わかよたれそつねならむ INSERT SAMPLE TEXT</p>
+
+					<p>うへのおくやまけふこえて
+						あさきゆめみしえひもせす</p>
+				</div>
+				<div class="hyphensarea">
+					I am a shudent. My name is foo. Java&shy;Script language is not fun. 
+				</div>
+			</div>
+		</article>
+
+		<article>
+			<h2>テキスト装飾</h2>
+			<p>
+				line-heightで行の高さを指定できます。
+				directionで文章をどちらからどちらへ記述するかを指定できます。
+			</p>
+			<div>
+				<style scoped="scoped">
+					.textdecorater {
+						text-decoration: underline;
+						text-decoration-line: underline;
+						text-decoration-style: wavy;
+						text-decoration-color: red;
+					}
+
+					.textshadowconatiner {
+						background-color: darkslategrey;
+						width: 500px;
+						text-align: center;
+						font-size: 200%;
+					}
+
+					.normalshadowtext {
+						color: red;
+						text-shadow: 4px 4px 4px black,
+							8px 8px 8px lightslategray;
+					}
+
+					.glowshadowtext {
+						color: blue;
+						text-shadow: 0px 0px 10px white,
+							0px 0px 10px white,
+							0px 0px 10px white,
+							0px 0px 10px white
+
+					}
+
+					.lineheighttester {
+						width: 100px;
+						background-color: lightsteelblue;
+						font-size: 16px;
+						/* 単位無しで指定した場合，これをフォントサイズに掛けた値が使用値となる。 */
+						line-height: 1.2;
+					}
+
+					.verticalaligncontainer {
+						width: 20em;
+						height: 100px;
+						background-color: grey;
+					}
+
+					.verticalaligncontainer p {
+						vertical-align: bottom;
+						direction: rtl;
+					}
+
+					.verticalaligncontainer p span {
+						unicode-bidi: bidi-override;
+					}
+
+					.referencearea p::before {
+						content: open-quote;
+					}
+
+					.referencearea p::after {
+						content: close-quote;
+					}
+
+					.referencearea p::before,
+					.referencearea p::after {
+						color: red;
+					}
+
+					.referencearea span::before {
+						content: open-quote;
+					}
+
+					.referencearea span::after {
+						content: close-quote;
+					}
+
+					.referencearea span::before,
+					.referencearea span::after {
+						color: blue;
+					}
+
+					.referencearea p {
+						quotes: "【" "】" "《" "》";
+					}
+				</style>
+				<div class="textdecorater">
+					<p>JavaScript language</p>
+				</div>
+				<div class="textshadowconatiner">
+					<p class="normalshadowtext">Hello world!</p>
+					<p class="glowshadowtext">HTML5 and CSS3</p>
+				</div>
+				<div class="lineheighttester">
+					<p>あかさたなはまやらわをん</p>
+				</div>
+				<div class="verticalaligncontainer">
+					<p>JavaScript<span>語言</span>　Language</p>
+				</div>
+				<div class="referencearea">
+					<p>引用テストの<span>文字列</span>です</p>
+				</div>
+			</div>
+		</article>
+
+		<article>
+			<h2>フォント</h2>
+			<p>
+				@font-faceでWebフォントの設定を行います。
+				localでローカルに存在するフォントを指定できます。
+			</p>
+			<div>
+				<style scoped="scoped">
+					/*@import url(http://fonts.googleapis.com/css?family=Gloria+Hallelujah);*/
+
+					@font-face {
+						font-family: 'webfontsample';
+						src: local('Hiragino Kaku Gothic Pro'),
+							local('Meiryo'),
+							local('monospace');
+						src: url(./font/league-gothic/webfonts/leaguegothic-italic-webfont.woff) format('woff'),
+							url(./font/boku/bokutachi.otf) format('opentype'),
+							url(./font/quicksand/Quicksand-Regular.otf) format('opentype');
+
+						font-size: xx-large;
+						font-style: italic;
+						font-stretch: ultra-expanded;
+						font-variant: small-caps;
+					}
+
+					.fontstylesample {
+						width: 200px;
+						word-break: keep-all;
+					}
+
+					.fontstylesample h3 {
+						background-color: yellowgreen;
+					}
+
+					.fontstylesample p {
+						background-color: lemonchiffon;
+					}
+
+					.fontstylesample p:first-of-type {
+						font-family: 'webfontsample';
+					}
+
+					.fontstylesample p:nth-of-type(2) {
+						font-family: 'webfontsample';
+						/*font-family: 'Gloria Hallelujah';*/
+						font-stretch: ultra-condensed;
+					}
+
+					.fontstylesample p:last-of-type {   
+						font: italic small-caps 900 xx-large / 32px monospace;
+					}
+
+					.fontstylesample span:only-of-type {
+						font: oblique normal bold small / 16px sans-serif;
+						background-color: lightsalmon;
+					}
+				</style>
+				<div class="fontstylesample">
+					<h3>サンプル１</h3>
+					<p>
+						I am a student.
+						JavaScript Language
+						HTML5 and CSS3
+						本日もお疲れ様でした。
+						明日も頑張りましょう。
+					</p>
+					<h3>サンプル２</h3>
+					<p>
+						あいうえおかきくけこさしすせそ
+						My name is foobar.
+						おはようこんにちはこんばんは
+					</p>
+					<h3>サンプル３</h3>
+					<p>
+						せり なずな ごぎょう はこべら 
+						ほとけのざ すずな すずしろ
+					</p>
+					<span>サンプルはここまで</span>
+					<!--<span>span style off</span>-->
+				</div>
+			</div>
+		</article>
+
+		<article>
+			<h2>背景</h2>
+			<p>
+				複数の背景画像を指定することができます。
+				背景の表示位置やサイズ，表示エリアの範囲を指定できます。
+				背景画像の繰り返し方法は縦と横にそれぞれ指定できます。
+				rgba関数で透過色を背景に指定することができます。
+			</p>
+			<div>
+				<style scoped="scoped">
+					.backgroundsample {
+						width: 700px;
+						height: 500px;
+						overflow: auto;
+						background-image: url(./background0.jpg), url(./background2.jpg);
+						background-repeat: space no-repeat, repeat round;
+						background-position: center center, right 50px bottom 100px;
+						background-color: orange;
+						background-attachment: local;
+						background-clip: content-box, padding-box;
+						background-origin: border-box, content-box;
+						background-size: auto, cover;
+						border: 5px rgba(255,153,0,0.5) solid;
+					}
+
+					.backgroundsample div {
+						position: relative;
+						width: 1000px;
+						height: 1000px;
+					}
+
+					.backgroundsample p:first-of-type {
+						position: relative;
+						top: 47.5%;
+						line-height: 32px; 
+						text-align: center;
+						font-size: 150%;
+						text-shadow: 0px 0px 15px white,
+							0px 0px 15px white,
+							0px 0px 15px white,
+							0px 0px 15px white;
+						background-color: rgba(102,51,204,0.75);
+					}
+				</style>
+				<div class="backgroundsample">
+					<div>
+						<p>背景テスト</p>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<article>
+			<h2>罫線</h2>
+			<p>border-radiusで罫線を角丸にできます。</p>
+			<div>
+				<style scoped="scoped">
+					.bordersample div:first-of-type {
+						width: 500px;
+						height: 300px;
+						background-color: plum;
+						border: solid plum 3px;
+						border-radius: 20px 5px 50px 20px;
+						/*border-radius: 20px / 40px 1px / 100px 50px / 5px 10px / 20px;*/
+						box-shadow: 10px 10px 10px 0px aqua,
+							30px 30px 20px 5px blue inset;
+					}
+
+					.bordersample div:nth-of-type(2) {
+						width: 200px;
+						height: 200px;
+						margin: 30px;
+						background-color: blue;
+						border: solid blue 3px;
+						border-radius: 200px;
+						box-shadow: 0px 0px 40px 10px dodgerblue,
+							0px 0px 40px 10px aqua;
+					}
+
+					.bordersample div:nth-of-type(2) p {
+						position: relative;
+						top: 50%;
+						line-height: 8px;
+						margin: 0;
+						text-align: center;
+					}
+				</style>
+				<div class="bordersample">
+					<div>
+						<p>罫線テスト1</p>
+					</div>
+					<div>
+						<p>罫線テスト2</p>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<article>
+			<h2>リスト</h2>
+			<p>
+				リストマークには様々な文字や画像を指定することができます。
+				list-style-positionでリストマークの表示位置を変更することができます。
+			</p>
+			<div>
+				<style scoped="scoped">
+					.listsample {
+						width: 500px;
+						border: solid black 3px;
+						border-radius: 10px;
+					}
+
+					.listsample ul:first-of-type {
+						list-style-type: cjk-heavenly-stem;
+					}
+
+					.listsample ul:nth-of-type(2) {
+						list-style-image: url(../../favicon.ico);
+						list-style-position: inside;
+					}
+				</style>
+				<div class="listsample">
+					<ul>
+						<li>りんご</li>
+						<li>みかん</li>
+						<li>ばなな</li>
+						<li>めろん</li>
+						<li>すいか</li>
+					</ul>
+					<ul>
+						<li>Java<br /> language</li>
+						<li>C<br /> language</li>
+						<li>Python<br /> language</li>
+					</ul>
+				</div>
+			</div>
+		</article>
+
+		<article>
+			<h2>カウンター</h2>
+			<p>
+				contentプロパティとcounter関数で::before疑似要素の位置にカウンタを表示できます。
+				counter-incrementで増やし方，counter-resetで初期値を指定できます。
+			</p>
+			<div>
+				<style scoped="scoped">
+					.countersample {
+						width: 300px;
+						border: 2px solid greenyellow;
+						/*counter-reset: samplecount -1;*/
+					}
+
+					.countersample h3::before {
+						content: counter(headercount);
+						color: blue;
+					}
+
+					.countersample h3 {
+						counter-increment: headercount;
+						counter-reset: samplecount -1;
+					}
+
+					.countersample p::before {
+						content: counter(samplecount, cjk-earthly-branch);
+						color: red;
+					}
+
+					.countersample p {
+						counter-increment: samplecount 2;
+					}
+				</style>
+				<div class="countersample">
+					<h3>&nbsp;group</h3>
+					<p>&nbsp;test</p>
+					<p>&nbsp;test</p>
+					<p>&nbsp;test</p>
+					<h3>&nbsp;group</h3>
+					<p>&nbsp;test</p>
+					<p>&nbsp;test</p>
+					<p>&nbsp;test</p>
+				</div>
+			</div>
+		</article>
+
+		<article>
+			<h2>テーブル</h2>
+			<p>
+				caption-sideでキャプションの表示位置を指定できます。
+				table-layoutでセルのサイズを固定することができます。
+			</p>
+			<div>
+				<style scoped="scoped">
+					.tablesample {
+						width: 800px;
+						height: 400px;
+						border: solid red 3px;
+						border-radius: 10px;
+						background-color: rgba(200,200,200,0.3);
+					}
+
+					.tablesample table:first-of-type {
+						position: relative;
+						top: 5%;
+						width: 95%;
+						margin-left: auto;
+						margin-right: auto;
+						table-layout: fixed;
+						/*table-layout: auto;*/
+						caption-side: bottom;
+						border: double 5px black;
+						/*border-collapse: collapse;*/
+						border-spacing: 10px 10px;
+						/*empty-cells: hide;*/
+					}
+
+					.tablesample th {
+						border: solid 6px green;
+					}
+
+					.tablesample td {
+						border: dotted 5px orange;
+						empty-cells: hide;
+					}
+
+					.tablesample table th:first-of-type {
+						width: 200px;
+					}
+
+					.tablesample table th:nth-of-type(2) {
+						width: 300px;
+					}
+
+					.tablesample table th:last-of-type {
+						/*border: none;*/
+					}
+				</style>
+				<div class="tablesample">
+					<table>
+						<caption>サンプル表</caption>
+						<tr>
+							<th>りんご</th>
+							<td>果物</td>
+						</tr>
+						<tr>
+							<th>きゅうり</th>
+							<td>野菜</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>野菜</td>
+						</tr>
+						<tr>
+							<th>みかん</th>
+							<td>果物</td>
+						</tr>
+						<tr>
+							<th>バナナ</th>
+							<td>果物</td>
+						</tr>
+						<tr>
+							<th>ドーナツ</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th>キャベツ</th>
+							<td>野菜</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</article>
+
+		<article>
+			<h2>マルチカラムレイアウト</h2>
+			<p>
+				column-countで列の数を指定してマルチカラムレイアウトにできます。
+				column-widthでカラム1つのサイズを指定します。
+				column-gapでカラムの間の幅を指定できます。
+				column-ruleでカラムの仕切りのスタイルを指定できます。
+				column-spanでカラムの見出しの表現を指定できます。
+			</p>
+			<div>
+				<style scoped="scoped">
+					.multicolumnsample {
+						width: 800px;
+						height: 400px;
+						border: 2px solid grey;
+						border-radius: 10px;
+						/*column-count: 2;*/
+						/*-webkit-column-count: 2;*/
+						/*-moz-column-count: 2;*/
+						/*column-width: 200px;*/
+						/*-webkit-column-width: 200px;*/
+						/*-moz-column-width: 200px;*/
+						columns: 200px 3;
+						-webkit-columns: 200px 3;
+						-moz-columns: 200px 3;
+						column-gap: 40px;
+						-webkit-column-gap: 40px;
+						-moz-column-gap: 40px;
+						column-rule: double 4px green;
+						-webkit-column-rule: double 4px green;
+						-moz-column-rule: double 4px green;
+					}
+
+					.multicolumnsample h3::before {
+						content: counter(headercount);
+						color: red;
+					}
+
+					.multicolumnsample h3 {
+						counter-increment: headercount;
+						background-color: rgba(10,10,10,0.2);
+						column-span: all;
+						-webkit-column-span: all;
+						-moz-column-span: all;
+					}
+				</style>
+				<div class="multicolumnsample">
+					<h3>サンプル文章</h3>
+					<p>
+						いろはにほへとちりぬるを
+						わかよたれそつねならむ
+						うへのおくやまへふこえて
+						あさきゆめみしえひもせす
+						いろはにほへとちりぬるを
+						わかよたれそつねならむ
+						うへのおくやまへふこえて
+						あさきゆめみしえひもせす
+						いろはにほへとちりぬるを
+						わかよたれそつねならむ
+						うへのおくやまへふこえて
+						あさきゆめみしえひもせす
+					</p>
+					<h3>サンプル文章</h3>
+					<p>
+						いろはにほへとちりぬるを
+						わかよたれそつねならむ
+						うへのおくやまへふこえて
+						あさきゆめみしえひもせす
+						いろはにほへとちりぬるを
+						わかよたれそつねならむ
+						うへのおくやまへふこえて
+						あさきゆめみしえひもせす
+						いろはにほへとちりぬるを
+						わかよたれそつねならむ
+						うへのおくやまへふこえて
+						あさきゆめみしえひもせす
+					</p>
+				</div>
+			</div>
+		</article>
+
+		<article>
+			<h2>変形</h2>
+			<p>transformで要素を移動，回転，拡大，傾斜させます。</p>
+			<div>
+				<style scoped="scoped">
+					.transformcontainer {
+						position: relative;
+						width: 90%;
+						border: solid 5px grey;
+						border-radius: 10px;
+						display: flex;
+						flex-wrap: wrap;
+					}
+
+					.transformsample {
+						width: 200px;
+						height: 200px;
+						margin: 10px;
+						flex: 1 0 200px;
+					}
+
+					.transformsample p:first-of-type {
+						position: relative;
+						top: 50%;
+						text-align: center;
+						font-size: 120%;
+						line-height: 18px;
+						/*
+						width: 20em;
+						margin-left: auto;
+						margin-right: auto;
+						*/
+					}
+
+					#transformsample0 {
+						background-color: bisque;
+					}
+
+					#transformsample1 {
+						background-color: yellowgreen;
+					}
+
+					#transformsample2 {
+						background-color: salmon;
+					}
+
+					#transformsample3 {
+						background-color: violet;
+					}
+
+					#transformsample4 {
+						background-color: khaki;
+					}
+
+					#transformsample5 {
+						background-color: deepskyblue;
+					}
+
+					#transformsample6 {
+						background-color: yellow;
+					}
+
+					#transformsample0 p:first-of-type {
+						background-color: lightgoldenrodyellow;
+					}
+
+					#transformsample1 p:first-of-type {
+						transform: rotate(45deg) scale(0.5, 2) translate(50px, 50px);
+						background-color: green;
+					}
+
+					#transformsample2 p:first-of-type {
+						transform: translate(50px, 50px) rotate(45deg) scale(0.5, 2);
+						background-color: gold;
+					}
+
+					#transformsample3 p:first-of-type {
+						transform: skewX(30deg) skewY(30deg);
+						background-color: royalblue;
+					}
+
+					#transformsample4 p:first-of-type {
+						transform: matrix(1.5, 1, -1, 0.75, 20, 20);
+						background-color: tomato;
+					}
+
+					#transformsample5 p:first-of-type {
+						transform: rotate(45deg) scale(0.5, 2) translate(50px, 50px);
+						transform-origin: right bottom;
+						background-color: aqua;
+					}
+
+					#transformsample6 p:first-of-type {
+						transform: perspective(200px) 
+							/*scale3d(1.2, 0.75, 0.75)*/ 
+							/*translate3d(10px, 10px, 150px)*/ 
+							rotateX(45deg) rotateY(-45deg);
+						transform-origin: center bottom 0%;
+						background-color: hotpink;
+					}
+				</style>
+				<div class="transformcontainer">
+					<div id="transformsample0" class="transformsample">
+						<p>変形無し</p>
+					</div>
+					<div id="transformsample1" class="transformsample">
+						<p>変形テスト1</p>
+					</div>
+					<div id="transformsample2" class="transformsample">
+						<p>変形テスト2</p>
+					</div>
+					<div id="transformsample3" class="transformsample">
+						<p>変形テスト3</p>
+					</div>
+					<div id="transformsample4" class="transformsample">
+						<p>変形テスト4</p>
+					</div>
+					<div id="transformsample5" class="transformsample">
+						<p>変形テスト5</p>
+					</div>
+					<div id="transformsample6" class="transformsample">
+						<p>変形テスト6</p>
+					</div>
+				</div>
+				<p>変形テスト1と2は変形処理の順番が異なるだけ。</p>
+				<p>変形テスト1と5は変形処理の原点が異なるだけ。</p>
+			</div>
+		</article>
+
+		<article>
+			<h2>トランジション</h2>
+			<p>
+				transitionで特定の変化を任意の時間で実行させます。
+				transition-delayで変化の開始を遅延させることもできます。
+			</p>
+			<div>
+				<style scoped="scoped">
+					div.transitioncontainer {
+						width: 500px;
+						margin-left: auto;
+						margin-right: auto;
+						border: solid chocolate 5px;
+						border-radius: 10px;
+					}
+
+					div.transitioncontainer div {
+						margin: 10px;
+						text-align: center;
+					}
+
+					div.transitioncontainer a {
+						font-size: 24px;
+						text-decoration: none;
+					}
+
+					div.transitioncontainer div:first-of-type a {
+						background-color: yellow;
+						transition-duration: 1s;
+						transition-property: background-color;
+					}
+
+					div.transitioncontainer div:first-of-type a:hover {
+						font-size: 36px;
+						background-color: red;	
+					}
+
+					div.transitioncontainer div:nth-of-type(2) a {
+						background-color: greenyellow;
+						transition-duration: 0.5s;
+						/*transition-timing-function: linear;*/
+						transition-timing-function: cubic-bezier(0.25, 0.25, 0.75, 0.75);
+					}
+
+					div.transitioncontainer div:nth-of-type(2) a:hover {
+						font-size: 36px;
+						background-color: yellowgreen;	
+					}
+
+					div.transitioncontainer div:nth-of-type(3) a {
+						background-color: lightseagreen;
+						/*transition-duration: 0.5s;*/
+						/*transition-delay: 1s;*/
+						transition: 0.5s 0.5s;
+					}
+
+					div.transitioncontainer div:nth-of-type(3) a:hover {
+						font-size: 36px;
+						background-color: violet;	
+					}
+
+					div.transitioncontainer div:nth-of-type(4) a {
+						background-color: khaki;
+						/*transition-property: font-size, background-color;*/
+						/*transition-duration: 1s, 1s;*/
+						/*transition-delay: 1s, 1s;*/
+						transition: 1s font-size 0s, 1s background-color 1s;
+					}
+
+					div.transitioncontainer div:nth-of-type(4) a:hover {
+						font-size: 36px;
+						font-style: italic;
+						font-weight: bold;
+						background-color: orange;	
+					}
+				</style>
+				<div class="transitioncontainer">
+					<div>
+						<a href="#">トランジションテスト1</a>
+					</div>
+					<div>
+						<a href="#">トランジションテスト2</a>
+					</div>
+					<div>
+						<a href="#">トランジションテスト3</a>
+					</div>
+					<div>
+						<a href="#">トランジションテスト4</a>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<article>
+			<h2>アニメーション</h2>
+			<p>
+				keyframesでアニメーションを定義します。
+				animation-delayではアニメーションの遅延時間を指定できます、
+				animation-iteration-countでアニメーションの実行回数を指定できます。
+				animation-play-stateでアニメーションを途中で停止することもできます。
+			</p>
+			<div>
+				<style scoped="scoped">
+					@-webkit-keyframes coloranime1 {
+						0% {
+							background-color: orange;
+							opacity: 0;
+						}
+						50% {
+							background-color: red;
+						}
+						100% {
+							background-color: gold;
+							opacity: 1;
+						}
+					}
+
+					@-webkit-keyframes fontsizeanime1 {
+						0% {
+							font-size: 200%;
+						}
+						50% {
+							font-size: 150%;
+						}
+						100% {
+							font-size: 100%;
+						}
+					}
+
+					div.animationcontainer {
+						height: 200px;
+						border: 3px solid green;
+						background-color: yellowgreen;
+						border-radius: 10px;
+						display: flex;
+						flex-wrap: wrap;
+					}
+
+					div.animationcontainer div {
+						width: 40%;
+						margin-right: auto;
+						margin-left: auto;
+						font-size: 120%;
+						text-align: center;
+						border-radius: 10px;
+						border: green solid 3px;
+						flex: 1 0 250px;
+					}
+
+					div.animationcontainer div:first-of-type p {
+						background-color: yellow;
+						-webkit-animation-name: coloranime1;
+						-webkit-animation-duration: 5s;
+						animation-timing-function: linear;
+					}
+
+					div.animationcontainer div:first-of-type p:hover {
+						-webkit-animation-name: fontsizeanime1;
+						-webkit-animation-duration: 1s;
+						-webkit-animation-iteration-count: infinite;
+						-webkit-animation-direction: alternate;
+					}
+
+					div.animationcontainer div:nth-of-type(2) p {
+						background-color: skyblue;
+						-webkit-animation: coloranime1 5s 3s;
+						-webkit-animation-fill-mode: forwards;
+					}
+
+					div.animationcontainer div:nth-of-type(3) p {
+						background-color: tomato;
+						-webkit-animation: coloranime1 5s 0.5s linear 1,
+							fontsizeanime1 5s 0.5s ease-in-out 1 alternate;
+					}
+
+					div.animationcontainer div:nth-of-type(4) p {
+						background-color: hotpink;
+						-webkit-animation: fontsizeanime1 1s linear /*infinite*/ alternate;
+						-webkit-animation-play-state: running;
+						-webkit-animation-fill-mode: backwards;
+					}
+
+					div.animationcontainer div:nth-of-type(4) p:hover {
+						-webkit-animation-play-state: paused;
+					}
+				</style>
+				<div class="animationcontainer">
+					<div>
+						<p>アニメーションテスト1</p>
+					</div>
+					<div>
+						<p>アニメーションテスト2</p>
+					</div>
+					<div>
+						<p>アニメーションテスト3</p>
+					</div>
+					<div>
+						<p>アニメーションテスト4</p>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<article>
+			<h2>セレクタ</h2>
+			<p>
+				:indeterminateは不確定な状態を示す疑似クラスです。
+				間接セレクタは後続の兄弟要素全てをスタイル適用の対象にします。
+				:notで指定したセレクタの否定を指定する疑似クラスです。
+				::before疑似要素とcounterで要素の前にカウンタを表示することができます。
+			</p>
+			<div>
+				<style scoped="scoped">
+					div.selectorsample {
+						width: 100%;
+						/*width: 1000px;*/
+						display: flex;
+						flex-wrap: wrap;
+					}
+
+					div.selectorsample div {
+						flex: 1 0 250px;
+						background-color: rgba(204, 204, 153, 0.2);
+						border: dotted 2px brown;
+						border-radius: 10px;
+						margin: 10px;
+					}
+
+					div.selectorsample div p[data-attr] {
+						border: solid 1px black;
+						box-shadow: 10px 10px 10px darkgray;
+					}
+
+					div.selectorsample div p[data-attr^="sel"] {
+						background-color: yellow;
+					}
+
+					div.selectorsample div p[data-attr$="attr2"] {
+						transform: rotate(45deg);
+					}
+
+					div.selectorsample div p[data-attr*="stat"] {
+						font-size: 150%;
+					}
+
+					#linktarget {
+						background-color: skyblue;
+					}
+
+					#linktarget:target {
+						background-color: gold;
+					}
+
+					div.selectorsample div.checkboxsample input[type="checkbox"]:indeterminate + span {
+						font-weight: bold;
+						font-style: italic;
+						background-color: yellowgreen;
+					}
+
+					#checkedsample:checked ~ p::before {
+						content: counter(checkedcounter);
+						color: royalblue;
+					}
+
+					#checkedsample:checked ~ p {
+						counter-increment: checkedcounter;
+					}
+
+					div.selectorsample div.disabledsample {
+						width: 200px;
+						display: flex;
+						flex-wrap: wrap;
+					}
+
+					div.selectorsample div.disabledsample button {
+						width: 100%;
+						height: 100px;
+					}
+
+					div.selectorsample div.disabledsample :enabled{
+						background-color: blue;
+					}
+
+					div.selectorsample div.disabledsample :disabled{
+						background-color: red;
+					}
+
+					/* 以下の記述は無効である。:rootは単体でしか効かない。 */
+					div.selectorsample div.rootsample:root {
+						background-color: violet;
+					}
+
+					div.selectorsample div.childsample :first-child,
+					div.selectorsample div.typesample :first-of-type {
+						background-color: red;
+					}
+
+					div.selectorsample div.childsample :nth-child(2),
+					div.selectorsample div.typesample :nth-of-type(2) {
+						background-color: skyblue;
+					}
+
+					div.selectorsample div.childsample :last-child,
+					div.selectorsample div.typesample :last-of-type {
+						background-color: blueviolet;
+					}
+
+					div.selectorsample div.childsample :nth-last-child(3),
+					div.selectorsample div.typesample :nth-last-of-type(3) {
+						font-style: italic;
+						font-weight: bold;
+					}
+
+					div.selectorsample div.childsample div :only-child,
+					div.selectorsample div.typesample div :only-of-type {
+						border: solid 3px black;
+						background-color: yellow;
+					}
+
+					div.selectorsample div.childsample div em:only-child,
+					div.selectorsample div.typesample div em:only-of-type {
+						letter-spacing: 5px;
+					}
+
+					div.selectorsample div.childsample2 table {
+						width: 100%;
+					}
+
+					div.selectorsample div.childsample2 table :first-child {
+						border: 1px black solid;
+					}
+
+					div.selectorsample div.childsample2 table tr:first-child {
+						background-image: linear-gradient(
+							to right,
+							red 0%,
+							gold 20%,
+							orange 50%,
+							yellow 90%
+							);
+					}
+
+					div.selectorsample div.childsample2 table tr:first-of-type {
+						transform: skew(10deg);
+					}
+
+					div.selectorsample div.notsample :not(p){
+						background-color: yellowgreen;
+					}
+
+					div.selectorsample div.notsample :not(:first-of-type){
+						font-style: italic;
+						font-weight: bold;
+					}
+
+					/* 以下の記法は無効。 */
+					div.selectorsample div.notsample :not(p:first-of-type){
+						background-color: red;
+					}
+				</style>
+				<div class="selectorsample">
+					<div>
+						<p data-attr="selattr1">属性セレクタ1</p>
+					</div>
+					<div>
+						<p data-attr="selattr2">属性セレクタ2</p>
+					</div>
+					<div>
+						<p data-attr="testattr3">属性セレクタ3</p>
+					</div>
+					<div>
+						<p><a href="#linktarget">リンク先にジャンプ</a></p>
+						<div id="linktarget">
+							<p>リンクターゲット</p>
+						</div>
+					</div>
+					<div class="checkboxsample">
+						<p>スタイル確認0</p>
+						<label for="checkedsample">チェックスタイル切替</label>
+						<input id="checkedsample" type="checkbox" value="" />
+						<p>スタイル確認1</p>
+						<p>スタイル確認2</p>
+						<p>スタイル確認3</p>
+						<label>
+							<input type="checkbox" onmouseover="this.indeterminate = true;"/>
+							<span>不確定</span>
+						</label>
+					</div>
+					<div class="disabledsample">
+						<button disabled="disabled">無効スタイル</button>
+						<button>有効スタイル</button>
+					</div>
+					<div class="rootsample">
+						<p>rootのスタイル</p>
+					</div>
+					<div class="childsample">
+						<p>first</p>
+						<div>sample div</div>
+						<div>
+							<em>caution</em>
+							<span>only child and type test</span>
+						</div>
+						<p>second</p>
+						<p>third</p>
+					</div>
+					<div class="childsample2">
+						<table>
+							<caption>table要素関連のfirst-child</caption>
+							<tr>
+								<td>りんご</td>
+								<td>あまい</td>
+							</tr>
+							<tr>
+								<td>レモン</td>
+								<td>すっぱい</td>
+							</tr>
+							<tr>
+								<td>カレー</td>
+								<td>からい</td>
+							</tr>
+						</table>
+					</div>
+					<div class="typesample">
+						<p>first</p>
+						<div>sample div</div>
+						<div>
+							<em>caution</em>
+							<span>only child and type test</span>
+						</div>
+						<p>second</p>
+						<p>third</p>
+					</div>
+					<div class="notsample">
+						<p>p 1</p>
+						<div>
+							div 1
+						</div>
+						<p>p 2</p>
+						<div>
+							div 2
+						</div>
+						<p>p 3</p>
+					</div>
+				</div>
+			</div>
+		</article>
+
+	</main>
+
+	<footer role="contentinfo">
+		<small>Copyright &copy; 2014 moguonyanko All rights reserved.</small>
+	</footer>
+</body>
+</html>

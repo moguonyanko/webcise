@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>クロスオリジンメッセージング</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<style>
+			#ReceiveMessageArea {
+				width: 600px;
+				height: 200px;
+				border: 1px solid black;
+				overflow-y: scroll;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>クロスオリジンメッセージング</h1>
+
+		<iframe id="MessageWindow" src="message.html" 
+				name="messagePage" width="600" height="200"></iframe>
+
+		<div id="ReceiveMessageArea"></div>
+
+		<div>
+			<label><input id="MessageOrigin" type="url" value="https://gfdev" /></label>
+			<label><input id="MessageText" type="text" value="メッセージ送信" /></label>
+			<button id="MessageSender">メッセージ送信</button>
+		</div>
+		<script src="/webcise/gomakit.js"></script>
+		<script>
+			(function(win, m) {
+				var acceptedProtocols = {
+					"http" : true,
+					"https" : true
+				};
+				
+				var acceptedHosts = {
+					"gfdev" : true,
+					"localhost" : true,
+					"gomapre.localhost" : true
+				};
+				
+				var acceptedOrigins = (function(){
+					var origins = {};
+					
+					for(var protocol in acceptedProtocols){
+						for(var host in acceptedHosts){
+							if(acceptedProtocols[protocol] && acceptedHosts[host]){
+								origins[protocol + "://" + host] = true;
+							}
+						}
+					}
+					
+					return origins;
+				}());
+
+				function Message(txt) {
+					var data = {};
+					data.message = txt;
+					data.acceptedOrigins = acceptedOrigins;
+					this.message = data;
+				}
+
+				Message.prototype = {
+					toString : function() {
+						return JSON.stringify(this.message);
+					}
+				};
+
+				function MessageWindow(name) {
+					this.window = win.frames[name];
+				}
+
+				MessageWindow.prototype = {
+					getDefaultTargetURL : function() {
+						return this.window.location.href;
+					},
+					postMessage : function(msg, opt_origin) {
+						var to;
+						if (opt_origin) {
+							var path = this.window.location.pathname;
+							to = opt_origin + path;
+						} else {
+							to = this.getDefaultTargetURL();
+						}
+						this.window.postMessage(msg.toString(), to);
+					}
+				};
+
+				function sendMessage(evt) {
+					var msgWin = new MessageWindow("messagePage"),
+						msgTxt = m.ref("MessageText").value,
+						msgOrigin = m.ref("MessageOrigin").value;
+					var msg = new Message(msgTxt);
+					msgWin.postMessage(msg, msgOrigin);
+				}
+
+				function receiveMessage(evt) {
+					/**
+					 * originプロパティを使って信頼しているオリジンからの
+					 * メッセージかどうかを確認しなければならない。
+					 * もしくはsourceプロパティの値が信頼できるウインドウを
+					 * 参照しているかどうかを確認する。
+					 */
+					if (!(evt.origin in acceptedOrigins)) {
+						throw new Error("Invalid origin!");
+					}
+
+					var area = m.ref("ReceiveMessageArea");
+					var txt = evt.data;
+					m.println(area, txt);
+				}
+
+				(function() {
+					m.addListener(m.ref("MessageSender"), "click", sendMessage, false);
+					m.addListener(win, "message", receiveMessage, false);
+				}());
+			}(window, window.goma));
+		</script>
+	</body>
+</html>

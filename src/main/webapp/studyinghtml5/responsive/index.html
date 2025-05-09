@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Responsive Web Design</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="../../favicon.ico" />
+		<!-- メディアクエリで利用するスタイルを切り替えるだけでどちらもダウンロードは行う。 -->
+		<link rel="stylesheet" href="./narrow.css" media="screen and (max-width: 1200px)" />
+		<link rel="stylesheet" href="./wide.css" media="screen and (min-width: 1201px)" />
+	</head>
+	<body>
+		<header role="banner">
+			<h1>Responsive Web Design</h1>
+			<h2>レスポンシブWebデザインに関連した部品の調査用ページです。</h2>
+		</header>
+
+		<main role="main">
+			<h2>レスポンシブWebデザインの関連部品</h2>
+
+			<article>
+				<h2>メディアクエリ</h2>
+				<p>
+					メディアクエリーでブレークポイントを設定し，
+					画面サイズや向きに合わせてページの表示状態を変更します。
+				</p>
+				<div>
+					<style scoped="scoped">
+						.mediaquierysample {
+							width: 100%;
+							height: 25%;
+							border: black solid 2px;
+							border-radius: 10px;
+							background-color: beige;
+						}
+
+						.mediaquierysample div:first-of-type {
+							width: 30%;
+							text-align: center;
+							border: dotted black 2px;
+							border-radius: 10px;
+							background-color: darkgrey;
+						}
+
+						.mediaquierysample div:first-of-type p {
+							background-color: yellow;
+						}
+
+						@media screen and (max-width: 800px) {
+							.mediaquierysample div:first-of-type {
+								background-color: skyblue;
+							}
+							.mediaquierysample div:nth-of-type(2) img {
+								width: 300px;
+								height: 300px;
+							}
+						}
+
+						@media screen and (min-width: 801px) and (max-width: 1199px) {
+							.mediaquierysample div:first-of-type {
+								background-color: yellowgreen;
+							}
+							.mediaquierysample div:nth-of-type(2) img {
+								width: 500px;
+								height: 500px;
+							}
+						}
+
+						@media screen and (min-width: 1200px) {
+							.mediaquierysample div:first-of-type {
+								background-color: orangered;
+							}
+							.mediaquierysample div:nth-of-type(2) img {
+								width: 700px;
+								height: 700px;
+							}
+						}
+					</style>
+					<div class="mediaquierysample">
+						<h2>Fluid Glid</h2>
+						<div>
+							<p>パーセンテージでサイズ指定し，現在のサイズに合わせてスタイル変更</p>
+						</div>
+						<h2>Fluid Image</h2>
+						<div>
+							<p>画面サイズに合わせて画像サイズを変更する。</p>
+							<img width="500" height="500" 
+								 src="./sample.jpg" alt="responsive sample image" />
+						</div>
+					</div>
+				</div>
+			</article>
+
+		</main>
+
+		<footer role="contentinfo">
+			<small>Copyright &copy; 2014 moguonyanko All rights reserved.</small>
+		</footer>
+	</body>
+</html>

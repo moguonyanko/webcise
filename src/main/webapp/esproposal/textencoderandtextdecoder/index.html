@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TextEncoder & TextDecoder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>TextEncoder & TextDecoder</h1>
+      <a href="../">home</a>
+    </header>
+    <main>
+      <section>
+        <h2>TextEncoder</h2>
+        <label>Encoder<input class="sampleinput" is="text-encoder" type="text" value="" /></label>
+        <div class="result encoder"></div>
+      </section>
+      <section>
+        <h2>TextDecoder</h2>
+        <label>Decoder<input class="sampleinput" is="text-decoder" type="text" value="" /></label>
+        <label>Decoder(Shift-JIS)<input class="sampleinput" is="text-decoder" 
+                                        data-encoding="Shift-JIS" type="text" value="" /></label>
+        <div class="result decoder"></div>
+      </section>
+    </main>
+    <footer>
+      <h3>Reference</h3>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder">TextEncoder(MDN)</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder">TextDecoder(MDN)</a></li>
+      </ul>
+    </footer>
+    <script src="main.js" type="module"></script>
+  </body>
+</html>

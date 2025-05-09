@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+summary {
+	width: 10em;
+	cursor: pointer;
+}
+
+/*
+summary::after {
+	content: "+";
+}
+
+summary:focus::after {
+	content: "-";
+}
+*/
+
+.sub-title {
+	font-weight: bold;
+	font-size: 110%;
+}

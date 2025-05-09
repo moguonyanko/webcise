@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Network Infomation API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../">home</a>
+      <h1>Network Infomation API</h1>
+    </header>
+    <main>
+      <section>
+        <h2>接続種別確認</h2>
+        <p>typeプロパティはAndroidのChromeでなければ実装されていない。</p>
+        <p>テザリングだと実際には4Gのはずでも3Gになったりする。</p>
+        <connection-type class="component"></connection-type>
+      </section>
+      <section>
+        <h2>接続状態変更イベント</h2>
+        <p>接続状態が変更された時に即座にイベントが発生するわけではない。数秒間のタイムラグがある。</p>
+        <connection-change class="component"></connection-change>
+      </section>
+    </main>
+    <aside>
+      <section>
+        <h3>参考サイト</h3>
+        <p>MDN</p>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API">Network Information API</a>
+      </section>
+    </aside>
+    <template class="network-type-template">
+      <link rel="stylesheet" href="template.css" />
+      <button class="target checktype">確認</button>
+      <div class="result"></div>
+    </template>
+    <template class="network-change-template">
+      <link rel="stylesheet" href="template.css" />
+      <div class="result"></div>
+    </template>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

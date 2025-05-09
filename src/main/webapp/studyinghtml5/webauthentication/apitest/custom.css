@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+:host {
+  contain: content;
+}
+
+form, .sub-form {
+  display: flex;
+  flex-direction: column;
+}
+
+form textarea {
+  min-height: 10em;
+}
+
+form button {
+  height: 3em;
+}

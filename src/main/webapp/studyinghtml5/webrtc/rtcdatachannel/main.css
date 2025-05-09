@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+main {
+    padding: 0.5em;
+    border-bottom: 1px solid lightgray;
+}
+
+.output-message {
+    background-color: beige;
+    width: 100%;
+    max-width: 600px;
+    height: 100vh;
+    max-height: 200px;
+    overflow-y: scroll;
+}

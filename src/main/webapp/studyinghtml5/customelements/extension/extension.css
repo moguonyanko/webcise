@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+h1 {
+    text-align: center;
+}
+
+section section {
+    margin: 0.25em;
+    padding: 0.25em;
+    border: solid 1px lightgray;
+}
+
+footer {
+    margin-top: 0.5em;
+    border-top: 1px solid lightgray;
+}

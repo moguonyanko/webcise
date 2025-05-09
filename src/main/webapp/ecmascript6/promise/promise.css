@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.main-container {
+	background-color: snow;
+}
+
+.promise-result-container {
+	position: fixed;
+	top: 0%;
+	left: 50%;
+	width: 50%;
+	border: solid 2px gray;
+	border-radius: 5px;
+}
+
+.promise-result-control-panel {
+	/*width: 50%;*/
+}
+
+.promise-result-canvas {
+	border: 1px gold solid;
+	background-color: white;
+}
+
+#promise-result-area {
+	height: 150px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	background-color: rgba(204, 255, 255, 0.9);
+}
+
+#clear-promise-element {
+	width: 100%;
+	height: 3em;
+}
+
+#promise-race-result {
+	height: 300px;
+	background-color: white;
+}

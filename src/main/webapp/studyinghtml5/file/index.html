@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+	<meta charset="UTF-8" />
+	<title>File API</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="../../favicon.ico" />
+	<link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+	<header>
+	  <h1>File API</h1>
+	  <p>File APIの調査ページです。</p>
+	</header>
+
+	<main>
+	  <section>
+		<h2>ファイルのメタ情報を取得</h2>
+		<details open="open">
+		  <summary>サンプル</summary>
+		  <div>
+			<textarea id="FileMetaInfo" cols="55" rows="10" readonly="readonly"></textarea>
+		  </div>
+		  <p class="sub-title">メタ情報取得対象選択</p>
+		  <div><input id="FileMetaTarget" type="file" multiple="multiple" /></div>
+		</details>
+	  </section>
+	  <section>
+		<h2>Blob URLを利用して画像ファイルを描画</h2>
+		<details>
+		  <summary>サンプル</summary>
+		  <p class="sub-title">描画対象画像選択</p>
+		  <label><input id="FileHalfCheck" type="checkbox" />画像を半分にスライス</label>
+		  <label><input id="FileBlobTarget" accept="image/*" type="file" multiple="multiple" /></label>
+		  <div id="FileBlobContainer"></div>
+		</details>
+	  </section>
+	  <section>
+		<h2>ファイルの内容を出力</h2>
+		<details>
+		  <summary>サンプル</summary>
+		  <div>
+			<textarea id="FileReadResult" cols="120" rows="10" readonly="readonly"></textarea>
+		  </div>
+		  <p class="sub-title">Data URLとして出力</p>
+		  <div>
+			<input id="FileDataURLTarget" type="file" multiple="multiple" />
+		  </div>
+		  <p class="sub-title">テキストファイルの内容をそのまま出力</p>
+		  <div>
+			<div>
+			  <span>文字エンコーディング:</span>
+			  <label><input type="radio" name="FileCharacterEncoding" value="UTF-8" checked="checked" />UTF-8</label>
+			  <label><input type="radio" name="FileCharacterEncoding" value="Shift-JIS" />Shift-JIS</label>
+			</div>
+			<div>
+			  <input id="FileTextTarget" accept="text/*" type="file" multiple="multiple" />
+			</div>
+		  </div>
+		  <p class="sub-title">ArrayBufferとして読み込みBlobに変換した後Blob URLを出力</p>
+		  <div>
+			<input id="FileArrayBufferTarget" type="file" multiple="multiple" />
+		  </div>
+		</details>
+	  </section>
+	</main>
+
+	<script src="../../gomakit.js"></script>
+	<script src="file.js"></script>
+  </body>
+</html>

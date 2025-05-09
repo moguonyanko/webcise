@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>PointerEvent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <header>
+      <h1>PointerEvent</h1>
+      <a href="../">home</a>
+    </header>
+    <main>
+      <section>
+        <h2>PointerEvent Properties</h2>
+        <div class="container">
+          <div class="pointereventinfo" is="pointer-info" data-event-type="pointerdown"></div>
+          <div class="pointereventinfo" is="pointer-info" data-event-type="pointermove"></div>
+          <div class="pointereventinfo" is="pointer-info" data-event-type="pointerenter"></div>
+          <div class="pointereventinfo" is="pointer-info" data-event-type="gotpointercapture">
+            <p class="description" slot="appender">Capture Event Type</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <aside>
+      <section class="reference">
+        <h3>参考サイト</h3>
+        <ul>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent">PointerEvent(MDN)</a></li>
+        </ul>
+      </section>
+    </aside>
+    <script src="index.js" type="module"></script>
+  </body>
+</html>

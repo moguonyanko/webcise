@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Field</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="field.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Field</h1>
+    </header>
+    <main>
+      <section class="public-field example">
+        <h2>Public Field</h2>
+        <button class="event-target" value="appendGreetingButton">ボタン追加</button>
+        <div class="container">
+          <button is="greeting-button"></button>
+        </div>
+      </section>
+      <section class="private-field example">
+        <h2>Private Field</h2>
+        <form is="user-info">
+          <label>UserID<input class="userId" type="text" value="Hoge" /></label>
+          <label>Password<input class="password" type="password" value="SecrEt" /></label>
+          <label>Sample Data<input class="data" type="text" value="sample data" /></label>
+        </form>
+        <div class="user-control">
+          <button class="target displayUserState">Display State</button>
+          <button class="target encryptData">Encrypt Data</button>
+        </div>
+      </section>
+      <section class="simple-subclass example">
+        <h2>サブクラスの初期化におけるコンストラクタ呼び出し</h2>
+        <p>サブクラスでコンストラクタを定義しなくてもスーパークラスのコンストラクタが呼び出される。</p>
+        <textarea class="resultarea"></textarea>
+      </section>
+    </main>
+    <aside>
+      <h3>参考サイト</h3>
+      <ul>
+        <li><a href="https://github.com/tc39/proposal-class-fields">tc39/proposal-class-fields</a></li>
+        <li><a href="https://github.com/tc39/proposal-static-class-features/">tc39/proposal-static-class-features</a></li>
+        <li><a href="https://developers.google.com/web/fundamentals/web-components/customelements">カスタム要素 v1: 再利用可能なウェブ コンポーネント</a></li>
+        <li><a href="https://developers.google.com/web/updates/2018/12/class-fields">Public and private class fields</a></li>
+      </ul>
+    </aside>
+    <script type="module" src="field.js"></script>
+  </body>
+</html>

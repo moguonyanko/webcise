@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>追加調査</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="extension.css" />
+  </head>
+  <body>
+    <header>
+      <h1>追加調査</h1>
+      <a href="../../">home</a>
+    </header>
+    <main>
+      <section>
+        <h2>同じCustomElementを異なる名前で定義してみる</h2>
+        <p>built-in、autonomousいずれも不可能であった。スクリプト解析時点でエラーになる。</p>
+        <section>
+          <h3>built-in</h3>
+          <label>文字数チェック<input type="text" value="" is="my-counter" /></label>
+        </section>
+        <section>
+          <h3>autonomous</h3>
+          <my-color></my-color>
+          <template id="color-maker">
+            <link rel="stylesheet" href="template.css" />
+            <label>R<input data-event-target="colorRed" class="color" type="range" value="0" min="0" max="255" /></label>
+            <label>G<input data-event-target="colorGreen" class="color" type="range" value="0" min="0" max="255" /></label>
+            <label>B<input data-event-target="colorBlue" class="color" type="range" value="0" min="0" max="255" /></label>
+            <div id="color-target">
+              SAMPLE
+            </div>
+          </template>
+        </section>
+      </section>
+    </main>
+    <footer>
+      <p>参考サイト</p>
+    </footer>
+    <script type="module" src="extension.js"></script>
+  </body>
+</html>

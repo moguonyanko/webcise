@@ -1,0 +1,13 @@
+@chaeset "UTF-8";
+
+form .userinfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.resultarea {
+    width: 100%;
+    max-width: 500px;
+    height: 100vh;
+    max-height: 350px;
+}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Map and Set</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            :root {
+                --common-bg-color: rgba(102, 102, 153, 0.2);
+                --common-result-color: rgba(204, 204, 204, 0.2);
+            }
+
+            .result-area {
+                width: 50%;
+                height: 100px;
+                margin: 5px;
+                border: 1px var(--common-result-color) solid;
+                border-radius: 5px;
+                background-color: var(--common-result-color);
+                overflow-y: scroll;
+            }
+        </style>
+    </head>
+    <body>
+        <header role="banner">
+            <h1>Map and Set</h1>
+            <p>
+                データ構造としてMapとSetが利用できるようになりました。
+            </p>
+        </header>        
+
+        <div role="main">
+            <section class="set-container">
+                <h2>Set</h2>
+                <p>
+                    Setに対し値の登録・削除ができます。<br />
+                    Setの値は配列として得ることもできます。
+                </p>
+                <div class="result-area"></div>
+                <div class="control-set">
+                    <p><label>value=<input class="set-value" type="text" value="test" /></label></p>
+                    <button class="control-set-button" value="add">登録</button>
+                    <button class="control-set-button" value="delete">削除</button>
+                    <button class="control-set-button" value="values">値を全て表示</button>
+                    <button class="control-set-button" value="clear">値を全て削除</button>
+                    <div>
+                        <div>
+                            <label><input class="exclude-text-value" 
+                                          type="checkbox" checked="checked" />
+                                テキストボックスの値を除外する(カンマ区切りで複数の値を指定)</label>
+                        </div>
+                        <div>
+                            <button class="change-array">配列に変換</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="clear-result-area">クリア</button>
+            </section>
+            <section class="map-container">
+                <h2>Map</h2>
+                <p>
+                    Mapに対し値の登録と削除を行えます。<br />
+                    Mapのキーには文字列以外を用いることができますが，NaNなど一部の値を除き<br />
+                    === 演算子で等しいと見なされるキーを与えた時しか値を得ることができません。
+                </p>
+                <div class="result-area"></div>
+                <div class="control-map">
+                    <div class="map-key-conatner">
+                        <p>キータイプ</p>
+                        <label><input type="radio" name="map-key-type" checked="checked" value="string" />文字列</label>
+                        <label><input type="radio" name="map-key-type" value="number" />数値</label>
+                        <label><input type="radio" name="map-key-type" value="boolean" />真偽値</label>
+                        <label><input type="radio" name="map-key-type" value="function" />関数</label>
+                        <label><input type="radio" name="map-key-type" value="nan" />NaN</label>
+                        <label><input type="radio" name="map-key-type" value="object" />オブジェクトリテラル</label>
+                        <label><input type="radio" name="map-key-type" value="class" />独自クラスのオブジェクト</label>
+                        <label><input type="radio" name="map-key-type" value="symbol" />シンボル</label>
+                        <label><input type="radio" name="map-key-type" value="globalsymbol" />グローバルシンボル</label>
+                    </div>
+                    <div>
+                        <button class="set-map-value">値追加</button>
+                        <button class="get-map-value">値取得</button>
+                    </div>
+                    <div>
+                        <button class="view-map-keys">全てのキーを表示</button>
+                        <button class="view-map-values">全ての値を表示</button>
+                        <button class="view-map-keyvalues">全てのキーと値を表示</button>
+                    </div>
+                    <div>
+                        <button class="upper-map-values">全ての値を大文字に変換</button>
+                        <button class="array-to-map">配列からMap生成</button>
+                        <button class="delete-map-value">選択中キータイプの値を削除</button>
+                        <button class="clear-map-values">値全削除</button>
+                    </div>
+                </div>
+                <button class="clear-result-area">クリア</button>
+            </section>
+            <section class="weakset-container">
+                <h2>WeakSet</h2>
+                <p>
+                    WeakSetで弱参照オブジェクトの集合を扱えます。<br />
+                    基本データ型のようなnullにならない値を保持することはできません。
+                </p>
+                <div class="result-area"></div>
+                <div>
+                    <button class="view-weakset-values">値表示</button>
+                    <button class="delete-weakset-values">値削除(GCを促す)</button>
+                </div>
+                <div>
+                    <button class="clear-result-area">クリア</button>
+                </div>
+            </section>
+            <section class="weakmap-container">
+                <h2>WeakMap</h2>
+                <p>
+                    WeakMapで弱参照オブジェクトをキーとしたMapを扱えます。<br />
+                    基本データ型のようなnullにならない値をキーに用いることはできません。
+                </p>
+                <div class="result-area"></div>
+                <div>
+                    <button class="view-weakmap-values">値表示</button>
+                    <button class="delete-weakmap-keys">キー削除</button>
+                    <button class="test-weakmap-gc">GC確認</button>
+                </div>
+                <div>
+                    <button class="clear-result-area">クリア</button>
+                </div>
+            </section>
+            <section class="equality-test-container">
+                <h2>Mapのキーの等値性(Key equality)</h2>
+                <p>
+                    Mapから値を得るとき，キーは同値演算子(===)を使って等値性を調べられる。<br />
+                    equalsメソッドを使って調べるMapの作成を試みる。
+                </p>
+                <div class="result-area"></div>
+                <div class="equality-test-input">
+                    <label>キー：<input class="equality-test-key" type="text" value="sampleKey" /></label>
+                    <label>値：<input class="equality-test-value" type="text" value="sampleValue" /></label>
+                    <div>
+                        <button class="set-equality-test-entry">エントリ追加</button>
+                        <button class="get-equality-test-entry">入力キーで値取得</button>
+                    </div>
+                </div>
+                <h3>ユーザーをキーに持つMapから値を得る(取得時にユーザーを都度生成する)</h3>
+                <div>
+                    <p>取得対象ユーザー一覧</p>
+                    <label><input type="radio" name="equality-test-key-users" value="foo_20" checked="checked" />foo age20</label>
+                    <label><input type="radio" name="equality-test-key-users" value="bar_30" />bar age30</label>
+                    <label><input type="radio" name="equality-test-key-users" value="baz_40" />baz age40</label>
+                    <div>
+                        <button class="equality-test-add-by-user">追加</button>
+                        <button class="equality-test-get-by-user">取得</button>
+                        <button class="equality-test-delete-by-user">削除</button>
+                        <button class="equality-test-clear-by-user">全て削除</button>
+                    </div>
+                </div>
+                <div>
+                    <button class="dump-equality-test-entries">全てのエントリを表示</button>
+                    <button class="clear-result-area">クリア</button>
+                </div>
+            </section>
+            <section class="json-interoperation">
+                <h2>JSONとの相互運用</h2>
+                <p>
+                    MapをSpread Operatorで展開したオブジェクトはJSON.stringifyで
+                    文字列表現に変換できる。<br />その文字列にJSON.parseを適用し，
+                    戻り値をMapコンストラクタに渡せばMapオブジェクトが得られる。<br />
+                    但しそもそもIteratableでないオブジェクトをMapコンストラクタに渡しても
+                    Mapオブジェクトを得ることはできない。
+                </p>
+                <div class="result-area"></div>
+                <div>
+                    <div>
+                        <button class="json-checker-xhr">Get JSON(by XHR)</button>
+                    </div>
+                    <div>
+                        <label><input class="json-checker-ws-port" type="number" min="1" value="28081" /></label>
+                        <button class="json-checker-ws">Get JSON(by WebSocket)</button>
+                        <button class="json-closer-ws">Close</button>
+                    </div>
+					<div>
+						<label>パラメータ名:<input class="json-reader-param" type="text" value="shop1" /></label>
+						<button class="json-reader">Get JSON</button>
+					</div>
+					<div>
+						<label>パラメータ名:<input class="json-parser-param" type="text" value="fuga" /></label>
+						<button class="json-parser">Parse JSON</button>
+					</div>
+                    <div>
+                        <button class="json-clearer">Clear</button>
+                    </div>
+                </div>
+            </section>
+			<section class="map-object-interoperation">
+				<h2>Mapとオブジェクトの相互運用</h2>
+				<p>
+					Object.entries()の戻り値を引数にとってMapオブジェクトを生成
+					することができる。<br />
+					Map.entirs()と異なりArrayが返される。
+				</p>
+                <div class="result-area"></div>
+				<div>
+					<button class="runner">run</button>
+					<button class="clearer">clear</button>
+				</div>
+			</section>
+        </div>
+
+        <aside role="complementary">
+            <h3>参考</h3>
+            <ul>
+                <li><a href="http://es6-features.org/">ECMAScript 6 — New Features: Overview & Comparison</a></li>
+                <li><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Set">MDN Set</a></li>
+                <li><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map">MDN Map</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet">MDN WeakSet</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap">MDN WeakMap</a></li>
+                <li><a href="http://www.2ality.com/2015/01/es6-maps-sets.html">②ality – ECMAScript 6: maps and sets</a></li>
+            </ul>
+        </aside>
+
+        <footer role="contentinfo">
+            <small>Copyright &copy; 2016 moguonyanko All rights reserved.</small>
+        </footer>
+
+        <script src="../../gomakit.js"></script>
+        <script src="mapandset.js"></script>
+    </body>
+</html>

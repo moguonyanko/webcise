@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.samplecontent {
+    /* 内部の要素を中央揃えするためのflex */
+    display: flex;
+    width: 100%;
+    height: 10rem;
+    max-width: 400px;
+    background-color: green;
+    opacity: 1;
+}
+
+.samplecontenttext {
+    margin: auto;
+    /* 縦方向だけ中央揃えしたければalign-selfを使う。 */
+    /*align-self: center;*/
+    font-weight: bold;
+}

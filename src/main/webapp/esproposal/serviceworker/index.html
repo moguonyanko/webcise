@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Service Worker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="shortcut icon" href="../../favicon.ico" />
+  </head>
+  <body>
+    <header>
+      <h1>Service Worker</h1>
+      <a href="../../">home</a>
+    </header>
+    <section>
+      <h2>その他の例</h2>
+      <ul>
+        <li><a href="examples/simpletest/">Simple Test</a></li>
+        <li><a href="examples/message/">Message</a></li>
+        <li><a href="examples/withindexeddb/">With IndexedDB</a></li>
+      </ul>
+    </section>
+    <main>
+      <section class="register-sample">
+        <h2>ServiceWorkerへの登録</h2>
+        <p>外部スクリプトをServiceWorkerに登録する。</p>
+        <div>
+          <div class="result-area result"></div>
+          <button class="register-service-worker">register</button>
+          <button class="clear-result">clear</button>
+        </div>
+      </section>
+      <section class="cache-sample">
+        <h2>CacheStorageへのリソース配置</h2>
+        <div class="result-area result"></div>
+        <button class="register">register</button>
+        <button class="clear">clear</button>
+      </section>
+      <section class="custom-response-sample">
+        <h2>カスタムレスポンスによるキャッシュ読込</h2>
+        <div class="result-area result"></div>
+        <div class="result-image result"></div>
+        <button class="adder">add to cache</button>
+        <button class="getter">get from cache</button>
+        <button class="clearer">result clear</button>
+      </section>
+      <section class="update-cache-sample">
+        <h2>キャッシュの更新・削除</h2>
+        <div class="result-area result"></div>
+        <div class="result-image result"></div>
+        <div>
+          <button class="loader">register</button>
+          <button class="unregister">unregister</button>
+          <button class="appender">append image</button>
+          <button class="clearer">clear</button>
+        </div>
+        <div>
+          <button class="cache-initializer">cache init(for Chrome)</button>
+        </div>
+        <div>
+          <p>Version Check</p>
+          <label>version<input class="version-number" type="number" min="1" max="100" value="1" /></label>
+          <button class="keychecker">check key</button>
+        </div>
+      </section>
+    </main>
+    <aside>
+      <h2>参考</h2>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API">MDN Service Worker API</a></li>
+        <li><a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Worker の紹介</a></li>
+      </ul>
+    </aside>
+    <script src="../../gomakit.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+	<meta charset="UTF-8" />
+	<title>Shared memory</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+	<header>
+	  <h1>Shared Memory</h1>
+	  <p>
+		共有メモリを扱うAPIについて調査します。
+	  </p>
+	</header>
+
+	<main>
+	  <section class="example example1">
+		<h2>例1：共有メモリの割り当て</h2>
+		<div class="result"></div>
+		<div>
+		  <label>byte=<input class="memory" type="number" value="1024" min="0" max="10240" required="required" /></label>
+		  <button class="runner">run</button>
+		  <button class="clearer">clear</button>
+		</div>
+	  </section>
+	  <section class="example example2">
+		<h2>例2：共有メモリのビュー作成</h2>
+		<div class="result"></div>
+		<div>
+		  <label>byte=<input class="memory" type="number" value="3" min="0" max="10240" required="required" /></label>
+		  <div>
+			<label>initial=<input class="initial" type="number" value="100" /></label>
+			<label>limit=<input class="limit" type="number" value="1000" /></label>
+			<label>step=<input class="step" type="number" value="2" /></label>
+		  </div>
+		  <button class="runner">run</button>
+		  <button class="clearer">clear</button>
+		</div>
+	  </section>
+	  <section class="example example3">
+		<h2>例3：アトミックな操作</h2>
+		<div class="result"></div>
+		<div>
+		  <label>length=<input class="memory" type="number" value="10" min="0" max="10240" required="required" /></label>
+		  <button class="runner">run</button>
+		  <button class="clearer">clear</button>
+		</div>
+	  </section>
+	  <section class="example example4">
+		<h2>例4：waitとwake</h2>
+		<div class="result"></div>
+		<div>
+		  <label>length=<input class="memory" type="number" value="3" min="0" max="10240" required="required" /></label>
+		  <button class="runner">run</button>
+		  <button class="clearer">clear</button>
+		</div>
+	  </section>
+	</main>
+
+	<aside>
+	  <h2>参考</h2>
+	  <ul>
+		<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer">MDN SharedArrayBuffer</a></li>
+		<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics">MDN Atomics</a></li>
+		<li><a href="https://github.com/tc39/ecmascript_sharedmem/blob/master/TUTORIAL.md">Shared memory - a brief tutorial</a></li>
+	  </ul>
+	</aside>
+
+	<script src="../../gomakit.js"></script>
+	<script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+/* input要素にafter擬似要素は無効 */
+input[is='matcher-input']::after {
+    content: attr(data-matched string, "unknown");
+    color: red;
+}
+
+input[is='matcher-input']::selection {
+    background-color: black;
+    color: white;
+}
+
+.matched {
+    color: blue;
+    font-weight: bold;
+}

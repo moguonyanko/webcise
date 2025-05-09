@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Async Functions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .result-area {
+          width: 100%;
+          max-width: 600px;
+          height: 100vh;
+          max-height: 300px;
+          overflow: auto;
+          background-color: whitesmoke;
+      }
+
+      body {
+          display: flex;
+          flex-flow: column;
+          min-height: 100vh;
+      }
+
+      main {
+          flex: 7;
+      }
+
+      aside {
+          flex: 2;
+      }
+
+      footer {
+          flex: 1;
+          border-top: 1px darkgray solid;
+          padding-top: 0.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Async Functions</h1>
+      <!--
+      あるページのディレクトリ配下にないページを参照する時は絶対パスで
+      指定する。というのも相対パスで指定するとこのページが移動した時に
+      リンクが切れてしまうからである。
+      -->
+      <div>
+        <p><a href="../../">home</a></p>
+      </div>
+    </header>
+    <main>
+      <section class="async-sample">
+        <h2>asyncとawaitによる非同期処理</h2>
+        <p>asyncとawaitを使って戻り値を返すように非同期処理を書くことができる。</p>
+        <div>
+          <div class="result-area"></div>
+          <div>
+            <button class="async-runner">run</button>
+            <button class="result-clearer">clear</button>
+          </div>
+        </div>
+      </section>
+      <section class="forawaitof-sample">
+        <h2>for-await-of</h2>
+        <div class="result-area"></div>
+        <div>
+          <button class="run">run</button>
+          <button class="clear">clear</button>
+        </div>
+      </section>
+      <section class="forawaitof-sample2">
+        <h2>for-await-of with async iterator</h2>
+        <div class="result-area"></div>
+        <div>
+          <button class="run">run</button>
+          <button class="clear">clear</button>
+        </div>
+      </section>
+      <section class="forawaitof-sample3">
+        <h2>for-await-of with async generator</h2>
+        <div class="result-area"></div>
+        <div>
+          <label>bound<input class="bound" type="number" value="100" min="1" max="10000" /></label>
+          <label>size<input class="size" type="number" value="10" min="1" max="20" /></label>
+          <button class="run">get</button>
+          <button class="clear">clear</button>
+        </div>
+      </section>
+    </main>
+    <aside>
+      <h2>参考</h2>
+      <ul>
+        <li><a href="https://tc39.github.io/ecmascript-asyncawait/">ECMAScript Async Function</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">MDN async function</a></li>
+        <li><a href="http://www.2ality.com/2016/02/async-functions.html">ES proposal: async functions</a></li>
+        <li><a href="https://jakearchibald.com/2014/es7-async-functions/">ES7 async functions</a></li>
+        <li><a href="https://jakearchibald.com/2017/async-iterators-and-generators/">Async iterators and generators</a></li>
+      </ul>
+    </aside>
+    <script src="../../gomakit.js"></script>
+    <script src="asyncfunctions.js"></script>
+  </body>
+</html>

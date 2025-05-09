@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Web Authentication API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Web Authentication API</h1>
+      <a href="../">home</a>
+      <div>
+        <a href="apitest/">API Test</a>
+      </div>
+    </header>
+    <main>
+      <h2>認証テスト</h2>
+      <form is="custom-authentication">
+        <div class="userinfo">
+          <label>名前<input class="user name" type="text" value="Hoge Bar" /></label>
+          <label>表示名<input class="user displayName" type="text" 
+                           value="Sample Name My Hoge" /></label>
+          <label>認証画像<input class="user authImage" type="file" 
+                            accept="image/png, image/jpeg"/></label>
+        </div>
+        <div>
+          <button class="auth" type="button" value="register">register</button>
+          <button class="auth" type="button" value="get">get</button>
+        </div>
+        <div>
+          <textarea class="resultarea"></textarea>
+        </div>
+      </form>
+    </main>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

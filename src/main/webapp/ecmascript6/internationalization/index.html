@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Internationalization</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            :root {
+                --common-bg-color: rgba(102, 102, 153, 0.2);
+                --common-result-color: rgba(204, 204, 204, 0.2);
+            }
+
+            .result-area {
+                width: 50%;
+                height: 10rem;
+                margin: 5px;
+                border: 1px var(--common-result-color) solid;
+                border-radius: 5px;
+                background-color: var(--common-result-color);
+                overflow-y: scroll;
+            }
+            
+            .sample-value {
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <header role="banner">
+            <h1>Internationalization</h1>
+            <p>
+                ECMAScript6で導入される国際化対応APIについて調べます。<br />
+            </p>
+        </header>
+
+        <div role="main">
+            <section class="collation-container">
+                <h2>String Collation</h2>
+                <p>
+                    Intl.Collatorオブジェクトを使うとロケールに応じた順序で<br />
+                    文字を順序付けすることができます。
+                </p>
+                <div>
+                    <p>サンプル文字列</p>
+                    <p class="sample-value">a, z, ä, ö, ü</p>
+                </div>
+                <div class="result-area"></div>
+                <div>
+                    <p>ロケール選択</p>
+                    <label><input class="select-locale-target" type="radio" name="collation-string-locale" value="de" checked="checked" />German</label>
+                    <label><input class="select-locale-target" type="radio" name="collation-string-locale" value="sv" />Swedish</label>
+                </div>
+                <div>
+                    <button class="view-result">表示</button>
+                    <button class="clear-result">クリア</button>
+                </div>
+            </section>
+            <section class="number-format-container">
+                <h2>Number Formatting</h2>
+                <p>
+                    ロケールに応じた数値表現を行えます。
+                </p>
+                <div>
+                    <p>サンプル数値</p>
+                    <p class="sample-value">1234567890</p>
+                </div>
+                <div class="result-area"></div>
+                <div>
+                    <p>ロケール選択</p>
+                    <label><input class="select-locale-target" type="radio" name="format-number-locale" value="en-US" checked="checked" />US English</label>
+                    <label><input class="select-locale-target" type="radio" name="format-number-locale" value="de-DE" />German</label>
+                    <label><input class="select-locale-target" type="radio" name="format-number-locale" value="zh-Hans-CN-u-nu-hanidec" />Chinese decimal</label>
+                </div>
+                <div>
+                    <button class="view-result">表示</button>
+                    <button class="clear-result">クリア</button>
+                </div>
+            </section>
+            <section class="currency-format-container">
+                <h2>Currency Formatting</h2>
+                <p>
+                    ロケールに応じた通貨表現を行えます。
+                </p>
+                <div>
+                    <p>サンプル数値</p>
+                    <p class="sample-value">1234567890</p>
+                </div>
+                <div class="result-area"></div>
+                <div>
+                    <p>ロケール選択</p>
+                    <label><input class="select-locale-target" type="radio" name="format-number-currency-locale" value="en-US" checked="checked" />US English</label>
+                    <label><input class="select-locale-target" type="radio" name="format-number-currency-locale" value="de-DE" />German</label>
+                    <label><input class="select-locale-target" type="radio" name="format-number-currency-locale" value="ja-JP" />Japanese</label>
+                </div>
+                <div>
+                    <p>通貨選択</p>
+                    <label><input class="select-currency-target" type="radio" name="format-number-currency" value="USD" checked="checked" />USD</label>
+                    <label><input class="select-currency-target" type="radio" name="format-number-currency" value="EUR" />EUR</label>
+                    <label><input class="select-currency-target" type="radio" name="format-number-currency" value="JPY" />JPY</label>
+                </div>
+                <div>
+                    <button class="view-result">表示</button>
+                    <button class="clear-result">クリア</button>
+                </div>
+            </section>
+            <section class="date-format-container">
+                <h2>Date/Time Formatting</h2>
+                <p>
+                    ロケールに応じた日付と時刻を表現できます。
+                </p>
+                <div class="result-area"></div>
+                <div>
+                    <p>ロケール選択</p>
+                    <label><input class="select-locale-target" type="radio" name="format-date-locale" value="en-US" checked="checked" />US English</label>
+                    <label><input class="select-locale-target" type="radio" name="format-date-locale" value="de-DE" />German</label>
+                    <label><input class="select-locale-target" type="radio" name="format-date-locale" value="ja-JP" />Japanese</label>
+                </div>
+                <div>
+                    <p>タイムゾーン選択(ブラウザによっては有効でないかもしれません。)</p>
+                    <label><input class="select-timezone-target" type="radio" name="format-timezone-locale" value="America/Los_Angeles" checked="checked" />ロサンゼルス</label>
+                    <label><input class="select-timezone-target" type="radio" name="format-timezone-locale" value="Europe/Berlin" />ベルリン</label>
+                    <label><input class="select-timezone-target" type="radio" name="format-timezone-locale" value="Asia/Tokyo" />東京</label>
+                </div>
+                <div>
+                    <label><input class="check-hour-type" type="checkbox" checked="checked" />24時間表示</label>
+                </div>
+                <div>
+                    <button class="view-result">現在の日付と時刻を表示</button>
+                    <button class="clear-result">クリア</button>
+                </div>
+            </section>
+        </div>
+
+        <aside role="complementary">
+            <h3>参考</h3>
+            <ul>
+                <li><a href="http://es6-features.org/">ECMAScript 6 — New Features: Overview & Comparison</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation">MDN Intl</a></li>
+                <li><a href="https://msdn.microsoft.com/ja-jp/library/dn342821(v=vs.94).aspx">MSDN Intl.Collator</a></li>
+                <li><a href="https://msdn.microsoft.com/ja-jp/library/dn342819(v=vs.94).aspx">MSDN Intl.NumberFormat </a></li>
+                <li><a href="https://msdn.microsoft.com/ja-jp/library/dn342822(v=vs.94).aspx">MSDN Intl.DateTimeFormat</a></li>
+            </ul>
+        </aside>
+
+        <footer role="contentinfo">
+            <small>Copyright &copy; 2016 moguonyanko All rights reserved.</small>
+        </footer>
+
+        <script src="../../gomakit.js"></script>
+        <script src="internationalization.js"></script>
+    </body>
+</html>

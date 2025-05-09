@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Symbol</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            :root {
+                --common-bg-color: rgba(204, 204, 153, 0.3);
+                --common-border-color: rgba(204, 204, 204, 0.7);
+            }
+
+            footer {
+                margin-top: 1rem;
+                border-top: 1px solid lightgray;
+            }
+
+            .result-area {
+                border: 1px solid lightgray;
+                border-radius: 5px;
+                background-color: var(--common-bg-color);
+                width: 50%;
+                height: 150px;
+                overflow-y: scroll;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Symbol</h1>
+            <p>
+                Symbolオブジェクトの有用性について調査します。
+            </p>
+        </header>
+
+        <main>
+            <section class="enumerate-sample">
+                <style scoped="scoped">
+                    :scope {
+                        border: 1px var( --common-border-color) solid;                        
+                    }
+                </style>
+                <h2>Symbolの列挙</h2>
+                <ul class="enumerate-elements">
+                    <li class="enumerate-element">Apple</li>
+                    <li class="enumerate-element">Orange</li>
+                    <li class="enumerate-element">Banana</li>
+                </ul>
+                <div class="result-area"></div>
+                <div>
+                    <button class="enumerate-runner">列挙</button>
+                    <button class="enumerate-clearer">クリア</button>
+                </div>
+            </section>
+            <section class="species-sample">
+                <h2>Symbolによる型の調査</h2>
+                <p>
+                    Symbol.speciesにはinstanceof適用時に参照される型を表す
+                    コンストラクタを設定できる。
+                </p>
+                <section>
+                    <h3>拡張したMapによる調査</h3>
+                    <div>
+                        <label>
+                            <input class="use-species" type="checkbox" checked="checked" />Symbol.species設定
+                        </label>
+                        <button class="type-inspecter">調査実行</button>
+                        <button class="clear-result">クリア</button>
+                    </div>
+                    <div class="result-area"></div>
+                </section>
+            </section>
+            <section class="hasinstance-sample">
+                <h2>instanceofの振る舞いを変更する</h2>
+                <p>
+                    Symbol.hasInstanceをstaticメソッドとして実装することで<br />
+					オブジェクトにinstanceof演算子が適用された時の振る舞いを変更することができる。
+                </p>
+				<div>
+					<button class="type-inspecter">調査実行</button>
+					<button class="clear-result">クリア</button>
+				</div>
+				<div class="result-area"></div>
+            </section>
+        </main>
+
+        <aside>
+            <h2>参考サイト</h2>
+            <ul>
+                <li>
+                    <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Symbol">MDN Symbol</a>
+                </li>
+                <li>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/species">MDN Symbol.species</a>
+                </li>
+            </ul>
+        </aside>
+
+        <footer role="contentinfo">
+            <small>Copyright &copy; 2016- moguonyanko All rights reserved.</small>
+        </footer>
+
+        <script src="/webcise/gomakit.js"></script>
+        <script src="/webcise/ecmascript6/symbol/symbol.js"></script>
+    </body>
+</html>

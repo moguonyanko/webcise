@@ -101,7 +101,13 @@
 						 * グローバルオブジェクト配下のライブラリであっても
 						 * 参照できない。 
 						 */
-						console.log(my);
+                                                try {
+                                                    console.log(my);
+                                                } catch (err) {
+                                                    console.log(err.message, 
+                                                                ':このページのドキュメント内に定義されたグローバルオブジェクト配下のライブラリであっても参照できない。'
+                                                            )
+                                                }
 
 						self.postMessage({
 							sharedResult : 100,
@@ -120,7 +126,7 @@
 			<small>Copyright &copy; 2015 moguonyanko All rights reserved.</small>
 		</footer>
 
-		<script src="/webcise/common.js"></script>
+		<script src="../../gomakit.js"></script>
 		<script src="mainthread.js"></script>
 		<script src="worker.js"></script>
 		<script src="libshared.js"></script>

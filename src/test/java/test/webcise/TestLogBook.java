@@ -30,6 +30,7 @@ public class TestLogBook {
 	}
 	
 	@Test
+	@Disabled("logbookは現在使用していないためテスト対象外とする。")
 	public void トップページにアクセスできる(){
 		WebDriver driver = getWebDriver();
 		driver.get(TOP_PAGE_URL);
